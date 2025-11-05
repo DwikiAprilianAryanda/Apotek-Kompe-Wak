@@ -155,3 +155,21 @@ footer {
 .button-checkout:hover {
     background-color: #0056b3;
 }
+
+/* Styling Tabel Admin */
+.admin-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+.admin-table-container th, .admin-table-container td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+.admin-table-container th {
+    background-color: #f2f2f2;
+}
+.admin-table-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
