@@ -139,3 +139,19 @@ footer {
 .button-hapus:hover {
     background-color: #c82333;
 }
+
+/* Tombol Checkout */
+.button-checkout {
+    display: inline-block;
+    background-color: #007BFF; /* Biru */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 20px;
+}
+.button-checkout:hover {
+    background-color: #0056b3;
+}

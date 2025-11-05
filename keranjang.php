@@ -53,6 +53,9 @@ include 'includes/db_connect.php';
             echo '</table>';
 
             echo '<h3>Total Belanja Keseluruhan: Rp ' . number_format($total_belanja_keseluruhan) . '</h3>';
+            echo '<div class_="checkout-button-container">';
+            echo '<a href="/actions/place_order.php" class="button-checkout">Proses ke Checkout</a>';
+            echo '</div>';
 
         } else {
             echo "<p>Produk di keranjang tidak ditemukan di database.</p>";
