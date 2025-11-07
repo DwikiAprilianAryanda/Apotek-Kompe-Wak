@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apotek Sehat</title>
+    <title>Apotek Arshaka</title>
     <link rel="stylesheet" href="/assets/css/style.css?v=1.1">
 </head>
 <body>
 
 <header>
     <nav>
-        <a href="index.php" class="logo">Apotek medi</a>
+        <a href="index.php" class="logo">Apotek Arshaka</a>
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="produk.php">Produk</a></li>
