@@ -11,7 +11,7 @@
 
 <header>
     <nav>
-        <a href="index.php" class="logo">Apotek Sehat</a>
+        <a href="index.php" class="logo">Apotek medi</a>
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="produk.php">Produk</a></li>
