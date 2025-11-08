@@ -1,15 +1,15 @@
 <?php
-// Pengaturan untuk koneksi database
-$db_host = 'sql200.infinityfree.com';     // Biasanya 'localhost'
-$db_user = 'if0_40167434';          // User default XAMPP
-$db_pass = 'vb0J2kvY9yo';              // Password default XAMPP kosong
-$db_name = 'if0_40167434_db_apotek';     // Nama database yang Anda buat
+// Pengaturan untuk koneksi database LOKAL (Laragon)
+$db_host = 'localhost';     // atau 127.0.0.1
+$db_user = 'root';          // User default Laragon
+$db_pass = '';              // Password default Laragon kosong
+$db_name = 'db_apotek';     // Nama database lokal yang baru Anda buat
 
 // Membuat koneksi
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 // Memeriksa koneksi
 if ($conn->connect_error) {
-    die("Koneksi ke database gagal: " . $conn->connect_error);
+    die("Koneksi ke database LOKAL gagal: " . $conn->connect_error);
 }
 ?>

@@ -1,12 +1,6 @@
 <?php
-session_start();
-include '../includes/db_connect.php';
-
-// Keamanan: Pastikan admin yang login
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] != 'admin') {
-    header("Location: /login.php");
-    exit;
-}
+// Header admin (session, db, keamanan, layout)
+include 'admin_header.php';
 
 // 1. Ambil Order ID dari URL
 if (!isset($_GET['id'])) {
@@ -27,6 +21,8 @@ $order = $stmt_order->get_result()->fetch_assoc();
 
 if (!$order) {
     echo "Pesanan tidak ditemukan.";
+    // Pastikan footer di-load sebelum exit
+    include 'admin_footer.php';
     exit;
 }
 
@@ -41,55 +37,78 @@ $stmt_items->execute();
 $items = $stmt_items->get_result();
 ?>
 
-<?php include '../includes/header.php'; ?>
-
 <h1 class="page-title">Detail Pesanan #<?php echo $order['id']; ?></h1>
 
-<div class="order-detail-container">
-    
-    <h3>Informasi Pelanggan</h3>
-    <p><strong>Nama:</strong> <?php echo htmlspecialchars($order['name']); ?></p>
-    <p><strong>Email:</strong> <?php echo htmlspecialchars($order['email']); ?></p>
-    <p><strong>Alamat:</strong> <?php echo nl2br(htmlspecialchars($order['address'])); ?></p>
-    <p><strong>No. Telepon:</strong> <?php echo htmlspecialchars($order['phone_number']); ?></p>
+<div style="display: flex; gap: 30px;">
 
-    <h3>Informasi Pesanan</h3>
-    <p><strong>Status Saat Ini:</strong> <strong><?php echo htmlspecialchars($order['status']); ?></strong></p>
-    <p><strong>Total Belanja:</strong> Rp <?php echo number_format($order['total_amount']); ?></p>
-    <p><strong>Tanggal Pesan:</strong> <?php echo $order['order_date']; ?></p>
+    <div style="flex: 2;">
+        <div class="admin-table-container" style="margin-bottom: 30px;">
+            <h3 style="margin-top: 0;">Item yang Dipesan</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produk</th>
+                        <th>Kuantitas</th>
+                        <th>Harga Satuan</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($item = $items->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($item['name']); ?></td>
+                        <td><?php echo $item['quantity']; ?></td>
+                        <td>Rp <?php echo number_format($item['price_per_item']); ?></td>
+                        <td>Rp <?php echo number_format($item['price_per_item'] * $item['quantity']); ?></td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="admin-form-container">
+            <h3>Informasi Pelanggan</h3>
+            <p><strong>Nama:</strong> <?php echo htmlspecialchars($order['name']); ?></p>
+            <p><strong>Email:</strong> <?php echo htmlspecialchars($order['email']); ?></p>
+            <p><strong>No. Telepon:</strong> <?php echo htmlspecialchars($order['phone_number']); ?></p>
+            <p><strong>Alamat:</strong><br><?php echo nl2br(htmlspecialchars($order['address'])); ?></p>
+        </div>
+    </div>
     
-    <h3>Item yang Dipesan</h3>
-    <table>
-        <tr>
-            <th>Produk</th>
-            <th>Kuantitas</th>
-            <th>Harga Satuan</th>
-            <th>Total</th>
-        </tr>
-        <?php while ($item = $items->fetch_assoc()): ?>
-        <tr>
-            <td><?php echo htmlspecialchars($item['name']); ?></td>
-            <td><?php echo $item['quantity']; ?></td>
-            <td>Rp <?php echo number_format($item['price_per_item']); ?></td>
-            <td>Rp <?php echo number_format($item['price_per_item'] * $item['quantity']); ?></td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
-    
-    <hr>
-    <h3>Ubah Status Pesanan</h3>
-    <form action="/actions/update_order_status.php" method="POST">
-        <input type="hidden" name="order_id" value="<?php echo $order_id; ?>">
-        <label for="status">Status Baru:</label>
-        <select name="status" id="status">
-            <option value="Pending" <?php if($order['status'] == 'Pending') echo 'selected'; ?>>Pending</option>
-            <option value="Processing" <?php if($order['status'] == 'Processing') echo 'selected'; ?>>Processing (Diproses)</option>
-            <option value="Shipped" <?php if($order['status'] == 'Shipped') echo 'selected'; ?>>Shipped (Dikirim)</option>
-            <option value="Completed" <?php if($order['status'] == 'Completed') echo 'selected'; ?>>Completed (Selesai)</option>
-            <option value="Cancelled" <?php if($order['status'] == 'Cancelled') echo 'selected'; ?>>Cancelled (Dibatalkan)</option>
-        </select>
-        <button type="submit" class="button-update">Update Status</button>
-    </form>
+    <div style="flex: 1;">
+        <div class="admin-form-container">
+            <h3>Update Pesanan</h3>
+            <p><strong>Total Belanja:</strong><br><span style="font-size: 1.5rem; font-weight: bold; color: #1D3557;">Rp <?php echo number_format($order['total_amount']); ?></span></p>
+            <p style="margin-top: 20px;"><strong>Status Saat Ini:</strong><br>
+                <span style="font-weight: bold; font-size: 1.2rem; color: #1D3557;"><?php echo htmlspecialchars($order['status']); ?></span>
+            </p>
+            
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
+            
+            <form action="../actions/update_order_status.php" method="POST">
+                <input type="hidden" name="order_id" value="<?php echo $order_id; ?>">
+                
+                <label for="status">Ubah Status:</label>
+                <select name="status" id="status" style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #ddd; margin-bottom: 15px;">
+                    <option value="Pending" <?php if($order['status'] == 'Pending') echo 'selected'; ?>>Pending</option>
+                    <option value="Processing" <?php if($order['status'] == 'Processing') echo 'selected'; ?>>Processing (Diproses)</option>
+                    <option value="Shipped" <?php if($order['status'] == 'Shipped') echo 'selected'; ?>>Shipped (Dikirim)</option>
+                    <option value="Completed" <?php if($order['status'] == 'Completed') echo 'selected'; ?>>Completed (Selesai)</option>
+                    <option value="Cancelled" <?php if($order['status'] == 'Cancelled') echo 'selected'; ?>>Cancelled (Dibatalkan)</option>
+                </select>
+                
+                <label for="shipping_code">Nomor Resi Pengiriman:</label>
+                <input type="text" name="shipping_code" id="shipping_code" value="<?php echo htmlspecialchars($order['shipping_code'] ?? ''); ?>">
+                
+                <button type="submit" class="btn-primary" style="width: 100%;">Update Status</button>
+            </form>
+        </div>
+    </div>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php
+$stmt_order->close();
+$stmt_items->close();
+$conn->close();
+include 'admin_footer.php'; 
+?>
