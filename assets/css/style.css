@@ -1,266 +1,609 @@
-/* Reset dasar & Font */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
+/* =============================
+    RESET & BASE STYLES
+    ============================= */
 
-/* Header & Navigasi */
-header {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 40px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    html {
+        scroll-behavior: smooth;
+    }
 
-nav .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-}
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f4f4f4;
+        overflow-x: hidden;
+    }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
+    /* =============================
+    BACKGROUND VIDEO
+    ============================= */
 
-nav ul li {
-    margin-left: 20px;
-}
+    #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1;
+        object-fit: cover;
+        filter: brightness(40%);
+    }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1em;
-}
+    /* =============================
+    HEADER STYLES
+    ============================= */
 
-/* Konten Utama */
-main {
-    padding: 20px 40px;
-    min-height: 80vh; /* Agar footer tetap di bawah */
-}
+    header {
+        background: linear-gradient(135deg, #1b3270, #457B9D);
+        color: white;
+        padding: 20px 40px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
 
-.page-title {
-    margin-bottom: 20px;
-    border-bottom: 2px solid #007BFF;
-    padding-bottom: 10px;
-}
+    .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-}
+    .logo-judul {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
 
-/* Styling untuk Grid Produk */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-}
+    .logo-kanan {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-.product-card {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
+    header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
 
-.product-card img {
-    max-width: 100%;
-    height: 120px;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
+    .header-form {
+        flex: 1;
+        max-width: 500px;
+        min-width: 250px;
+    }
 
-.product-card h3 {
-    font-size: 1.1em;
-    margin: 10px 0;
-}
+    .input-wrapper {
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
 
-.product-card p {
-    color: #007BFF;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
+    .input-wrapper input {
+        flex: 1;
+        padding: 12px 20px;
+        border: none;
+        background: transparent;
+        color: white;
+        font-size: 1rem;
+        outline: none;
+    }
 
-.product-card button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-}
+    .input-wrapper input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
 
-.product-card button:hover {
-    background-color: #218838;
-}
+    .input-wrapper button {
+        padding: 12px 20px;
+        border: none;
+        background: rgba(255, 255, 255, 0.3);
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
 
-/* Styling untuk Halaman Keranjang */
-.cart-container table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-.cart-container th, .cart-container td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-}
-.cart-container th {
-    background-color: #f2f2f2;
-}
+    .input-wrapper button:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
 
-/* Tombol Hapus di Keranjang */
-.button-hapus {
-    background-color: #dc3545; /* Warna merah */
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.button-hapus:hover {
-    background-color: #c82333;
-}
+    /* =============================
+    NAVIGATION STYLES
+    ============================= */
 
-/* Tombol Checkout */
-.button-checkout {
-    display: inline-block;
-    background-color: #007BFF; /* Biru */
-    color: white;
-    padding: 12px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
-    margin-top: 20px;
-}
-.button-checkout:hover {
-    background-color: #0056b3;
-}
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
 
-/* Styling Tabel Admin */
-.admin-table-container table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
-.admin-table-container th, .admin-table-container td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-}
-.admin-table-container th {
-    background-color: #f2f2f2;
-}
-.admin-table-container tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        position: relative;
+    }
 
-/* Halaman Detail Pesanan Admin */
-.order-detail-container {
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s ease;
+    }
 
-.order-detail-container h3 {
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 10px;
-    margin-top: 20px;
-}
+    .nav-links a:hover::after {
+        width: 80%;
+    }
 
-.order-detail-container p {
-    line-height: 1.6;
-}
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
 
-/* Tombol Update Status */
-.button-update {
-    background-color: #ffc107; /* Warna kuning */
-    color: #333;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-left: 10px;
-}
-.button-update:hover {
-    background-color: #e0a800;
-}
+    /* =============================
+    SECTION STYLES
+    ============================= */
 
-/* Styling Halaman Akun */
-.account-container {
-    display: flex;
-    gap: 30px;
-}
+    .section {
+        padding: 80px 40px;
+        margin: 40px auto;
+        max-width: 1200px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+    }
 
-.account-sidebar {
-    flex: 1; /* Lebar 1 bagian */
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    height: fit-content;
-}
+    .section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: #1D3557;
+        position: relative;
+        padding-bottom: 15px;
+    }
 
-.account-sidebar a {
-    display: block;
-    padding: 12px 15px;
-    text-decoration: none;
-    color: #333;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
+    .section h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #1D3557, #457B9D);
+        border-radius: 2px;
+    }
 
-.account-sidebar a:hover,
-.account-sidebar a.active {
-    background-color: #f0f0f0;
-    font-weight: bold;
-}
+    .section p {
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        color: #555;
+        line-height: 1.8;
+    }
 
-.account-content {
-    flex: 3; /* Lebar 3 bagian */
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
+    /* =============================
+    GRID & CARD STYLES
+    ============================= */
 
-.account-content form div {
-    margin-bottom: 15px;
-}
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
 
-.account-content label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+    .card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+    }
 
-.account-content input[type="text"],
-.account-content input[type="email"],
-.account-content textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box; /* Penting agar padding tidak merusak layout */
-}
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card h3 {
+        padding: 20px 20px 10px;
+        color: #1D3557;
+        font-size: 1.5rem;
+    }
+
+    .card p {
+        padding: 0 20px 20px;
+        color: #666;
+        flex-grow: 1;
+        text-align: left;
+    }
+
+    .card .btn {
+        margin: 0 20px 20px;
+    }
+
+    /* =============================
+    BUTTON STYLES
+    ============================= */
+
+    .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #1D3557, 457B9D);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
+        background: linear-gradient(135deg, #1b3270, #457B9D);
+    }
+
+    .btn-secondary {
+        background: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background: #5a6268;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+    }
+
+    /* =============================
+    VIDEO STYLES
+    ============================= */
+
+    .responsive-img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        margin: 20px auto;
+        display: block;
+    }
+
+    /* =============================
+    CONTACT SECTION
+    ============================= */
+
+    #kontak ul {
+        list-style: none;
+        padding: 0;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    #kontak ul li {
+        padding: 15px;
+        margin: 10px 0;
+        background: #f8f9fa;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    #kontak ul li:hover {
+        background: #e9ecef;
+        transform: translateX(5px);
+    }
+
+    /* Contact Form Styles */
+    .contact-form {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #f8f9fa;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form h3 {
+        text-align: center;
+        color: #1D3557;
+        margin-bottom: 20px;
+    }
+
+    .contact-form label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+        font-family: inherit;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        outline: none;
+        border-color: #1D3557;
+    }
+
+    .contact-form textarea {
+        resize: vertical;
+    }
+
+    .contact-form button {
+        margin-right: 10px;
+    }
+
+    /* =============================
+    FOOTER STYLES
+    ============================= */
+
+    footer {
+        background: linear-gradient(135deg, #1b3270, #457B9D);
+        color: white;
+        text-align: center;
+        padding: 30px;
+        margin-top: 40px;
+    }
+
+    footer p {
+        margin-bottom: 10px;
+    }
+
+    footer a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+
+    .alert-success {
+        background: linear-gradient(135deg, #10b981, #34d399);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+
+    /* =============================
+    RESPONSIVE DESIGN
+    ============================= */
+
+    @media (max-width: 1024px) {
+        .section {
+            padding: 40px 20px;
+            margin: 20px 10px;
+        }
+        
+        .section h2 {
+            font-size: 2rem;
+        }
+        
+        .grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .logo-kanan {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        header h1 {
+            font-size: 1.2rem;
+        }
+        
+        .section h2 {
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .nav-links a {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn {
+            padding: 10px 18px;
+            font-size: 0.9rem;
+        }
+    }
+
+    /* =============================
+    ANIMATIONS
+    ============================= */
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* =============================
+    UTILITY CLASSES
+    ============================= */
+
+    .text-center {
+        text-align: center;
+    }
+
+    .mt-20 {
+        margin-top: 20px;
+    }
+
+    .mb-20 {
+        margin-bottom: 20px;
+    }
+
+    .p-20 {
+        padding: 20px;
+    }
+
+    /* =============================
+    SCROLLBAR STYLING
+    ============================= */
+
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #1D3557, 457B9D);
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #1b3270, #457B9D);
+    }
+
+    /* Dark mode scrollbar */
+    .dark-mode ::-webkit-scrollbar-track {
+        background: #2a2a2a;
+    }
+
+    .dark-mode ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #1e3a8a, 457B9D);
+        padding: 60px 30px;
+    }
+    
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+
+    @media (max-width: 768px) {
+        header {
+            padding: 15px 20px;
+        }
+        
+        header h1 {
+            font-size: 1.5rem;
+        }
+        
+        .header-top {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .header-form {
+            max-width: 100%;
+        }
+        
+        .nav-links {
+            gap: 15px;
+            font-size: 0.9rem;
+        }
+        
+    }

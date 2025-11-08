@@ -2,7 +2,6 @@
 session_start();
 include 'includes/db_connect.php';
 
-// Keamanan 1: Pastikan login
 if (!isset($_SESSION['user_id'])) {
     header("Location: /login.php");
     exit;
@@ -11,21 +10,17 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $order_id = $_GET['id'];
 
-// Keamanan 2 (KRUSIAL):
-// Ambil info pesanan HANYA JIKA ID pesanan cocok DAN ID pengguna cocok.
 $sql_order = "SELECT * FROM orders WHERE id = ? AND user_id = ?";
 $stmt_order = $conn->prepare($sql_order);
 $stmt_order->bind_param("ii", $order_id, $user_id);
 $stmt_order->execute();
 $order = $stmt_order->get_result()->fetch_assoc();
 
-// Jika query tidak menemukan apa-apa (pesanan bukan miliknya, atau tidak ada)
 if (!$order) {
-    echo "Pesanan tidak ditemukan atau Anda tidak memiliki akses.";
+    echo "<div class='section'><p style='text-align:center; color:#dc2626;'>Pesanan tidak ditemukan atau Anda tidak memiliki akses.</p></div>";
     exit;
 }
 
-// 3. Ambil Item Produk dalam Pesanan tersebut
 $sql_items = "SELECT products.name, order_items.quantity, order_items.price_per_item 
               FROM order_items 
               JOIN products ON order_items.product_id = products.id 
@@ -37,35 +32,48 @@ $items = $stmt_items->get_result();
 ?>
 
 <?php include 'includes/header.php'; ?>
-
-<h1 class="page-title">Detail Pesanan #<?php echo $order['id']; ?></h1>
-
-<div class="order-detail-container">
+<link rel="stylesheet" href="assets/css/style.css">
+<div class="section">
+    <h2>Detail Pesanan #<?php echo $order['id']; ?></h2>
     
-    <h3>Informasi Pesanan</h3>
-    <p><strong>Status:</strong> <strong><?php echo htmlspecialchars($order['status']); ?></strong></p>
-    <p><strong>Total Belanja:</strong> Rp <?php echo number_format($order['total_amount']); ?></p>
-    <p><strong>Tanggal Pesan:</strong> <?php echo $order['order_date']; ?></p>
-    
-    <h3>Item yang Dipesan</h3>
-    <table>
-        <tr>
-            <th>Produk</th>
-            <th>Kuantitas</th>
-            <th>Harga Satuan</th>
-            <th>Total</th>
-        </tr>
-        <?php while ($item = $items->fetch_assoc()): ?>
-        <tr>
-            <td><?php echo htmlspecialchars($item['name']); ?></td>
-            <td><?php echo $item['quantity']; ?></td>
-            <td>Rp <?php echo number_format($item['price_per_item']); ?></td>
-            <td>Rp <?php echo number_format($item['price_per_item'] * $item['quantity']); ?></td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
-    <br>
-    <a href="riwayat_pesanan.php">← Kembali ke Riwayat Pesanan</a>
+    <div class="card" style="max-width: 900px; margin: 30px auto;">
+        <div style="padding: 30px;">
+            <h3 style="color: #1e40af; margin-bottom: 20px;">Informasi Pesanan</h3>
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+                <p style="margin-bottom: 10px;"><strong>Status:</strong> <span style="color: #1e40af; font-weight: bold;"><?php echo htmlspecialchars($order['status']); ?></span></p>
+                <p style="margin-bottom: 10px;"><strong>Total Belanja:</strong> Rp <?php echo number_format($order['total_amount']); ?></p>
+                <p style="margin-bottom: 0;"><strong>Tanggal Pesan:</strong> <?php echo $order['order_date']; ?></p>
+            </div>
+            
+            <h3 style="color: #1e40af; margin-bottom: 20px;">Item yang Dipesan</h3>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white;">
+                            <th style="padding: 15px; text-align: left; border-radius: 8px 0 0 0;">Produk</th>
+                            <th style="padding: 15px; text-align: center;">Kuantitas</th>
+                            <th style="padding: 15px; text-align: right;">Harga Satuan</th>
+                            <th style="padding: 15px; text-align: right; border-radius: 0 8px 0 0;">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($item = $items->fetch_assoc()): ?>
+                        <tr style="border-bottom: 1px solid #e5e7eb;">
+                            <td style="padding: 15px;"><?php echo htmlspecialchars($item['name']); ?></td>
+                            <td style="padding: 15px; text-align: center;"><?php echo $item['quantity']; ?></td>
+                            <td style="padding: 15px; text-align: right;">Rp <?php echo number_format($item['price_per_item']); ?></td>
+                            <td style="padding: 15px; text-align: right; font-weight: bold;">Rp <?php echo number_format($item['price_per_item'] * $item['quantity']); ?></td>
+                        </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <a href="riwayat_pesanan.php" class="btn btn-secondary">← Kembali ke Riwayat Pesanan</a>
+            </div>
+        </div>
+    </div>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

@@ -5,28 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apotek Arshaka</title>
-    <link rel="stylesheet" href="/assets/css/style.css?v=1.1">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<header>
-    <nav>
-        <a href="index.php" class="logo">Apotek Arshaka</a>
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="produk.php">Produk</a></li>
-            <li><a href="keranjang.php">Keranjang</a></li>
-
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <li><a href="akun.php">Hi, <?php echo htmlspecialchars($_SESSION['user_name']); ?></a></li>
-                <li><a href="actions/logout.php">Logout</a></li>
-            <?php else: ?>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php">Register</a></li>
-            <?php endif; ?>
-            
-        </ul>
-    </nav>
-</header>
+    <header>
+        <div class="header-top">
+            <div class="logo-judul">
+                <img src="foto/logo.png" alt="Apotek Arshaka" class="logo-kanan">
+                <h1>Apotek Arshaka</h1>
+            </div>
+            <div class="header-form">
+                <div class="input-wrapper">
+                    <input type="text" placeholder="Cari produk atau wisata..." value="<?php echo $searchTerm; ?>">
+                    <button type="submit">&#x1F50D;</button>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="index.php">Home</a>
+            <a href="produk.php">Produk</a>
+            <a href="keranjang.php">Keranjang</a>
+            <a href="login.php">Login</a>
+            <a href="register.php">Register</a>
+        </nav>
+    </header>
 
 <main>
