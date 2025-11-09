@@ -24,18 +24,21 @@
     BACKGROUND VIDEO
     ============================= */
 
-    #myVideo {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: -1;
-        object-fit: cover;
-        filter: brightness(40%);
-    }
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    /* Tiga properti di bawah ini memastikan video menutupi seluruh viewport */
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    /* Properti object-fit: cover; memastikan video terpotong (crop) agar menutupi
+       area penuh, tanpa distorsi aspek rasio */
+    object-fit: cover;
+    z-index: -1; /* Penting: menempatkan video di belakang semua konten */
+    filter: brightness(40%); /* Membuat video lebih gelap agar teks lebih mudah dibaca */
+}
 
     /* =============================
     HEADER STYLES
