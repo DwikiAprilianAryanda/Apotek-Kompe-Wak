@@ -1,40 +1,41 @@
 <?php
 session_start();
 
+// Pastikan session cart ada
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
 
-if (isset($_POST['product_id'])) {
+// Pastikan ini adalah request POST dan ada data yang dikirim
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['product_id']) && isset($_POST['quantity'])) {
+    
     $product_id = $_POST['product_id'];
+    $quantity = (int)$_POST['quantity']; // Ambil kuantitas dari form
 
-    // LOGIKA BARU UNTUK KUANTITAS
+    // Validasi kuantitas (minimal 1)
+    if ($quantity <= 0) {
+        $quantity = 1;
+    }
+
+    // --- LOGIKA KERANJANG BARU ---
     // Periksa apakah produk sudah ada di keranjang
     if (array_key_exists($product_id, $_SESSION['cart'])) {
         // Jika sudah ada, tambahkan kuantitasnya
-        $_SESSION['cart'][$product_id]++;
+        $_SESSION['cart'][$product_id] += $quantity;
     } else {
-        // Jika belum ada, set kuantitasnya menjadi 1
-        $_SESSION['cart'][$product_id] = 1;
+        // Jika belum ada, set kuantitasnya
+        $_SESSION['cart'][$product_id] = $quantity;
     }
+    
+    // --- PERUBAHAN UTAMA: REDIRECT ---
+    // Alih-alih mengirim JSON, kita kembalikan pengguna ke halaman produk.
+    // Kita bisa tambahkan parameter 'status=added' untuk notifikasi nanti.
+    header("Location: ../produk.php?status=cart_added");
+    exit;
 
-    // Hitung total item (bukan total jenis produk)
-    $total_items = 0;
-    foreach ($_SESSION['cart'] as $quantity) {
-        $total_items += $quantity;
-    }
-
-    header('Content-Type: application/json');
-    echo json_encode([
-        'success' => true,
-        'message' => 'Produk berhasil ditambahkan!',
-        'cart_count' => $total_items // Kirim total kuantitas
-    ]);
 } else {
-    header('Content-Type: application/json');
-    echo json_encode([
-        'success' => false,
-        'message' => 'Product ID tidak ditemukan.'
-    ]);
+    // Jika data tidak lengkap, kembalikan ke halaman produk
+    header("Location: ../produk.php?error=cart_fail");
+    exit;
 }
 ?>

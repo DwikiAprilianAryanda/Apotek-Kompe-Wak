@@ -1,0 +1,244 @@
+/* ===== FILE: assets/css/admin_style.css (VERSI DISESUAIKAN) ===== */
+
+body {
+    background-color: #f4f4f4; /* BG: Disesuaikan dengan style.css */
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* FONT: Disesuaikan dengan style.css */
+    color: #333; /* TEXT: Disesuaikan dengan style.css */
+}
+
+.admin-wrapper {
+    display: flex;
+}
+
+.admin-sidebar {
+    width: 250px;
+    background-color: #2c3e50; /* Sidebar tetap gelap untuk kontras admin */
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.admin-sidebar h2 {
+    color: white;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.admin-sidebar .admin-welcome {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.admin-nav a {
+    display: block;
+    color: #ecf0f1;
+    padding: 15px 20px;
+    text-decoration: none;
+    border-radius: 8px; /* RADIUS: Disesuaikan */
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.admin-nav a:hover,
+.admin-nav a.active {
+    background-color: #457B9D; /* WARNA: Disesuaikan dengan style.css (dari gradient) */
+}
+
+.admin-nav a.logout {
+    background-color: #e74c3c;
+    margin-top: 30px;
+}
+.admin-nav a.logout:hover {
+    background-color: #c0392b;
+}
+
+.admin-content {
+    flex-grow: 1;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.page-title {
+    margin-top: 0;
+    color: #1D3557; /* WARNA: Disesuaikan dengan style.css */
+}
+
+/* =============================
+    CONTAINER & TABEL ADMIN
+   ============================= */
+
+.admin-table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px; /* RADIUS: Disesuaikan dengan .card */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* SHADOW: Disesuaikan dengan .card */
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #f8f9fa; /* BG: Disesuaikan dengan .contact-form */
+    color: #333;
+    font-weight: 600;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+}
+
+.product-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px; /* RADIUS: Disesuaikan */
+    border: 1px solid #ddd;
+}
+
+/* =============================
+    TOMBOL-TOMBOL ADMIN (DISESUAIKAN)
+   ============================= */
+
+/* Tombol Aksi Utama (Tambah) - Menggunakan style .btn-primary Anda */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px; /* Padding: Disesuaikan */
+    text-decoration: none;
+    border-radius: 8px; /* Radius: Disesuaikan */
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #1D3557, #457B9D); /* WARNA: Disesuaikan */
+    color: white;
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
+}
+
+/* Tombol Aksi di Tabel (Detail) - Menggunakan style .btn-secondary Anda */
+.btn-detail {
+    background: #6c757d; /* WARNA: Disesuaikan */
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 8px; /* Radius: Disesuaikan */
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+.btn-detail:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Tombol Aksi di Tabel (Edit) */
+.btn-edit {
+    background-color: #ffc107; /* Kuning */
+    color: #212529;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 8px; /* Radius: Disesuaikan */
+    font-size: 0.9em;
+    margin-right: 5px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+.btn-edit:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+}
+
+/* Tombol Aksi di Tabel (Hapus) */
+.btn-delete {
+    background-color: #dc3545; /* Merah */
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 8px; /* Radius: Disesuaikan */
+    font-size: 0.9em;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+.btn-delete:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+
+/* =============================
+    FORM ADMIN (BARU - Disesuaikan)
+   ============================= */
+   
+/* Ini untuk halaman tambah/edit produk nanti */
+.admin-form-container {
+    max-width: 800px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px; /* Radius: Disesuaikan */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow: Disesuaikan */
+}
+
+.admin-form-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600; /* Style: Disesuaikan */
+}
+
+.admin-form-container input[type="text"],
+.admin-form-container input[type="number"],
+.admin-form-container textarea {
+    width: 100%;
+    padding: 12px; /* Padding: Disesuaikan */
+    margin-bottom: 20px;
+    border: 2px solid #ddd; /* Border: Disesuaikan */
+    border-radius: 8px; /* Radius: Disesuaikan */
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font: Disesuaikan */
+    box-sizing: border-box; /* Mencegah padding merusak layout */
+}
+
+.admin-form-container input:focus,
+.admin-form-container textarea:focus {
+    outline: none;
+    border-color: #1D3557; /* Focus: Disesuaikan */
+}
+
+.admin-form-container textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ===== TAMBAHKAN DI BAWAH assets/css/admin_style.css ===== */
+
+/* Notifikasi Sukses (Disesuaikan dengan style.css pelanggan) */
+.alert-success {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0; /* Memberi jarak */
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}

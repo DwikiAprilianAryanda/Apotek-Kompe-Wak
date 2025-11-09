@@ -2,14 +2,16 @@
 session_start();
 include '../includes/db_connect.php';
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: /login.php");
+// --- VALIDASI USER & KERANJANG YANG DIPERKETAT ---
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+    header("Location: ../login.php?error=loginrequired");
     exit;
 }
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    header("Location: /produk.php");
+    header("Location: ../produk.php?error=emptycart");
     exit;
 }
+// --- AKHIR VALIDASI ---
 
 $user_id = $_SESSION['user_id'];
 $cart = $_SESSION['cart'];
@@ -41,6 +43,7 @@ try {
         ];
     }
 
+    // Masukkan pesanan. user_id dijamin valid karena sudah divalidasi di awal.
     $stmt_order = $conn->prepare("INSERT INTO orders (user_id, total_amount, status) VALUES (?, ?, 'Pending')");
     $stmt_order->bind_param("id", $user_id, $total_belanja_keseluruhan);
     $stmt_order->execute();
@@ -57,11 +60,13 @@ try {
     
     unset($_SESSION['cart']);
     
-    header("Location: /order_success.php?order_id=" . $order_id);
+    header("Location: ../order_success.php?order_id=" . $order_id);
     exit;
 
 } catch (Exception $e) {
     $conn->rollback();
     echo "Terjadi kesalahan saat memproses pesanan: " . $e->getMessage();
 }
+
+$conn->close();
 ?>

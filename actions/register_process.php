@@ -1,10 +1,13 @@
 <?php
 include '../includes/db_connect.php'; // Hubungkan ke database
 
-// Ambil data dari form
-$name = $_POST['name'];
-$email = $_POST['email'];
-$password = $_POST['password'];
+// Ambil data dari form dan BERSIHKAN
+$name = trim($_POST['name']);
+$email = trim($_POST['email']);
+$password = trim($_POST['password']); 
+
+// ROLE default untuk registrasi
+$role = 'customer'; 
 
 // VALIDASI SEDERHANA
 if (empty($name) || empty($email) || empty($password)) {
@@ -12,13 +15,13 @@ if (empty($name) || empty($email) || empty($password)) {
 }
 
 // KEAMANAN: HASH PASSWORD!
-// Jangan pernah simpan password sebagai teks biasa.
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 // Siapkan query untuk mencegah SQL Injection
-$stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-// 'sss' berarti tiga variabel berikutnya adalah string
-$stmt->bind_param("sss", $name, $email, $hashed_password);
+// Perubahan: Tambahkan kolom 'role'
+$stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
+// 'ssss' berarti empat variabel berikutnya adalah string
+$stmt->bind_param("ssss", $name, $email, $hashed_password, $role);
 
 if ($stmt->execute()) {
     // Jika berhasil
