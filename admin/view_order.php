@@ -4,7 +4,7 @@ include 'admin_header.php';
 
 // 1. Ambil Order ID dari URL
 if (!isset($_GET['id'])) {
-    header("Location: /admin/index.php");
+    header("Location: admin/index.php");
     exit;
 }
 $order_id = $_GET['id'];

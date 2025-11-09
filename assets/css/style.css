@@ -45,114 +45,175 @@
     ============================= */
 
     header {
-        background: linear-gradient(135deg, #1b3270, #457B9D);
-        color: white;
-        padding: 20px 40px;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
+    background: linear-gradient(135deg, #1b3270, #457B9D);
+    color: white;
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
 
-    .header-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Distribusi ruang secara merata */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 
-    .logo-judul {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
+.logo-judul {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-    .logo-kanan {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+.logo-kanan {
+    width: 60px; /* Sedikit diperbesar */
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efek cahaya halus */
+}
 
-    header h1 {
-        font-size: 2rem;
-        font-weight: 700;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 700; /* Lebih tebal */
+    letter-spacing: 0.5px; /* Spasi antar huruf */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan teks */
+}
+
 
     .header-form {
-        flex: 1;
-        max-width: 500px;
-        min-width: 250px;
-    }
+    width: 100%;
+    padding-top: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    order: 2; 
+}
+
+    /* ============================= HAMBURGER MENU (Ditambahkan) ============================= */
+
+.hamburger {
+    display: none; /* Sembunyikan dulu di desktop */
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001; /* Di atas konten lain */
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white; /* Warna hamburger sesuai header */
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
 
     .input-wrapper {
-        display: flex;
-        background-color: rgba(255, 255, 255, 0.2);
-        border-radius: 25px;
-        overflow: hidden;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.3);
-    }
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
 
-    .input-wrapper input {
-        flex: 1;
-        padding: 12px 20px;
-        border: none;
-        background: transparent;
-        color: white;
-        font-size: 1rem;
-        outline: none;
-    }
+.input-wrapper input {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    font-family: inherit;
+}
 
-    .input-wrapper input::placeholder {
-        color: rgba(255, 255, 255, 0.7);
-    }
+   .input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}   
 
     .input-wrapper button {
-        padding: 12px 20px;
-        border: none;
-        background: rgba(255, 255, 255, 0.3);
-        color: white;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
+    padding: 12px 20px;
+    border: none;
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
 
-    .input-wrapper button:hover {
-        background: rgba(255, 255, 255, 0.5);
-    }
+.input-wrapper button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
 
     /* =============================
     NAVIGATION STYLES
     ============================= */
 
-    .nav-links {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        flex-wrap: wrap;
-    }
+    /* ============================= NAVIGATION STYLES (Diperbarui) ============================= */
 
-    .nav-links a {
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        padding: 8px 16px;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        position: relative;
-    }
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Kurangi jarak antar link */
+    flex-wrap: wrap; /* Jika ruang tidak cukup, link bisa wrap */
+    /* margin-left: auto; */ /* Hilangkan ini agar navigasi tetap di tengah */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem; /* Sedikit lebih kecil */
+    padding: 8px 14px; /* Kurangi padding */
+    border-radius: 8px; /* Radius sedikit lebih besar */
+    transition: all 0.3s ease;
+    position: relative;
+    min-width: auto; /* Hilangkan min-width */
+    text-align: center;
+    white-space: nowrap; /* Cegah teks wrap di dalam link */
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2); /* Warna hover lebih lembut */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan saat hover */
+}
+
+.nav-links a.nav-link-special {
+    background-color: #ffc107;
+    color: #1D3557;
+    font-weight: 700;
+    border-radius: 8px; /* Sama dengan link biasa */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 8px 16px; /* Sama dengan link biasa */
+}
+
+.nav-links a.nav-link-special:hover {
+    background-color: #ffca2c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
 
     .nav-links a::after {
         content: '';
         position: absolute;
-        bottom: 0;
+        bottom: -2px;
         left: 50%;
         transform: translateX(-50%);
         width: 0;
@@ -162,12 +223,7 @@
     }
 
     .nav-links a:hover::after {
-        width: 80%;
-    }
-
-    .nav-links a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
+        width: 70%;
     }
 
     /* =============================
@@ -398,7 +454,7 @@
         color: white;
         text-align: center;
         padding: 30px;
-        margin-top: 40px;
+        /* margin-top: 40px;     */
     }
 
     footer p {
@@ -437,50 +493,61 @@
     ============================= */
 
     @media (max-width: 1024px) {
-        .section {
-            padding: 40px 20px;
-            margin: 20px 10px;
-        }
-        
-        .section h2 {
-            font-size: 2rem;
-        }
-        
-        .grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        
-        .logo-kanan {
-            width: 50px;
-            height: 50px;
-        }
+    .section {
+        padding: 40px 20px;
+        margin: 20px 10px;
     }
 
-    @media (max-width: 480px) {
-        header h1 {
-            font-size: 1.2rem;
-        }
-        
-        .section h2 {
-            font-size: 1.5rem;
-        }
-        
-        .nav-links {
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .nav-links a {
-            width: 100%;
-            text-align: center;
-        }
+    .section h2 {
+        font-size: 2rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .logo-kanan {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+    /* --- MEDIA QUERY UNTUK MOBILE KECIL (480px ke bawah) --- */
+@media (max-width: 480px) {
+    header {
+        padding: 10px 15px; /* Padding header lebih kecil */
+    }
+
+    header h1 {
+        font-size: 1.3rem; /* Ukuran font judul lebih kecil */
+    }
+
+    .logo-kanan {
+        width: 45px; /* Ukuran logo lebih kecil */
+        height: 45px;
+    }
+
+    .hamburger span {
+        width: 22px; /* Lebar hamburger lebih kecil */
+        height: 2px; /* Tebal hamburger lebih tipis */
+    }
+
+    .nav-links {
+        width: 80%; /* Lebar menu mobile lebih besar proporsinya */
+        max-width: none; /* Hilangkan batas maksimum */
+    }
+
+    .nav-links a {
+        padding: 10px 14px; /* Padding link lebih kecil */
+        font-size: 0.95rem; /* Ukuran font sedikit lebih kecil */
+    }
         
         .btn {
             padding: 10px 18px;
             font-size: 0.9rem;
         }
-    }
+}
 
     /* =============================
     ANIMATIONS
@@ -587,26 +654,63 @@
 
 
     @media (max-width: 768px) {
-        header {
-            padding: 15px 20px;
-        }
-        
-        header h1 {
-            font-size: 1.5rem;
-        }
-        
-        .header-top {
-            flex-direction: column;
-            align-items: stretch;
-        }
-        
-        .header-form {
-            max-width: 100%;
-        }
-        
-        .nav-links {
-            gap: 15px;
-            font-size: 0.9rem;
-        }
-        
+    header {
+        padding: 15px 20px; /* Kurangi padding header */
     }
+
+    header h1 {
+        font-size: 1.5rem; /* Kurangi ukuran font judul */
+    }
+
+    .logo-kanan {
+        width: 50px; /* Ukuran logo di mobile */
+        height: 50px;
+    }
+
+    /* Tampilkan hamburger menu */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Sembunyikan nav-links utama */
+    .nav-links {
+        position: fixed;
+        top: 64px; /* Tinggi header */
+        right: -100%; /* Awalnya disembunyikan di luar layar */
+        width: 70%;
+        max-width: 300px; /* Batasi lebar maksimum */
+        height: calc(100vh - 64px);
+        background: rgba(27, 50, 112, 0.95); /* Warna header dengan opacity */
+        backdrop-filter: blur(10px); /* Efek glassmorphism */
+        flex-direction: column;
+        padding: 2rem 1rem; /* Padding dalam menu */
+        transition: right 0.3s ease; /* Animasi slide */
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        z-index: 999; /* Di atas konten lain */
+        overflow-y: auto; /* Jika link terlalu banyak */
+    }
+
+    /* Tampilkan nav-links saat hamburger aktif */
+    .nav-links.active {
+        right: 0;
+    }
+
+    /* Gaya link di dalam menu mobile */
+    .nav-links a {
+        width: 100%; /* Link memenuhi lebar */
+        text-align: left; /* Teks rata kiri */
+        padding: 12px 16px; /* Padding dalam menu */
+        border-radius: 8px;
+        font-size: 1rem; /* Ukuran font sedikit lebih besar */
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.15); /* Warna hover di mobile */
+        transform: translateX(5px); /* Efek sedikit ke kanan saat hover */
+    }
+
+    .header-form {
+        max-width: 100%;
+        padding: 15px 10px; /* Padding form di mobile */
+    }
+}

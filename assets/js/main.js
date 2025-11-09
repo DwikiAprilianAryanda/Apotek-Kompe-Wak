@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.navbar-links');
-    const links = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelector('.nav-links'); // Pastikan kelas ini sesuai
+    const links = document.querySelectorAll('.nav-links a'); // Pastikan kelas ini sesuai
 
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
