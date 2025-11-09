@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: sql200.infinityfree.com
--- Waktu pembuatan: 07 Nov 2025 pada 18.58
+-- Waktu pembuatan: 08 Nov 2025 pada 20.04
 -- Versi server: 11.4.7-MariaDB
 -- Versi PHP: 7.2.22
 
@@ -23,38 +23,20 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-	
+
 --
 -- Struktur dari tabel `orders`
 --
-
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `total_amount` decimal(10,2) NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'Pending',
+  `shipping_code` varchar(100) DEFAULT NULL,
   `order_date` timestamp NULL DEFAULT current_timestamp(),
-  `shipping_address` text DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data untuk tabel `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `total_amount`, `status`, `order_date`, `shipping_address`) VALUES
-(1, 1, '8500.00', 'Completed', '2025-11-05 14:22:24', NULL),
-(2, 1, '25000.00', 'Pending', '2025-11-05 14:23:02', NULL),
-(3, 1, '25000.00', 'Pending', '2025-11-05 14:24:34', NULL),
-(4, 1, '15500.00', 'Pending', '2025-11-05 14:29:57', NULL),
-(5, 1, '8500.00', 'Pending', '2025-11-05 14:37:30', NULL),
-(6, 1, '25000.00', 'Pending', '2025-11-05 14:41:20', NULL),
-(7, 2, '18000.00', 'Pending', '2025-11-05 14:50:20', NULL),
-(8, 1, '70000.00', 'Pending', '2025-11-05 14:54:25', NULL),
-(9, 2, '53000.00', 'Pending', '2025-11-05 15:01:17', NULL),
-(10, 1, '71000.00', 'Pending', '2025-11-05 15:07:49', NULL),
-(11, 1, '25000.00', 'Pending', '2025-11-05 15:15:46', NULL),
-(12, 4, '110000.00', 'Completed', '2025-11-06 12:28:10', NULL);
+  `shipping_address` mediumtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -66,30 +48,25 @@ CREATE TABLE `order_items` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `quantity` int(5) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `price_per_item` decimal(10,2) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data untuk tabel `order_items`
+-- Struktur dari tabel `prescriptions`
 --
 
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price_per_item`) VALUES
-(1, 1, 1, 1, '8500.00'),
-(2, 2, 2, 1, '25000.00'),
-(3, 3, 2, 1, '25000.00'),
-(4, 4, 5, 1, '15500.00'),
-(5, 5, 1, 1, '8500.00'),
-(6, 6, 2, 1, '25000.00'),
-(7, 7, 3, 1, '18000.00'),
-(8, 8, 4, 2, '35000.00'),
-(9, 9, 3, 1, '18000.00'),
-(10, 9, 4, 1, '35000.00'),
-(11, 10, 4, 1, '35000.00'),
-(12, 10, 3, 2, '18000.00'),
-(13, 11, 2, 1, '25000.00'),
-(14, 12, 2, 3, '25000.00'),
-(15, 12, 4, 1, '35000.00');
+CREATE TABLE `prescriptions` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `original_name` varchar(255) NOT NULL,
+  `catatan` text DEFAULT NULL,
+  `status` enum('Pending','Verified','Rejected') NOT NULL DEFAULT 'Pending',
+  `uploaded_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -100,11 +77,11 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price_pe
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
+  `description` mediumtext DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
   `stock_quantity` int(11) NOT NULL,
   `image_url` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `products`
@@ -129,19 +106,19 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(50) NOT NULL DEFAULT 'customer',
-  `address` text DEFAULT NULL,
+  `address` mediumtext DEFAULT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `address`, `phone_number`, `created_at`) VALUES
-(4, 'tedi', 'kompe@gmail.com', '$2y$10$Ji3a.vuzQBOCRcBvBnXLMO2PsSS1CJRLdH7MpQZZ0hpt4iLo7/0Ym', 'customer', 'jalan anggur', '81234567', '2025-11-06 12:26:12'),
 (2, 'Haha', 'meditedi@gmail.com', '$2y$10$J4gUQcO3MV3qMkeeTUGGxul/YqL5MErVsbYQW6pfzFRTmEeaILkwq', 'customer', NULL, NULL, '2025-11-05 14:49:53'),
-(3, 'Admin', 'apotek.kompe@gmail.com', '$2y$10$CARK5uKU5QXOhBQokPt4COyqFgjprLxvCs3375Ma.hn4W0i4Ru/lS', 'admin', NULL, NULL, '2025-11-05 15:31:48');
+(3, 'Admin', 'apotek.kompe@gmail.com', '$2y$10$CARK5uKU5QXOhBQokPt4COyqFgjprLxvCs3375Ma.hn4W0i4Ru/lS', 'admin', NULL, NULL, '2025-11-05 15:31:48'),
+(4, 'tedi', 'kompe@gmail.com', '$2y$10$Ji3a.vuzQBOCRcBvBnXLMO2PsSS1CJRLdH7MpQZZ0hpt4iLo7/0Ym', 'customer', 'jalan anggur', '81234567', '2025-11-06 12:26:12');
 
 --
 -- Indexes for dumped tables
@@ -161,6 +138,13 @@ ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `product_id` (`product_id`);
+
+--
+-- Indeks untuk tabel `prescriptions`
+--
+ALTER TABLE `prescriptions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indeks untuk tabel `products`
@@ -183,13 +167,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT untuk tabel `prescriptions`
+--
+ALTER TABLE `prescriptions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `products`
@@ -202,6 +192,16 @@ ALTER TABLE `products`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `prescriptions`
+--
+ALTER TABLE `prescriptions`
+  ADD CONSTRAINT `prescriptions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

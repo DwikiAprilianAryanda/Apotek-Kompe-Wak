@@ -127,71 +127,9 @@
     .main-container {
       display: flex;
       flex-direction: column;
-      padding-top: 5rem;
     }
 
-    /* Profile Sidebar */
-    .follow-scroll {
-      position: fixed;
-      top: 5rem;
-      right: 0;
-      transition: top 0.3s ease;
-      width: 100%;
-      max-width: 15rem;
-      background-color: #ffffff;
-      padding: 1.5rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2rem;
-    }
 
-    .profile-content {
-      text-align: center;
-    }
-
-    .profile-img {
-      width: 8rem;
-      height: 8rem;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 1rem;
-      border: 4px solid #60a9d6ff;
-      transition: transform 0.3s;
-    }
-
-    .profile-img:hover {
-      transform: scale(1.05) rotate(5deg);
-    }
-
-    .profile-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #60a9d6ff;
-      margin-bottom: 0.5rem;
-    }
-
-    .profile-text {
-      color: #4b5563;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .profile-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #1b3270, #457B9D);
-      color: #ffffff;
-      padding: 0.5rem 1rem;
-      border-radius: 9999px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      margin-top: 1rem;
-    }
-
-    .profile-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(72, 75, 236, 0.4);
-    }
 
     /* Main Content */
     .main-content {
@@ -332,41 +270,116 @@
     }
 
     /* Sections */
-    .activities-section {
-      padding: 5rem 0;
-      background-color: #ffffff;
+    /* =============================
+INFO CONTACT SECTION STYLES
+============================= */
+
+.info-contact-section {
+    padding: 50px 0;
+    background: linear-gradient(135deg, #e2f7fcff 0%, #b8e5f7ff 100%);
+}
+
+.info-contact-section .section-title {
+    text-align: center;
+    color: #1D3557;
+    margin-bottom: 30px;
+}
+
+.info-left,
+.info-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-subtitle {
+    color: #1D3557;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.info-address {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.info-text {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.map-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.contact-link {
+    color: #60a9d6ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.contact-link:hover {
+    color: #E2E8F0;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .info-contact-section {
+        padding: 30px 0;
     }
 
-    .contact-section {
-      padding: 5rem 0;
-      background: linear-gradient(135deg, #e2f7fcff 0%, #b8e5f7ff 100%);
+    .info-left,
+    .info-right {
+        flex: 1 1 100%;
+        padding: 15px;
     }
 
-
-    /* Contact */
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin: 2rem 0;
+    .info-left {
+        padding-right: 0;
+        margin-bottom: 20px;
     }
 
-    .contact-text {
-      font-size: 1.125rem;
-      color: #4b5563;
+    .info-right {
+        padding-left: 0;
     }
 
-    .contact-link {
-      color: #60a9d6ff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s;
+    .map-container {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-contact-section {
+        padding: 20px 0;
     }
 
-    .contact-link:hover {
-      color: #E2E8F0;
-      text-decoration: underline;
+    .info-subtitle {
+        font-size: 1.2rem;
     }
+
+    .info-address,
+    .info-text {
+        font-size: 1rem;
+    }
+
+    .map-container {
+        height: 200px;
+    }
+}
 
 
     /* Animations */
@@ -388,11 +401,7 @@
       }
 
       .main-content {
-        width: 75%;
-      }
-
-      .follow-scroll {
-        margin-right: 2rem;
+        width: 100%;
       }
     }
 
@@ -405,13 +414,7 @@
         width: 100%;
       }
 
-      .follow-scroll {
-          position: relative;
-          top: 0;
-          max-width: 90%; 
-          margin: 1rem auto; 
-          padding: 1rem;
-        }
+
       }
 
     @media (max-width: 768px) {
@@ -445,18 +448,7 @@
         font-size: 1rem;
       }
 
-      .profile-img {
-        width: 6rem;
-        height: 6rem;
-      }
 
-      .profile-title {
-        font-size: 1.25rem;
-      }
-
-      .profile-text {
-        font-size: 0.875rem;
-      }
 
 
       .activity-item {
@@ -495,18 +487,7 @@
         font-size: 0.875rem;
       }
 
-      .profile-img {
-        width: 5rem;
-        height: 5rem;
-      }
 
-      .profile-title {
-        font-size: 1rem;
-      }
-
-      .profile-text {
-        font-size: 0.75rem;
-      }
 
       .activity-title {
         font-size: 1.125rem;
@@ -571,15 +552,7 @@
   <button class="back-to-top" aria-label="Back to top">↑</button>
 
   <div class="main-container">
-    <aside id="profile" class="follow-scroll">
-      <div class="profile-content">
-        <img src="/assets/images/apotek.jpg" alt="Apotek Arshaka" class="profile-img">
-        <h2 class="profile-title">Apotek Arshaka</h2>
-        <p class="profile-text">Jl. Loa Ipuh Tenggarong</p>
-        <p class="profile-text">Jam Operasional : 8 pagi - 11 malam</p>
-        <a href="#contact" class="profile-button">Hubungi Kami</a>
-      </div>
-    </aside>
+
 
     <main class="main-content">
       <section id="about" class="about-section">
@@ -595,30 +568,40 @@
       </section>
 
 
-<section id="activities" class="activities-section">
-        <div class="container section-content">
-          <h2 class="section-title">Alamat Apotek</h2>
-          <div class="activity-item fade-in">
-            <h3 class="activity-title">Kec. Tenggarong, Kabupaten Kutai Kartanegara, Kalimantan Timur</h3>
-            <p class="activity-text">HXMF+8WR, Jl. Loa Ipuh, Loa Ipuh, Kec. Tenggarong, Kabupaten Kutai Kartanegara, Kalimantan Timur 75513</p>
-                <video width="800" height="700" controls>
-                  <source src="assets/images/map.mp4" type="video/mp4">
-                  Maaf, browser Anda tidak mendukung tag video.
-                </video>
+<section id="info-contact" class="info-contact-section">
+    <div class="container section-content">
+        <h2 class="section-title">Informasi Kontak & Lokasi</h2>
+        
+        <!-- Bagian Kiri: Alamat & Peta -->
+        <div class="info-left" style="flex: 1; padding-right: 20px;">
+            <h3 class="info-subtitle">Alamat Apotek</h3>
+            <p class="info-address">Kec. Tenggarong, Kabupaten Kutai Kartanegara, Kalimantan Timur<br>
+               HXMF+8WR, Jl. Loa Ipuh, Loa Ipuh, Kec. Tenggarong, Kabupaten Kutai Kartanegara, Kalimantan Timur 75513</p>
+            
+            <div class="map-container" style="width: 100%; height: 300px; margin-top: 15px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.712833350147!2d116.97220407356798!3d-0.41664049957927407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df6654869ab89cf%3A0x9a7cc00a781e9177!2sAPOTEK%20ARSHAKA!5e0!3m2!1sid!2sid!4v1762665565064!5m2!1sid!2sid" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
-      </section>
 
-      <section id="contact" class="contact-section">
-        <div class="container section-content text-center">
-          <h2 class="section-title">Hubungi Kami</h2>
-          <p class="section-text">Silakan hubungi kami untuk konsultasi obat lebih lanjut</p>
-          <div class="contact-links fade-in">
-            <p class="contact-text">Email: <a href="mailto:apotek.kompe@gmail.com" class="contact-link">apotek.kompe@gmail.com</a></p>
-          </div>
-          <p class="section-text">Jam operasional kami : 8 pagi- 11 malam</p>
+        <!-- Bagian Kanan: Hubungi Kami -->
+        <div class="info-right" style="flex: 1; padding-left: 20px; background: #f8f9fa; padding: 25px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <h3 class="info-subtitle">Hubungi Kami</h3>
+            <p class="info-text">Silakan hubungi kami untuk konsultasi obat lebih lanjut.</p>
+            
+            <div class="contact-info" style="margin-top: 20px; font-size: 1.1rem; line-height: 1.6;">
+                <p><strong>Email:</strong> <a href="mailto:apotek.kompe@gmail.com" class="contact-link">apotek.kompe@gmail.com</a></p>
+                <p><strong>Jam Operasional:</strong> 8 pagi - 11 malam</p>
+            </div>
         </div>
-      </section>
+    </div>
+</section>
     </main>
   </div>
 
@@ -716,37 +699,7 @@
           });
         });
 
-        // Profile follow scroll (desktop only)
-        if (window.innerWidth >= 1024) {
-          const profile = document.getElementById('profile');
-          if (profile) {
-            let lastScrollY = window.scrollY;
 
-            function updateProfilePosition() {
-              const scrollY = window.scrollY;
-              const navbarHeight = 64; 
-              const profileHeight = profile.offsetHeight;
-              const windowHeight = window.innerHeight;
-              const padding = 20;
-
-              const minTop = navbarHeight + padding; 
-
-              const maxTop = windowHeight - profileHeight - padding;
-              
-              let newTop = Math.max(minTop, Math.min(scrollY + padding, maxTop));
-              
-              profile.style.top = `${newTop}px`;
-              lastScrollY = scrollY;
-            }
-
-            window.addEventListener('scroll', () => {
-              requestAnimationFrame(updateProfilePosition);
-            });
-
-            window.addEventListener('resize', updateProfilePosition);
-            updateProfilePosition();
-          }
-        }
     });
   </script>
 </body>
