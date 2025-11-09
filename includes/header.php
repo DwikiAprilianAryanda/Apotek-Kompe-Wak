@@ -13,14 +13,14 @@ $searchTerm = '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apotek Arshaka</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
     <header>
         <div class="header-top">
             <div class="logo-judul">
-                <img src="foto/logo.png" alt="Apotek Arshaka" class="logo-kanan">
+                <img src="/assets/images/apotek.jpg" alt="Apotek Arshaka" class="logo-kanan">
                 <h1>Apotek Arshaka</h1>
             </div>
             
@@ -39,12 +39,20 @@ $searchTerm = '';
             
             <?php if (isset($_SESSION['user_id'])): // Jika pengguna SUDAH LOGIN ?>
                 
-                <a href="unggah_resep.php" style="color: #ffc107; font-weight: bold;">Unggah Resep</a>
+                <?php 
+                // Ambil role pengguna
+                $role = $_SESSION['user_role'] ?? 'customer';
                 
+                // Tampilkan "Unggah Resep" HANYA jika role-nya customer
+                if ($role == 'customer'): 
+                ?>
+                    <a href="unggah_resep.php" style="color: #ffc107; font-weight: bold;">Unggah Resep</a>
+                <?php endif; ?>
+
                 <a href="akun.php">Akun Saya</a>
                 
                 <?php 
-                $role = $_SESSION['user_role'] ?? 'customer';
+                // Tampilkan "Dasbor Admin" HANYA jika role-nya admin atau receptionist
                 if ($role == 'admin' || $role == 'receptionist'): 
                 ?>
                     <a href="admin/index.php" style="color: #ffc107; font-weight: bold;">Dasbor Admin</a>

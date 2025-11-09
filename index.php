@@ -573,7 +573,7 @@
   <div class="main-container">
     <aside id="profile" class="follow-scroll">
       <div class="profile-content">
-        <img src="foto/diri.jpg" alt="Apotek Arshaka" class="profile-img">
+        <img src="/assets/images/apotek.jpg" alt="Apotek Arshaka" class="profile-img">
         <h2 class="profile-title">Apotek Arshaka</h2>
         <p class="profile-text">Jl. Loa Ipuh Tenggarong</p>
         <p class="profile-text">Jam Operasional : 8 pagi - 11 malam</p>

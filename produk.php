@@ -6,6 +6,15 @@ error_reporting(E_ALL);
 // Sertakan file header dan koneksi database
 include 'includes/header.php';
 include 'includes/db_connect.php';
+
+$message = '';
+if (isset($_GET['status']) && $_GET['status'] == 'cart_added') {
+    $message = '<div class="alert-success">Produk berhasil ditambahkan ke keranjang!</div>';
+}
+if (isset($_GET['error']) && $_GET['error'] == 'cart_fail') {
+    $message = '<div class="alert-danger" style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 10px; margin: 20px 0; border: 1px solid #f5c6cb;">Gagal menambahkan produk.</div>';
+}
+
 ?>
 
 <link rel="stylesheet" href="assets/css/style.css">
