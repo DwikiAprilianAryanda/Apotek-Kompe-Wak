@@ -336,7 +336,7 @@ header h1 {
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, #1D3557, 457B9D);
+        background: linear-gradient(135deg, #1D3557, #457B9D);
         color: white;
     }
 
@@ -714,3 +714,164 @@ header h1 {
         padding: 15px 10px; /* Padding form di mobile */
     }
 }
+
+/* ===== KODE TAMBAHAN UNTUK index.php (Tambahkan di style.css) ===== */
+
+/* Perbaikan Hero Section */
+.about-section {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #3d759fff, #73b4dcff);
+  background-attachment: fixed;
+  background-size: cover; /* Ganti ke cover agar lebih pas */
+  padding: 2rem;
+  background-position: center;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.2; /* Dibuat sedikit lebih terlihat */
+}
+
+.about-section .section-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title-atas {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.section-button {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #1D3557; /* Ubah warna agar cocok dengan primary */
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.section-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+}
+
+/* Seksi Tentang Kami (Baru) */
+.about-us-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.about-us-image {
+    flex: 1;
+}
+
+.about-us-text {
+    flex: 2;
+}
+
+/* Seksi Info & Kontak (Perbaikan dari index.php lama) */
+.info-contact-section {
+    padding: 50px 0;
+    background: linear-gradient(135deg, #e2f7fcff 0%, #b8e5f7ff 100%);
+}
+
+.info-container {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.info-left,
+.info-right {
+    flex: 1;
+}
+
+.info-right {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.info-subtitle {
+    color: #1D3557;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.info-address,
+.info-text,
+.contact-info p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: left; /* Pastikan teks rata kiri */
+}
+
+.map-container {
+    width: 100%;
+    height: 300px;
+    margin-top: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.map-container iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.contact-link {
+    color: #1D3557;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive untuk 2 section baru */
+@media (max-width: 768px) {
+    .about-us-container, .info-container {
+        flex-direction: column;
+    }
+    .info-container {
+        padding: 0 20px;
+    }
+    .section-title-atas {
+        font-size: 2rem;
+    }
+}
+
