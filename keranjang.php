@@ -55,7 +55,7 @@ include 'includes/db_connect.php';
 
                 echo '<div class="cart-summary">'; // Container untuk total dan checkout
                     echo '<h3 style="color: #1e40af; font-size: 1.8rem; margin-bottom: 30px;">Total Belanja: <span style="color: #2563eb;">Rp ' . number_format($total_belanja_keseluruhan) . '</span></h3>';
-                    echo '<a href="actions/place_order.php" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">Proses ke Checkout →</a>';
+                    echo '<a href="checkout.php" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">Lanjut ke Pembayaran →</a>';
                 echo '</div>';
 
             } else {

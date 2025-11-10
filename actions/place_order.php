@@ -2,7 +2,7 @@
 session_start();
 include '../includes/db_connect.php';
 
-// --- VALIDASI USER & KERANJANG YANG DIPERKETAT ---
+// --- VALIDASI USER & KERANJANG ---
 if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     header("Location: ../login.php?error=loginrequired");
     exit;
@@ -11,10 +11,16 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     header("Location: ../produk.php?error=emptycart");
     exit;
 }
-// --- AKHIR VALIDASI ---
+// --- VALIDASI METODE PEMBAYARAN BARU ---
+if (!isset($_POST['payment_method']) || empty($_POST['payment_method'])) {
+    header("Location: ../checkout.php?error=payment_required");
+    exit;
+}
 
 $user_id = $_SESSION['user_id'];
 $cart = $_SESSION['cart'];
+$payment_method = $_POST['payment_method']; // Ambil metode pembayaran
+$payment_status = 'Unpaid'; // Status default
 $total_belanja_keseluruhan = 0;
 
 $product_ids = array_keys($cart);
@@ -32,6 +38,9 @@ $conn->begin_transaction();
 try {
     $items_to_insert = [];
     foreach ($cart as $product_id => $quantity) {
+        if (!isset($product_prices[$product_id])) {
+             throw new Exception("Produk ID $product_id tidak ditemukan harganya.");
+        }
         $price = $product_prices[$product_id];
         $total_harga_produk = $price * $quantity;
         $total_belanja_keseluruhan += $total_harga_produk;
@@ -43,9 +52,9 @@ try {
         ];
     }
 
-    // Masukkan pesanan. user_id dijamin valid karena sudah divalidasi di awal.
-    $stmt_order = $conn->prepare("INSERT INTO orders (user_id, total_amount, status) VALUES (?, ?, 'Pending')");
-    $stmt_order->bind_param("id", $user_id, $total_belanja_keseluruhan);
+    // --- UBAH QUERY INSERT ---
+    $stmt_order = $conn->prepare("INSERT INTO orders (user_id, total_amount, status, payment_method, payment_status) VALUES (?, ?, 'Pending', ?, ?)");
+    $stmt_order->bind_param("idss", $user_id, $total_belanja_keseluruhan, $payment_method, $payment_status);
     $stmt_order->execute();
     
     $order_id = $conn->insert_id;
@@ -60,7 +69,9 @@ try {
     
     unset($_SESSION['cart']);
     
-    header("Location: ../order_success.php?order_id=" . $order_id);
+    // --- UBAH REDIRECT SUKSES ---
+    // Kirim metode pembayaran ke halaman sukses
+    header("Location: ../order_success.php?order_id=" . $order_id . "&method=" . $payment_method);
     exit;
 
 } catch (Exception $e) {

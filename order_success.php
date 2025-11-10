@@ -1,15 +1,14 @@
 <?php include 'includes/header.php'; ?>
 
 <div class="section">
-    <div class="success-card card"> <!-- Gunakan class card dari style.css -->
-        <div class="success-icon">✓</div> <!-- Ikon sukses -->
-        <h2 class="success-title">Terima Kasih!</h2> <!-- Judul -->
-        <p class="success-message">Pesanan Anda telah berhasil kami terima.</p> <!-- Pesan -->
+    <div class="success-card card">
+        <div class="success-icon">✓</div>
+        <h2 class="success-title">Terima Kasih!</h2>
+        <p class="success-message">Pesanan Anda telah berhasil kami terima.</p>
 
         <?php
         if (isset($_GET['order_id'])) {
             $order_id = htmlspecialchars($_GET['order_id']);
-            // Gunakan elemen spesifik untuk nomor pesanan
             echo "<div class='order-id-container'>";
             echo "<p class='order-id-label'>Nomor pesanan Anda:</p>";
             echo "<p class='order-id-number'>#" . $order_id . "</p>";
@@ -17,193 +16,99 @@
         }
         ?>
 
-        <p class="success-note">Silakan lakukan pembayaran agar pesanan Anda dapat segera kami proses.</p> <!-- Catatan -->
-
-        <a href="produk.php" class="btn btn-primary">← Kembali Berbelanja</a> <!-- Tombol -->
+        <div class="payment-instructions">
+            <?php if (isset($_GET['method']) && $_GET['method'] == 'COD'): ?>
+                <h3 class="payment-instructions-title">Instruksi Bayar di Tempat (COD)</h3>
+                <p class="success-note">Pesanan Anda akan segera kami siapkan. Mohon siapkan uang tunai pas sejumlah <strong>Rp <?php echo number_format($total_belanja_keseluruhan ?? 0); ?></strong> untuk dibayarkan kepada kurir saat pesanan tiba.</p>
+            
+            <?php elseif (isset($_GET['method']) && $_GET['method'] == 'QRIS'): ?>
+                <h3 class="payment-instructions-title">Instruksi Pembayaran QRIS</h3>
+                <p class="success-note">Silakan lakukan pembayaran dengan memindai kode QRIS di bawah ini. Pesanan akan kami proses setelah pembayaran terkonfirmasi.</p>
+                
+                <img src="assets/images/qris_placeholder.png" alt="Scan QRIS untuk Pembayaran" style="width: 250px; height: 250px; margin-top: 15px; border: 1px solid #ddd;">
+                <p class="success-note" style="font-weight: bold; color: #1D3557;">Total Pembayaran: Rp <?php echo number_format($total_belanja_keseluruhan ?? 0); ?></p>
+            
+            <?php else: ?>
+                <p class="success-note">Pesanan Anda akan segera kami proses.</p>
+            <?php endif; ?>
+        </div>
+        <a href="produk.php" class="btn btn-primary">← Kembali Berbelanja</a>
     </div>
 </div>
 
 <style>
-/* CSS untuk halaman order_success */
-
-/* Atur section agar konten selalu di tengah */
 .section {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Hapus min-height: 100vh; agar section tidak memaksakan tinggi */
-    padding: 0; /* Hilangkan padding default section */
+    padding: 20px 0;
 }
-
 .success-card {
     text-align: center;
-    /* Gunakan min-height: 100vh; agar card memiliki tinggi minimal 100% viewport, tapi bisa lebih tinggi jika diperlukan */
-    min-height: 100vh;
-    /* Gunakan max-width: 500px; untuk batas lebar maksimum */
     max-width: 500px;
-    /* Tengahkan card */
-    margin: 0 auto;
-    /* Gunakan display: flex; dan flex-direction: column; untuk menyusun elemen secara vertikal */
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
-    /* Gunakan justify-content: center; agar elemen-elemen di dalamnya berada di tengah card */
     justify-content: center;
-    /* Gunakan align-items: center; agar elemen-elemen di dalamnya berada di tengah horizontal */
     align-items: center;
-    /* Gunakan gap: 10px; untuk jarak antar elemen */
     gap: 10px;
-    /* Gunakan padding: 20px; untuk padding dalam card */
-    padding: 20px;
+    padding: 30px;
 }
-
 .success-icon {
-    font-size: 2.5rem; /* Ukuran ikon */
-    color: #10b981; /* Warna hijau sukses */
-    /* Hapus margin default */
-    margin: 0;
+    font-size: 2.5rem; color: #10b981; margin: 0;
 }
-
 .success-title {
-    color: #1e40af; /* Warna judul */
-    /* Hapus margin default */
-    margin: 0;
-    font-size: 1.5rem; /* Ukuran font */
+    color: #1e40af; margin: 0; font-size: 1.5rem;
 }
-
-.success-message,
+.success-message, .success-note {
+    margin: 0; font-size: 1rem;
+}
 .success-note {
-    /* Hapus margin default */
-    margin: 0;
-    font-size: 1rem; /* Ukuran font */
+    color: #666;
 }
-
-.success-note {
-    color: #666; /* Warna catatan */
-    font-style: italic; /* Gaya miring */
-}
-
-/* Container untuk nomor pesanan */
 .order-id-container {
-    background: #f0f9ff; /* Warna background */
-    /* Kurangi padding */
-    padding: 5px;
-    border-radius: 8px; /* Radius sudut lebih kecil */
-    /* Kurangi margin */
-    margin: 5px 0;
-    border: 2px solid #3b82f6; /* Border */
-    /* Gunakan display: flex; dan flex-direction: column; untuk menyusun elemen secara vertikal */
+    background: #f0f9ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border: 2px solid #3b82f6;
     display: flex;
     flex-direction: column;
-    /* Gunakan align-items: center; agar elemen-elemen di dalamnya berada di tengah horizontal */
     align-items: center;
-    /* Gunakan gap: 1px; untuk jarak antar label dan nomor */
     gap: 1px;
 }
-
 .order-id-label {
-    /* Hapus margin default */
-    margin: 0;
-    font-size: 0.9rem; /* Ukuran font label */
-    font-weight: 600; /* Tebalkan label */
-    color: #333; /* Warna label */
+    margin: 0; font-size: 0.9rem; font-weight: 600; color: #333;
 }
-
 .order-id-number {
-    /* Hapus margin default */
-    margin: 0;
-    font-size: 1.1rem; /* Ukuran font nomor */
-    font-weight: bold; /* Tebalkan nomor */
-    color: #1e40af; /* Warna nomor */
+    margin: 0; font-size: 1.1rem; font-weight: bold; color: #1e40af;
 }
-
-/* Tombol */
-/* Gunakan class .btn dan .btn-primary dari style.css */
-/* Tidak perlu menambahkan inline style untuk tombol */
 .btn-primary {
-    /* Hapus margin default */
-    margin-top: 10px; /* Beri sedikit jarak dari elemen sebelumnya */
-    /* Ganti warna dasar tombol agar kontras dengan background */
-    background: linear-gradient(135deg, #1b3270, #457B9D); /* Warna dasar tombol */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 10px;
+    background: linear-gradient(135deg, #1b3270, #457B9D);
+    color: white; border: none; border-radius: 8px; font-weight: 600;
+    cursor: pointer; transition: all 0.3s ease; text-decoration: none;
+    display: inline-block; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 10px 20px; /* Pastikan padding ada */
 }
-
-/* Tambahkan efek hover */
 .btn-primary:hover {
-    background: linear-gradient(135deg, #1e40af, #3b82f6); /* Warna hover */
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* Responsif */
-@media (max-width: 768px) {
-    .section {
-        padding: 10px 0; /* Tambahkan padding atas dan bawah */
-    }
-
-    .success-card {
-        min-height: auto; /* Hilangkan min-height: 100vh; di mobile */
-        max-width: 100%; /* Isi seluruh lebar layar */
-        padding: 20px 15px;
-        margin: 10px;
-    }
-
-    .success-icon {
-        font-size: 2rem;
-    }
-
-    .success-title {
-        font-size: 1.3rem;
-    }
-
-    .success-message,
-    .success-note {
-        font-size: 0.9rem;
-    }
-
-    .order-id-container {
-        padding: 4px;
-        margin: 4px 0;
-    }
-
-    .order-id-number {
-        font-size: 1rem;
-    }
+/* === STYLE BARU UNTUK INSTRUKSI PEMBAYARAN === */
+.payment-instructions {
+    width: 100%;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
 }
-
-@media (max-width: 480px) {
-    .success-card {
-        padding: 15px 10px;
-        margin: 5px;
-    }
-
-    .success-icon {
-        font-size: 1.8rem;
-    }
-
-    .success-title {
-        font-size: 1.2rem;
-    }
-
-    .order-id-container {
-        padding: 3px;
-    }
-
-    .order-id-label {
-        font-size: 0.8rem;
-    }
-
-    .order-id-number {
-        font-size: 0.9rem;
-    }
+.payment-instructions-title {
+    color: #1D3557;
+    margin-bottom: 10px;
 }
+/* === AKHIR STYLE BARU === */
 </style>
 
 <?php include 'includes/footer.php'; ?>
