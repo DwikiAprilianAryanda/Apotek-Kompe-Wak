@@ -60,7 +60,7 @@ if (isset($_GET['error'])) {
         <input type="number" id="stock_quantity" name="stock_quantity" min="0" value="<?php echo $product['stock_quantity']; ?>" required>
         
         <label>Gambar Saat Ini:</label>
-        <img src="../assets/images/<?php echo htmlspecialchars($product['image_url']); ?>" alt="Gambar saat ini" class="product-thumbnail" style="margin-bottom: 15px;">
+        <img src="/assets/images/<?php echo htmlspecialchars($product['image_url']); ?>" alt="Gambar saat ini" class="product-thumbnail" style="margin-bottom: 15px;">
         
         <label for="image">Ganti Gambar (Opsional):</label>
         <input type="file" id="image" name="image" accept="image/png, image/jpeg" style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; width: 100%; box-sizing: border-box;">

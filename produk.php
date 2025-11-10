@@ -52,7 +52,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'cart_fail') {
 
                     // Path gambar (sudah benar dari DB Anda)
                     if (!empty($row['image_url'])) {
-                        echo "<img src='" . htmlspecialchars($row['image_url']) . "' alt='" . htmlspecialchars($row['name']) . "'>";
+                        echo "<img src='/assets/images/" . htmlspecialchars($row['image_url']) . "' alt='" . htmlspecialchars($row['name']) . "'>";
                     } else {
                         // Gambar placeholder jika tidak ada
                         echo "<img src='assets/images/placeholder.jpg' alt='Gambar tidak tersedia'>";

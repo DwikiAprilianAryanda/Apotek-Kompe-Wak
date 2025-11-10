@@ -51,7 +51,7 @@ if (!$result) {
                     echo "<tr>";
                     echo "<td>";
                     // Tampilkan gambar
-                    echo '<img src="../assets/images/' . htmlspecialchars($row['image_url']) . '" alt="' . htmlspecialchars($row['name']) . '" class="product-thumbnail">';
+                    echo '<img src="/assets/images/' . htmlspecialchars($row['image_url']) . '" alt="' . htmlspecialchars($row['name']) . '" class="product-thumbnail">';
                     echo "</td>";
                     echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                     echo "<td>Rp " . number_format($row['price']) . "</td>";
