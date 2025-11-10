@@ -1,9 +1,9 @@
 <?php
 
-$db_host = 'localhost';     // Biasanya 'localhost'
-$db_user = 'root';          // User default XAMPP
-$db_pass = '';              // Password default XAMPP kosong
-$db_name = 'db_apotek';     // Nama database yang Anda buat
+$db_host = 'sql200.infinityfree.com';     // Biasanya 'localhost'
+$db_user = 'if0_40167434';          // User default XAMPP
+$db_pass = 'vb0J2kvY9yo';              // Password default XAMPP kosong
+$db_name = 'if0_40167434_db_apotek';     // Nama database yang Anda buat
 
 // Membuat koneksi
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
