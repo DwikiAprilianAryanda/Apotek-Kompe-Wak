@@ -20,7 +20,6 @@ $sql_stats = "
     SELECT 
         COUNT(*) as total_orders,
         SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) as pending_orders,
-        SUM(CASE WHEN status = 'Shipped' THEN 1 ELSE 0 END) as shipped_orders,
         SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) as completed_orders,
         SUM(CASE WHEN status = 'Completed' THEN total_amount ELSE 0 END) as total_revenue
     FROM orders";
@@ -40,10 +39,6 @@ $stats = $stats_result->fetch_assoc();
     <div class="admin-stat-card">
         <h3>Pesanan Baru</h3>
         <p class="stat-number"><?php echo $stats['pending_orders']; ?></p>
-    </div>
-    <div class="admin-stat-card">
-        <h3>Dikirim</h3>
-        <p class="stat-number"><?php echo $stats['shipped_orders']; ?></p>
     </div>
     <div class="admin-stat-card">
         <h3>Selesai</h3>
@@ -159,11 +154,6 @@ $stats = $stats_result->fetch_assoc();
 .status-pending {
     background-color: #ffc107;
     color: #333;
-}
-
-.status-shipped {
-    background-color: #17a2b8;
-    color: white;
 }
 
 .status-completed {

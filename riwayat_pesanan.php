@@ -61,8 +61,7 @@ $stmt->close();
                                 // Memberi warna status
                                 if ($row['status'] == 'Completed') echo '#28a745';
                                 else if ($row['status'] == 'Pending') echo '#ffc107';
-                                else if ($row['status'] == 'Shipped') echo '#17a2b8';
-                                else echo '#dc3545';
+                                else echo '#dc3545'; // Default untuk 'Cancelled'
                             ?>">
                                 <?php echo htmlspecialchars($row['status']); ?>
                             </span>

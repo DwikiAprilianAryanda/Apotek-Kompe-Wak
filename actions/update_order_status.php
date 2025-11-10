@@ -32,9 +32,9 @@ if (isset($_POST['order_id']) && isset($_POST['status'])) {
     $stmt_check->close();
 
     // Tentukan apakah kita perlu mengurangi stok.
-    // HANYA JIKA status BARU adalah 'Shipped' DAN status LAMA BUKAN 'Shipped'.
+    // Hanya kurangi stok jika status BARU adalah 'Completed' dan status LAMA bukan 'Completed'.
     // Ini mencegah stok berkurang 2x jika admin menekan tombol update 2x.
-    $reduce_stock = ($new_status == 'Shipped' && $old_status != 'Shipped');
+    $reduce_stock = ($new_status == 'Completed' && $old_status != 'Completed');
     // --- AKHIR LOGIKA INTEGRASI ---
 
     

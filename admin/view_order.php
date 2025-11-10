@@ -91,9 +91,7 @@ $items = $stmt_items->get_result();
                 <label for="status">Ubah Status:</label>
                 <select name="status" id="status" style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #ddd; margin-bottom: 15px;">
                     <option value="Pending" <?php if($order['status'] == 'Pending') echo 'selected'; ?>>Pending</option>
-                    <option value="Processing" <?php if($order['status'] == 'Processing') echo 'selected'; ?>>Processing (Diproses)</option>
-                    <option value="Shipped" <?php if($order['status'] == 'Shipped') echo 'selected'; ?>>Shipped (Dikirim)</option>
-                    <option value="Completed" <?php if($order['status'] == 'Completed') echo 'selected'; ?>>Completed (Selesai)</option>
+                    <option value="Completed" <?php if($order['status'] == 'Completed') echo 'selected'; ?>>Completed (Selesai)</Toption>
                     <option value="Cancelled" <?php if($order['status'] == 'Cancelled') echo 'selected'; ?>>Cancelled (Dibatalkan)</option>
                 </select>
                 
