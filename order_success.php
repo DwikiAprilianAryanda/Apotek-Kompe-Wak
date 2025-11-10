@@ -1,4 +1,29 @@
-<?php include 'includes/header.php'; ?>
+<?php 
+include 'includes/header.php'; 
+include 'includes/db_connect.php'; // <-- 1. HUBUNGKAN KE DATABASE
+
+$total_amount = 0; // Nilai default
+$order_id_display = ''; // Nilai default
+
+// 2. AMBIL DATA PESANAN DARI DATABASE
+if (isset($_GET['order_id'])) {
+    $order_id = $_GET['order_id'];
+    $order_id_display = htmlspecialchars($order_id);
+
+    // Siapkan query untuk mengambil total_amount
+    $stmt = $conn->prepare("SELECT total_amount FROM orders WHERE id = ?");
+    $stmt->bind_param("i", $order_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        $order = $result->fetch_assoc();
+        $total_amount = $order['total_amount']; // <-- 3. SIMPAN TOTAL HARGA
+    }
+    $stmt->close();
+}
+$conn->close();
+?>
 
 <div class="section">
     <div class="success-card card">
@@ -6,27 +31,24 @@
         <h2 class="success-title">Terima Kasih!</h2>
         <p class="success-message">Pesanan Anda telah berhasil kami terima.</p>
 
-        <?php
-        if (isset($_GET['order_id'])) {
-            $order_id = htmlspecialchars($_GET['order_id']);
-            echo "<div class='order-id-container'>";
-            echo "<p class='order-id-label'>Nomor pesanan Anda:</p>";
-            echo "<p class='order-id-number'>#" . $order_id . "</p>";
-            echo "</div>";
-        }
-        ?>
+        <?php if (!empty($order_id_display)): ?>
+            <div class='order-id-container'>
+                <p class='order-id-label'>Nomor pesanan Anda:</p>
+                <p class='order-id-number'>#<?php echo $order_id_display; ?></p>
+            </div>
+        <?php endif; ?>
 
         <div class="payment-instructions">
             <?php if (isset($_GET['method']) && $_GET['method'] == 'COD'): ?>
                 <h3 class="payment-instructions-title">Instruksi Bayar di Tempat (COD)</h3>
-                <p class="success-note">Pesanan Anda akan segera kami siapkan. Mohon siapkan uang tunai pas sejumlah <strong>Rp <?php echo number_format($total_belanja_keseluruhan ?? 0); ?></strong> untuk dibayarkan kepada kurir saat pesanan tiba.</p>
+                <p class="success-note">Mohon siapkan uang tunai pas sejumlah <strong>Rp <?php echo number_format($total_amount); ?></strong> untuk dibayarkan kepada kurir saat pesanan tiba.</p>
             
             <?php elseif (isset($_GET['method']) && $_GET['method'] == 'QRIS'): ?>
                 <h3 class="payment-instructions-title">Instruksi Pembayaran QRIS</h3>
                 <p class="success-note">Silakan lakukan pembayaran dengan memindai kode QRIS di bawah ini. Pesanan akan kami proses setelah pembayaran terkonfirmasi.</p>
                 
                 <img src="assets/images/qris_placeholder.png" alt="Scan QRIS untuk Pembayaran" style="width: 250px; height: 250px; margin-top: 15px; border: 1px solid #ddd;">
-                <p class="success-note" style="font-weight: bold; color: #1D3557;">Total Pembayaran: Rp <?php echo number_format($total_belanja_keseluruhan ?? 0); ?></p>
+                <p class="success-note" style="font-weight: bold; color: #1D3557; margin-top: 5px;">Total Pembayaran: Rp <?php echo number_format($total_amount); ?></p>
             
             <?php else: ?>
                 <p class="success-note">Pesanan Anda akan segera kami proses.</p>
