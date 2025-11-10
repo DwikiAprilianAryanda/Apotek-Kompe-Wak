@@ -22,7 +22,7 @@ $sql_stats = "
         SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) as pending_orders,
         SUM(CASE WHEN status = 'Shipped' THEN 1 ELSE 0 END) as shipped_orders,
         SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) as completed_orders,
-        SUM(total_amount) as total_revenue
+        SUM(CASE WHEN status = 'Completed' THEN total_amount ELSE 0 END) as total_revenue
     FROM orders";
 
 $stats_result = $conn->query($sql_stats);
@@ -94,7 +94,9 @@ $stats = $stats_result->fetch_assoc();
                         default:
                             $status_class = 'status-other';
                     }
-                    echo "<td class='status-badge $status_class'>" . htmlspecialchars($row['status']) . "</td>";
+                    echo "<td class='status-cell'>"; // Beri class baru untuk <td>
+                    echo "<span class='status-badge $status_class'>" . htmlspecialchars($row['status']) . "</span>"; // Pindahkan badge ke <span>
+                    echo "</td>";
                     echo "<td>" . $row['order_date'] . "</td>";
                     echo "<td><a href='view_order.php?id=" . $row['id'] . "' class='btn-detail'>Detail</a></td>";
                     echo "</tr>";
