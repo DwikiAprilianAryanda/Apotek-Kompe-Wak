@@ -24,8 +24,9 @@ $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (
 $stmt->bind_param("ssss", $name, $email, $hashed_password, $role);
 
 if ($stmt->execute()) {
-    // Jika berhasil
-    echo "Registrasi berhasil! Silakan <a href='../login.php'>login</a>.";
+    // Jika berhasil, arahkan ke halaman sukses
+    header("Location: ../register_success.php");
+    exit;
 } else {
     // Jika gagal (misal: email sudah terdaftar)
     echo "Error: " . $stmt->error;
