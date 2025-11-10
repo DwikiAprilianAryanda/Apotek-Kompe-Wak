@@ -70,8 +70,8 @@ $items = $stmt_items->get_result();
             <h3>Informasi Pelanggan</h3>
             <p><strong>Nama:</strong> <?php echo htmlspecialchars($order['name']); ?></p>
             <p><strong>Email:</strong> <?php echo htmlspecialchars($order['email']); ?></p>
-            <p><strong>No. Telepon:</strong> <?php echo htmlspecialchars($order['phone_number']); ?></p>
-            <p><strong>Alamat:</strong><br><?php echo nl2br(htmlspecialchars($order['address'])); ?></p>
+            <p><strong>No. Telepon:</strong> <?php echo htmlspecialchars($order['phone_number'] ?? ''); ?></p>
+            <p><strong>Alamat:</strong><br><?php echo nl2br(htmlspecialchars($order['address'] ?? '')); ?></p>
         </div>
     </div>
     
