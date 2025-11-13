@@ -73,7 +73,7 @@
                 <h3 class="info-subtitle">Hubungi Kami</h3>
                 <p class="info-text" style="text-align: left;">Silakan hubungi kami untuk konsultasi obat lebih lanjut.</p>
                 <div class="contact-info">
-                    <p><strong>Email:</strong> <a href="mailto:apotek.kompe@gmail.com" class="contact-link">apotek.kompe@gmail.com</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:arshaka.apotek@gmail.com" class="contact-link">arshaka.apotek@gmail.com</a></p>
                     <p><strong>Jam Operasional:</strong> 8 pagi - 11 malam</p>
                 </div>
             </div>
