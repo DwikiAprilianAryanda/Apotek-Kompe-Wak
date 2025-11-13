@@ -38,7 +38,7 @@ include 'includes/db_connect.php';
                     $total_belanja_keseluruhan += $total_harga_produk;
 
                     echo '<tr>';
-                    echo '<td><img src="' . htmlspecialchars($row['image_url']) . '" alt="' . htmlspecialchars($row['name']) . '" class="cart-item-image"></td>';
+                    echo '<td><img src="/assets/images/' . htmlspecialchars($row['image_url']) . '" alt="' . htmlspecialchars($row['name']) . '" class="cart-item-image"></td>';
                     echo '<td>' . htmlspecialchars($row['name']) . '</td>';
                     echo '<td>Rp ' . number_format($row['price']) . '</td>';
                     echo '<td>' . $quantity . '</td>';
