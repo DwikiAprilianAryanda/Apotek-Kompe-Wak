@@ -1,8 +1,4 @@
 <?php
-// Tampilkan error (bagus untuk debugging)
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 // Sertakan file header dan koneksi database
 include 'includes/header.php';
 include 'includes/db_connect.php';

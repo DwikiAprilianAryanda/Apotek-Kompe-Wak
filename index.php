@@ -1,7 +1,7 @@
 <?php include 'includes/header.php'; ?>
 
 <section id="about" class="about-section">
-    <div class="container section-content text-center">
+    <div class="container section-content text-center reveal">
       <h2 class="section-title-atas">Selamat Datang di Apotek Arshaka</h2>
       <p class="section-text" style="font-size: 1.25rem;">Solusi kesehatan terpercaya Anda di Tenggarong.</p>
       <a href="#info-contact" class="section-button">Hubungi Kami</a>
@@ -13,23 +13,23 @@
 </section>
 
 <section id="layanan" class="section">
-    <h2>Layanan Kami</h2>
-    <p>Kami hadir untuk melayani kebutuhan kesehatan Anda dengan profesional.</p>
+    <h2 class="reveal">Layanan Kami</h2>
+    <p class="reveal">Kami hadir untuk melayani kebutuhan kesehatan Anda dengan profesional.</p>
     
     <div class="grid">
-        <div class="card">
+        <div class="card reveal-left">
             <h3>Penjualan Obat</h3>
             <p>Menyediakan obat bebas (OTC) dan obat resep dokter yang lengkap dan terjamin keasliannya.</p>
             <a href="produk.php" class="btn btn-primary" style="margin: 0 20px 20px;">Lihat Produk</a>
         </div>
         
-        <div class="card">
+        <div class="card reveal">
             <h3>Unggah Resep Online</h3>
             <p>Tidak sempat ke apotek? Cukup unggah resep Anda melalui website dan kami akan siapkan obatnya.</p>
             <a href="unggah_resep.php" class="btn btn-primary" style="margin: 0 20px 20px;">Unggah Sekarang</a>
         </div>
         
-        <div class="card">
+        <div class="card reveal-right">
             <h3>Konsultasi Apoteker</h3>
             <p>Tim apoteker kami siap membantu memberikan informasi dan konsultasi mengenai penggunaan obat Anda.</p>
             <a href="#info-contact" class="btn btn-secondary" style="margin: 0 20px 20px;">Hubungi Kami</a>
@@ -37,12 +37,12 @@
     </div>
 </section>
 
-<section id="tentang-kami" class="section" style="background: #fff;"> <h2>Tentang Kami</h2>
+<section id="tentang-kami" class="section" style="background: #fff;"> <h2 class="reveal">Tentang Kami</h2>
     <div class="about-us-container">
-        <div class="about-us-image">
+        <div class="about-us-image reveal-left">
             <img src="assets/images/logo_apotek.jpg" alt="Tampak Depan Apotek Arshaka" class="responsive-img">
         </div>
-        <div class="about-us-text">
+        <div class="about-us-text reveal-right">
             <h3 class="info-subtitle">Apotek Terpercaya di Tenggarong</h3>
             <p style="text-align: left;">Apotek Arshaka adalah apotek lokal Anda di Jantung Tenggarong, berlokasi strategis di Jl. Loa Ipuh. Kami berkomitmen untuk menyediakan layanan kefarmasian yang berkualitas, obat-obatan yang lengkap, dan harga yang terjangkau bagi masyarakat.</p>
             <p style="text-align: left;">Dengan jam operasional dari jam 8 pagi hingga 11 malam, kami siap melayani Anda kapanpun Anda membutuhkan. Kesehatan Anda adalah prioritas kami.</p>
@@ -52,10 +52,10 @@
 
 <section id="info-contact" class="info-contact-section section">
     <div class="container section-content">
-        <h2 class="section-title" style="color: #1D3557;">Informasi Kontak & Lokasi</h2>
+        <h2 class="section-title reveal" style="color: #1D3557;">Informasi Kontak & Lokasi</h2>
         
         <div class="info-container">
-            <div class="info-left">
+            <div class="info-left reveal-left">
                 <h3 class="info-subtitle">Alamat Apotek</h3>
                 <p class="info-address">Kec. Tenggarong, Kabupaten Kutai Kartanegara, Kalimantan Timur<br>
                    HXMF+8WR, Jl. Loa Ipuh, Loa Ipuh, Kec. Tenggarong, Kabupaten Kutai Kartanegara, Kalimantan Timur 75513</p>
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="info-right">
+            <div class="info-right reveal-right">
                 <h3 class="info-subtitle">Hubungi Kami</h3>
                 <p class="info-text" style="text-align: left;">Silakan hubungi kami untuk konsultasi obat lebih lanjut.</p>
                 <div class="contact-info">

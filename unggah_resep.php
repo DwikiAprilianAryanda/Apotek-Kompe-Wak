@@ -1,7 +1,4 @@
 <?php
-// Tampilkan error
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 
 // Sertakan file header (yang akan memulai session)
 include 'includes/header.php';

@@ -1,8 +1,5 @@
 <?php
 session_start();
-// Tampilkan error untuk debugging
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 
 // INI YANG PALING PENTING: MEMUAT KONEKSI DB
 include '../includes/db_connect.php'; 
@@ -30,8 +27,8 @@ if ($user_role != 'admin' && $user_role != 'receptionist') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dasbor Admin - Apotek</title>
     
-<   <link rel="stylesheet" href="/assets/css/style.css?v=1.1">
-    <link rel="stylesheet" href="/assets/css/admin_style.css?v=1.1">
+<   <link rel="stylesheet" href="/assets/css/style.css?v=1.2">
+    <link rel="stylesheet" href="/assets/css/admin_style.css?v=1.2">
 </head>
 <body>
 

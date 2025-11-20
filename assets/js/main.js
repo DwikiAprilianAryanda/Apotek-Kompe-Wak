@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Loading Screen (Anggap ada di file terpisah karena kode PHP telah hilang)
+    // 1. Loading Screen
     window.addEventListener('load', () => {
         const loadingScreen = document.querySelector('.loading-screen');
         if (loadingScreen) {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Scroll Progress Bar
+    // 2. Scroll Progress Bar
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Back to Top Button
+    // 3. Back to Top Button
     const backToTop = document.querySelector('.back-to-top');
     if (backToTop) {
         window.addEventListener('scroll', () => {
@@ -36,10 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Hamburger Menu
+    // 4. Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links'); // Pastikan kelas ini sesuai
-    const links = document.querySelectorAll('.nav-links a'); // Pastikan kelas ini sesuai
+    const navLinks = document.querySelector('.nav-links');
 
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
@@ -47,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
             navLinks.classList.toggle('active');
         });
 
-        links.forEach(link => {
+        // Tutup menu saat link diklik
+        document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
@@ -55,156 +55,64 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
-    // Fade-in Animation
+    // 5. Fade-in Animation (Legacy/Cadangan)
     const fadeElements = document.querySelectorAll('.fade-in');
     const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                fadeObserver.unobserve(entry.target); // Hanya muncul sekali
+                fadeObserver.unobserve(entry.target); 
             }
         });
     }, { threshold: 0.1 });
     fadeElements.forEach(element => fadeObserver.observe(element));
 
-    // Lightbox Gallery
-    const lightbox = document.querySelector('.lightbox');
-    const lightboxImg = document.querySelector('.lightbox-img');
-    const lightboxCaption = document.querySelector('.lightbox-caption');
-    const lightboxClose = document.querySelector('.lightbox-close');
-    const lightboxPrev = document.querySelector('.lightbox-prev');
-    const lightboxNext = document.querySelector('.lightbox-next');
-    
-    const galleryItems = document.querySelectorAll('.painting-card, .activity-card');
-    let currentIndex = 0;
-    const images = [];
 
-    galleryItems.forEach((item) => {
-      // Pastikan data-index ada di elemen card
-      const index = parseInt(item.dataset.index);
-
-      const img = item.querySelector('.gallery-img');
-      const title = item.querySelector('.overlay-title').textContent;
-      const text = item.querySelector('.overlay-text').textContent;
-      
-      images.push({
-        src: img.src,
-        alt: img.alt,
-        caption: `${title} - ${text}`
-      });
-
-      item.addEventListener('click', () => {
-        currentIndex = index; // Menggunakan index yang sudah diparse
-        openLightbox();
-      });
-    });
-
-    function openLightbox() {
-      if (!lightbox) return;
-      lightbox.classList.add('active');
-      updateLightboxImage();
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      if (!lightbox) return;
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function updateLightboxImage() {
-      const image = images[currentIndex];
-      if (image && lightboxImg) {
-        lightboxImg.src = image.src;
-        lightboxImg.alt = image.alt;
-        lightboxCaption.textContent = image.caption;
-      }
-    }
-
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % images.length;
-      updateLightboxImage();
-    }
-
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      updateLightboxImage();
-    }
-
-    if (lightbox) {
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightboxNext.addEventListener('click', nextImage);
-        lightboxPrev.addEventListener('click', prevImage);
-        
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
-
-        // Keyboard navigation for lightbox
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') nextImage();
-            if (e.key === 'ArrowLeft') prevImage();
-        });
-    }
-
-
-    // Smooth scroll with offset for navbar
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const navbarHeight = 64; // Tinggi navbar yang diasumsikan 4rem * 16px = 64px
-          const offsetTop = target.offsetTop - navbarHeight; 
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
-          // Tutup menu hamburger setelah klik (untuk mobile)
-          if (hamburger && navLinks) {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-          }
-        }
-      });
-    });
-
-    // Profile follow scroll (desktop only)
-    if (window.innerWidth >= 1024) {
-      const profile = document.getElementById('profile');
-      if (profile) {
+    // 6. Profile Follow Scroll (Hanya jika ada elemen #profile)
+    const profile = document.getElementById('profile');
+    if (profile && window.innerWidth >= 1024) {
         let lastScrollY = window.scrollY;
 
         function updateProfilePosition() {
-          const scrollY = window.scrollY;
-          const navbarHeight = 64; // 4rem
-          const profileHeight = profile.offsetHeight;
-          const windowHeight = window.innerHeight;
-          const padding = 20;
-
-          // Batas atas (di bawah navbar)
-          const minTop = navbarHeight + padding; 
-
-          // Batas bawah (agar tidak melewati viewport di bagian bawah)
-          const maxTop = windowHeight - profileHeight - padding;
-          
-          let newTop = Math.max(minTop, Math.min(scrollY + padding, maxTop));
-          
-          profile.style.top = `${newTop}px`;
-          lastScrollY = scrollY;
+            const scrollY = window.scrollY;
+            const navbarHeight = 64;
+            const profileHeight = profile.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const padding = 20;
+            const minTop = navbarHeight + padding;
+            const maxTop = windowHeight - profileHeight - padding;
+            let newTop = Math.max(minTop, Math.min(scrollY + padding, maxTop));
+            
+            profile.style.top = `${newTop}px`;
+            lastScrollY = scrollY;
         }
 
-        window.addEventListener('scroll', () => {
-          requestAnimationFrame(updateProfilePosition);
-        });
-
-        // Panggil saat dimuat untuk penempatan awal
+        window.addEventListener('scroll', () => requestAnimationFrame(updateProfilePosition));
         window.addEventListener('resize', updateProfilePosition);
         updateProfilePosition();
-      }
     }
+
+    // ==========================================
+    // 7. ANIMASI SCROLL MODERN (PERBAIKAN UTAMA)
+    // ==========================================
+    // Kode ini sekarang DI LUAR blok 'if (profile)', jadi akan selalu jalan.
+    
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // observer.unobserve(entry.target); // Aktifkan jika ingin animasi sekali saja
+            }
+        });
+    }, {
+        threshold: 0.1, 
+        rootMargin: "0px 0px -30px 0px"
+    });
+
+    reveals.forEach(reveal => {
+        revealOnScroll.observe(reveal);
+    });
+
 });
