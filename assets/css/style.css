@@ -18,6 +18,17 @@
         color: #333;
         background-color: #f4f4f4;
         overflow-x: hidden;
+        
+        /* === PERBAIKAN FOOTER === */
+        min-height: 100vh;       /* Paksa tinggi body minimal setinggi layar */
+        display: flex;           /* Gunakan mode Flexbox */
+        flex-direction: column;  /* Susun elemen secara vertikal */
+    }
+
+        /* === AGAR KONTEN MENDORONG FOOTER KE BAWAH === */
+    main {
+        flex: 1; /* Ini akan membuat konten utama mengisi sisa ruang kosong */
+        width: 100%; /* Pastikan lebar penuh */
     }
 
     /* =============================
@@ -976,4 +987,13 @@ input:focus, textarea:focus, select:focus {
     border-color: #457B9D !important;
     box-shadow: 0 0 8px rgba(69, 123, 157, 0.2);
     transform: scale(1.01);
+}
+
+/* === FIX TAMPILAN PENCARIAN HEADER === */
+/* Memaksa input di dalam header agar tidak punya border/garis putih */
+.input-wrapper input[type="text"] {
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important; /* Mencegah efek zoom saat diklik */
+    background: transparent !important;
 }
