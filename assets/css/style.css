@@ -671,3 +671,146 @@ header.scrolled {
         font-size: 2.2rem;
     }
 }
+
+/* =============================
+   MODERN FOOTER (REFERENCE DESIGN - BLUE THEME)
+   ============================= */
+.modern-footer {
+    background-color: #1b3270; /* Biru Gelap Utama */
+    color: #ffffff;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Curve Effect (Subtle Overlay) */
+.footer-bg-decor {
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(69, 123, 157, 0.15) 0%, rgba(27, 50, 112, 0) 60%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr; /* Kolom pertama lebih lebar */
+    gap: 50px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 60px;
+}
+
+/* Column Styles */
+.footer-brand {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 2.5rem;
+    color: #ffc107; /* Kuning Emas */
+    margin-bottom: 20px;
+}
+
+.footer-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+    max-width: 400px;
+}
+
+.footer-heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Garis bawah judul (mirip referensi) */
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #ffc107;
+    border-radius: 2px;
+}
+
+/* Contact Row (Icon + Text) */
+.contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+}
+
+.icon-box {
+    width: 20px;
+    min-width: 20px;
+    margin-top: 4px;
+    color: #ffc107;
+}
+
+.contact-row p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Social Buttons (Circle Outline) */
+.footer-socials {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Garis tipis */
+    border-radius: 50%;
+    color: white;
+    transition: all 0.3s;
+}
+
+.social-btn:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #1b3270;
+}
+
+.social-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Bottom Copyright Bar */
+.footer-copyright {
+    background-color: #152655; /* Biru lebih gelap untuk bar bawah */
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    color: #a0aec0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* Tumpuk jadi 1 kolom di HP/Tablet */
+        gap: 40px;
+    }
+    
+    .footer-heading::after {
+        width: 30px; /* Garis lebih pendek di mobile */
+    }
+}
