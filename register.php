@@ -1,29 +1,49 @@
 <?php include 'includes/header.php'; ?>
-<link rel="stylesheet" href="assets/css/style.css">
-<div class="section" style="max-width: 500px;">
-    <h2>Registrasi Akun Baru</h2>
-    <p style="text-align: center; margin-bottom: 30px;">Silakan isi form di bawah ini untuk mendaftar.</p>
-    
-    <div class="contact-form">
-        <form action="actions/register_process.php" method="POST">
-            <div>
-                <label for="name">Nama Lengkap:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Daftar</button>
-        </form>
-        
-        <p style="text-align: center; margin-top: 20px; margin-bottom: 0;">
-            Sudah punya akun? <a href="login.php" style="color: #1e40af; font-weight: 600;">Login di sini</a>
-        </p>
+
+<div class="section-wrapper bg-light">
+    <div class="container">
+        <div class="form-wrapper">
+            <h2 class="text-center" style="margin-bottom: 30px; color: #1b3270;">Buat Akun Baru</h2>
+            
+            <form action="actions/register_process.php" method="POST">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" name="name" class="form-control" required placeholder="Sesuai KTP">
+                </div>
+
+                <div class="form-group">
+                    <label>Nomor KTP (NIK)</label>
+                    <input type="number" name="no_ktp" class="form-control" required placeholder="16 digit NIK">
+                </div>
+
+                <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label>Tinggi Badan (cm)</label>
+                        <input type="number" name="height" class="form-control" placeholder="Contoh: 170">
+                    </div>
+                    <div>
+                        <label>Berat Badan (kg)</label>
+                        <input type="number" name="weight" class="form-control" placeholder="Contoh: 65">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary full-width" style="margin-top: 10px;">DAFTAR SEKARANG</button>
+            </form>
+            
+            <p class="text-center" style="margin-top: 20px;">
+                Sudah punya akun? <a href="login.php" style="color: var(--secondary); font-weight: bold;">Masuk Disini</a>
+            </p>
+        </div>
     </div>
 </div>
 

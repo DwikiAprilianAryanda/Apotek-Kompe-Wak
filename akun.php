@@ -1,65 +1,67 @@
 <?php
 session_start();
 include 'includes/db_connect.php';
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: /login.php");
-    exit;
-}
+if (!isset($_SESSION['user_id'])) { header("Location: /login.php"); exit; }
 
 $user_id = $_SESSION['user_id'];
-
-$stmt = $conn->prepare("SELECT name, email, address, phone_number FROM users WHERE id = ?");
+$stmt = $conn->prepare("SELECT name, email, address, phone_number, no_ktp, height, weight FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 $stmt->close();
-
-$message = '';
-if (isset($_GET['status']) && $_GET['status'] == 'updated') {
-    $message = '<div class="alert-success">Profil Anda berhasil diperbarui!</div>';
-}
 ?>
-
 <?php include 'includes/header.php'; ?>
-<link rel="stylesheet" href="assets/css/style.css">
 
-<div class="section">
-    <h2>Akun Saya</h2>
+<div class="section-wrapper">
+    <div class="container">
+        <h2 class="section-title">Profil Saya</h2>
+        
+        <div class="form-wrapper" style="border: none; padding: 0;">
+            <?php if (isset($_GET['status']) && $_GET['status'] == 'updated'): ?>
+                <div style="background: #d4edda; color: #155724; padding: 15px; margin-bottom: 20px;">Profil berhasil diperbarui!</div>
+            <?php endif; ?>
 
-    <div class="account-container" style="display: grid; grid-template-columns: 250px 1fr; gap: 30px; margin-top: 30px;">
-        <div class="account-sidebar" style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-            <a href="akun.php" class="btn btn-primary" style="display: block; margin-bottom: 10px; text-align: center;">Update Profil</a>
-            <a href="riwayat_pesanan.php" class="btn btn-secondary" style="display: block; text-align: center;">Riwayat Pesanan</a>
-        </div>
+            <form action="/actions/update_profile.php" method="POST">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" name="name" class="form-control" value="<?php echo htmlspecialchars($user['name']); ?>" required>
+                </div>
 
-        <div class="account-content" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-            <h3 style="color: #1e40af; margin-bottom: 10px;">Update Profil</h3>
-            <p style="margin-bottom: 20px; color: #666;">Kelola informasi profil dan alamat Anda.</p>
-            
-            <?php echo $message; ?>
+                <div class="form-group">
+                    <label>NIK (KTP)</label>
+                    <input type="text" name="no_ktp" class="form-control" value="<?php echo htmlspecialchars($user['no_ktp'] ?? ''); ?>">
+                </div>
 
-            <form action="/actions/update_profile.php" method="POST" class="contact-form" style="margin: 0; padding: 0; background: transparent; box-shadow: none;">
-                <div>
-                    <label for="name">Nama Lengkap:</label>
-                    <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" required>
+                <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <label>Tinggi Badan (cm)</label>
+                        <input type="number" name="height" class="form-control" value="<?php echo htmlspecialchars($user['height']); ?>">
+                    </div>
+                    <div>
+                        <label>Berat Badan (kg)</label>
+                        <input type="number" name="weight" class="form-control" value="<?php echo htmlspecialchars($user['weight']); ?>">
+                    </div>
                 </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" value="<?php echo htmlspecialchars($user['email']); ?>" readonly style="background: #eee;">
                 </div>
-                <div>
-                    <label for="phone_number">No. Telepon:</label>
-                    <input type="text" id="phone_number" name="phone_number" value="<?php echo htmlspecialchars($user['phone_number']); ?>">
+
+                <div class="form-group">
+                    <label>No. Telepon</label>
+                    <input type="text" name="phone_number" class="form-control" value="<?php echo htmlspecialchars($user['phone_number']); ?>">
                 </div>
-                <div>
-                    <label for="address">Alamat Pengiriman:</label>
-                    <textarea id="address" name="address" rows="4"><?php echo htmlspecialchars($user['address']); ?></textarea>
+
+                <div class="form-group">
+                    <label>Alamat Pengiriman</label>
+                    <textarea name="address" class="form-control" rows="4"><?php echo htmlspecialchars($user['address']); ?></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+
+                <button type="submit" class="btn btn-primary">SIMPAN PERUBAHAN</button>
+                <a href="actions/logout.php" class="btn btn-outline" style="margin-left: 10px;">LOGOUT</a>
             </form>
         </div>
     </div>
 </div>
-
 <?php include 'includes/footer.php'; ?>
