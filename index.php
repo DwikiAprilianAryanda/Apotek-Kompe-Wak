@@ -43,28 +43,26 @@
     </div>
 </div>
 
-<div class="section-wrapper bg-light">
-    <div class="container" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 300px;">
-             <img src="assets/images/logo_apotek.jpg" alt="Gedung Apotek" style="width: 100%; height: auto; border: 1px solid #ddd;">
-        </div>
-        <div style="flex: 1; min-width: 300px;">
-            <h2 class="section-title" style="text-align: left;">Tentang Arshaka</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1rem; color: #555;">
-                Apotek Arshaka hadir di jantung Tenggarong (Jl. Loa Ipuh) untuk melayani masyarakat dengan sepenuh hati. Kami berkomitmen menyediakan produk kesehatan berkualitas dengan harga yang terjangkau.
+<div class="about-section-wrapper">
+    <div class="container about-container">
+        
+        <div class="about-text-content">
+            <h2 class="about-title">Lebih dari Sekadar Apotek</h2>
+            <span class="about-subtitle">A place to heal, to consult, and to trust.</span>
+            
+            <p class="about-desc">
+                Didirikan dengan komitmen tinggi, Apotek Arshaka lahir dari keinginan sederhana: menciptakan akses kesehatan yang terpercaya bagi siapa saja di Tenggarong. Kami memadukan ketersediaan obat yang lengkap dengan pelayanan kefarmasian yang hangat dan profesional.
             </p>
-            <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 10px; display: flex; align-items: center;">
-                    <span style="color: #28a745; margin-right: 10px;">&#10003;</span> Produk 100% Asli & BPOM
-                </li>
-                <li style="margin-bottom: 10px; display: flex; align-items: center;">
-                    <span style="color: #28a745; margin-right: 10px;">&#10003;</span> Apoteker Berpengalaman
-                </li>
-                <li style="margin-bottom: 10px; display: flex; align-items: center;">
-                    <span style="color: #28a745; margin-right: 10px;">&#10003;</span> Buka Setiap Hari (08.00 - 23.00)
-                </li>
-            </ul>
+            
+            <p class="about-desc">
+                Setiap sudut pelayanan kami didesain untuk kenyamanan Anda. Mulai dari konsultasi obat yang ramah hingga proses penebusan resep yang cepat, kami hadir untuk memastikan kesehatan Anda dan keluarga selalu terjaga.
+            </p>
         </div>
+
+        <div class="about-image-wrapper">
+            <div class="about-image-bg" style="background-color: #457B9D;"></div> <img src="assets/images/logo_apotek.jpg" alt="Suasana Apotek Arshaka" class="about-img-main">
+        </div>
+
     </div>
 </div>
 

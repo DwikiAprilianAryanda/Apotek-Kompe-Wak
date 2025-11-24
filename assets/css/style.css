@@ -417,3 +417,101 @@ header.scrolled {
     color: white;
 }
 .input-wrapper input::placeholder { color: rgba(255,255,255,0.7); }
+
+/* =============================
+   SECTION TENTANG KAMI (NEW DESIGN)
+   ============================= */
+.about-section-wrapper {
+    padding: 100px 0;
+    background-color: var(--white);
+    overflow: hidden; /* Mencegah elemen keluar layar */
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 80px; /* Jarak lebar antara teks dan gambar */
+}
+
+/* --- BAGIAN TEKS (KIRI) --- */
+.about-text-content {
+    flex: 1;
+}
+
+.about-title {
+    /* Menggunakan font serif agar mirip referensi "Lebih dari Sekadar..." */
+    font-family: 'Georgia', 'Times New Roman', serif; 
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.about-subtitle {
+    font-size: 1.1rem;
+    color: #b08d55; /* Warna emas/coklat sesuai referensi */
+    /* Atau gunakan var(--secondary) jika ingin biru: color: var(--secondary); */
+    font-style: italic;
+    margin-bottom: 30px;
+    display: block;
+    font-weight: 500;
+}
+
+.about-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    text-align: justify; /* Teks rata kanan-kiri */
+}
+
+/* --- BAGIAN GAMBAR (KANAN) --- */
+.about-image-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center; /* Posisi gambar di tengah area-nya */
+}
+
+/* Kotak Warna di Belakang Gambar */
+.about-image-bg {
+    position: absolute;
+    width: 90%; /* Lebar kotak background */
+    height: 100%; /* Tinggi kotak background */
+    /* Warna background kotak (Gunakan #dcb181 untuk coklat seperti ref, atau var(--secondary) untuk biru) */
+    background-color: #dcb181; 
+    border-radius: 15px;
+    bottom: -20px; /* Geser ke bawah */
+    right: -20px;  /* Geser ke kanan */
+    z-index: 1;    /* Di belakang gambar */
+}
+
+/* Gambar Utama */
+.about-img-main {
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    z-index: 2; /* Di depan kotak */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1); /* Bayangan halus */
+}
+
+/* Responsif untuk Tablet/HP */
+@media (max-width: 992px) {
+    .about-container {
+        flex-direction: column; /* Tumpuk ke bawah */
+        gap: 50px;
+    }
+    
+    .about-image-bg {
+        width: 100%;
+        right: -10px;
+        bottom: -10px;
+    }
+    
+    .about-title {
+        font-size: 2.2rem;
+    }
+}
