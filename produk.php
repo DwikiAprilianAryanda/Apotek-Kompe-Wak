@@ -109,9 +109,24 @@ if (isset($_GET['status']) && $_GET['status'] == 'cart_added') {
                                 
                                 <form action="actions/tambah_keranjang.php" method="POST" style="margin-top:auto;">
                                     <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
-                                    <input type="hidden" name="quantity" value="1">
-                                    <button type="submit" class="btn-cart-sm">+ Keranjang</button>
-                                </form>
+                                    
+                                    <div class="quantity-controls">
+                                        <button type="button" class="qty-btn minus-btn" data-id="<?php echo $row['id']; ?>">-</button>
+                                        
+                                        <input type="number" 
+                                            name="quantity" 
+                                            value="1" 
+                                            min="1" 
+                                            max="<?php echo $row['stock_quantity']; ?>" 
+                                            id="qty-input-<?php echo $row['id']; ?>" 
+                                            class="qty-input"
+                                            inputmode="numeric">
+                                            
+                                        <button type="button" class="qty-btn plus-btn" data-id="<?php echo $row['id']; ?>">+</button>
+                                    </div>
+
+                                <button type="submit" class="btn-cart-sm">+ Keranjang</button>
+                            </form>
                             </div>
                             <?php
                         }

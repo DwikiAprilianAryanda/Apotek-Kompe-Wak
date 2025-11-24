@@ -60,7 +60,6 @@
         </div>
 
         <div class="about-image-wrapper">
-            <div class="about-image-bg reveal-zoom delay-200" style="background-color: #457B9D;"></div>
             <img src="assets/images/logo_apotek.jpg" alt="Suasana Apotek Arshaka" class="about-img-main reveal-special-img">
         </div>
 

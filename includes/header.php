@@ -1,9 +1,11 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) { session_start(); }
 
+// Hitung jumlah item di keranjang untuk badge
 $cart_count = 0;
-if (isset($_SESSION['cart'])) {
-    $cart_count = array_sum($_SESSION['cart']);
+if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+    // LOGIKA BARU: Menghitung jumlah elemen unik (jumlah jenis obat/kunci dalam array)
+    $cart_count = count($_SESSION['cart']); 
 }
 
 // LOGIKA DETEKSI HALAMAN
