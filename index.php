@@ -1,40 +1,43 @@
 <?php include 'includes/header.php'; ?>
 
-<section style="position: relative; height: 500px; background: #1b3270; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3);"></div>
+<section class="hero-full-screen">
+    <div class="hero-overlay"></div>
     
-    <div class="container" style="position: relative; z-index: 2;">
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px;">APOTEK ARSHAKA</h1>
-        <p style="font-size: 1.25rem; margin-bottom: 40px; font-weight: 300;">Solusi Kesehatan Keluarga Terpercaya di Tenggarong</p>
-        <a href="produk.php" class="btn" style="background: #ffc107; color: #1b3270; padding: 15px 50px; font-weight: 800; font-size: 1rem; text-transform: uppercase;">Belanja Sekarang</a>
+    <div class="hero-content">
+        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">
+            APOTEK ARSHAKA
+        </h1>
+        <p style="font-size: 1.25rem; margin-bottom: 40px; font-weight: 300; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);">
+            Solusi Kesehatan Keluarga Terpercaya di Tenggarong
+        </p>
+        <a href="produk.php" class="btn" style="background: #ffc107; color: #1b3270; padding: 15px 50px; font-weight: 800; font-size: 1rem; text-transform: uppercase; border-radius: 5px; box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);">
+            Belanja Sekarang
+        </a>
     </div>
 </section>
 
-<div class="section-wrapper" id="layanan">
+<div class="section-wrapper" id="layanan" style="background-color: #f9fbfd;">
     <div class="container">
         <h2 class="section-title">Layanan Kami</h2>
-        <p class="section-subtitle">Kami menyediakan berbagai layanan kesehatan farmasi untuk memenuhi kebutuhan Anda sehari-hari.</p>
+        <p class="section-subtitle">Kami menyediakan solusi kesehatan lengkap untuk kebutuhan keluarga Anda.</p>
         
         <div class="grid-3">
             <div class="service-card">
                 <img src="assets/images/obat.png" alt="Obat Lengkap" class="service-icon">
                 <h3>Obat Lengkap</h3>
-                <p>Tersedia obat bebas, obat resep, vitamin, hingga alat kesehatan dengan keaslian terjamin.</p>
-                <a href="produk.php" style="color: #457B9D; font-weight: bold; font-size: 0.9rem; margin-top: 10px; display: inline-block;">Lihat Katalog &rarr;</a>
+                <p>Menyediakan berbagai macam obat bebas, vitamin, suplemen, hingga alat kesehatan yang terjamin keasliannya.</p>
             </div>
 
             <div class="service-card">
                 <img src="assets/images/resep_icon.png" alt="Upload Resep" class="service-icon"> 
                 <h3>Tebus Resep Kilat</h3>
-                <p>Tidak perlu antre. Unggah foto resep dokter Anda, kami siapkan obatnya, Anda tinggal ambil.</p>
-                <a href="unggah_resep.php" style="color: #457B9D; font-weight: bold; font-size: 0.9rem; margin-top: 10px; display: inline-block;">Unggah Resep &rarr;</a>
+                <p>Layanan tebus resep dokter yang praktis dan cepat. Cukup unggah foto resep, kami siapkan obatnya untuk Anda.</p>
             </div>
 
             <div class="service-card">
                 <img src="assets/images/consult_icon.png" alt="Konsultasi" class="service-icon"> 
                 <h3>Konsultasi Apoteker</h3>
-                <p>Apoteker kami siap memberikan edukasi dan informasi pemakaian obat yang aman untuk Anda.</p>
-                <a href="#contact" style="color: #457B9D; font-weight: bold; font-size: 0.9rem; margin-top: 10px; display: inline-block;">Hubungi Kami &rarr;</a>
+                <p>Dapatkan informasi yang tepat mengenai penggunaan obat, efek samping, dan dosis langsung dari Apoteker kami.</p>
             </div>
         </div>
     </div>

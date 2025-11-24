@@ -116,3 +116,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+// Script untuk mengubah Header saat Scroll
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled'); // Tambah class solid saat turun
+    } else {
+        header.classList.remove('scrolled'); // Hapus class (jadi transparan) saat di atas
+    }
+});
