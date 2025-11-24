@@ -515,3 +515,159 @@ header.scrolled {
         font-size: 2.2rem;
     }
 }
+
+/* =============================
+   SECTION KONSULTASI (BACKGROUND IMAGE)
+   ============================= */
+.consultation-section {
+    position: relative;
+    padding: 100px 0;
+    /* Ganti URL ini dengan gambar pilihan Anda */
+    background: url('../images/bg-konsul.jpg') no-repeat center center; 
+    background-size: cover;
+    background-attachment: fixed; /* Efek Parallax seperti Hero */
+    color: #ffffff;
+}
+
+/* Overlay Gelap (Agar teks terbaca) */
+.consult-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(27, 50, 112, 0.7); /* Biru gelap transparan */
+    z-index: 1;
+}
+
+/* Container Grid (Harus di atas overlay) */
+.consult-grid {
+    position: relative;
+    z-index: 2; /* Agar tampil di atas overlay */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* --- BAGIAN KIRI (TEKS PUTIH) --- */
+.consult-content h2 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 3rem;
+    color: #ffffff; /* Ubah jadi Putih */
+    margin-bottom: 10px;
+    line-height: 1.2;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.consult-subtitle {
+    font-style: italic;
+    color: #ffc107; /* Kuning Emas Cerah */
+    margin-bottom: 30px;
+    display: block;
+    font-size: 1.1rem;
+}
+
+.consult-desc {
+    color: #f0f0f0; /* Putih Terang */
+    margin-bottom: 30px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.consult-features {
+    list-style: none;
+    padding: 0;
+}
+
+.consult-features li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #ffffff; /* List Putih */
+    font-weight: 500;
+}
+
+.check-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: #ffc107; /* Kuning Emas */
+    color: #1b3270; /* Icon centang biru */
+    border-radius: 50% !important;
+    margin-right: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* --- BAGIAN KANAN (KARTU FORM TETAP KREM/PUTIH) --- */
+.consult-card {
+    background-color: #fffcf8; /* Tetap Krem agar kontras dengan background gelap */
+    padding: 40px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2); /* Shadow lebih tebal */
+}
+
+.consult-form label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Inputan Putih Bersih */
+.consult-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    background: #ffffff;
+    margin-bottom: 20px;
+    font-family: inherit;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.consult-input:focus {
+    outline: none;
+    border-color: #b08d55;
+}
+
+.consult-input::placeholder {
+    color: #aaa;
+    font-weight: 400;
+}
+
+/* Tombol WhatsApp (Outline Style) */
+.btn-wa-consult {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #333;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.btn-wa-consult:hover {
+    background: #333;
+    color: white;
+}
+
+/* Responsif Mobile */
+@media (max-width: 768px) {
+    .consult-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .consult-content h2 {
+        font-size: 2.2rem;
+    }
+}

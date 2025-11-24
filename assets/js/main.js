@@ -127,3 +127,26 @@ window.addEventListener('scroll', function() {
         header.classList.remove('scrolled'); // Hapus class (jadi transparan) saat di atas
     }
 });
+
+function sendToWhatsapp(e) {
+    e.preventDefault();
+    
+    // Ambil data dari form
+    var name = document.getElementById('waName').value;
+    var phone = document.getElementById('waPhone').value;
+    var email = document.getElementById('waEmail').value;
+    var message = document.getElementById('waMessage').value;
+    
+    // Nomor Admin Apotek (Ganti dengan nomor asli, format 62...)
+    var adminPhone = "6282188392309"; 
+    
+    // Format Pesan WhatsApp
+    var text = "*Halo Admin Apotek Arshaka, saya ingin konsultasi.*%0A%0A" +
+               "Nama: " + name + "%0A" +
+               "No. HP: " + phone + "%0A" +
+               "Email: " + (email ? email : "-") + "%0A" +
+               "Pesan: " + message;
+               
+    // Buka WhatsApp
+    window.open("https://wa.me/" + adminPhone + "?text=" + text, '_blank');
+}
