@@ -117,6 +117,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+// ==========================================
+    // ANIMASI SCROLL INTERAKTIF (OBSERVER)
+    // ==========================================
+    
+    // Targetkan semua elemen yang punya class 'reveal-...'
+    const animatedElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-zoom, .reveal-special-img');
+
+    const observerOptions = {
+        threshold: 0.15, // Elemen akan muncul saat 15% terlihat di layar
+        rootMargin: "0px 0px -50px 0px" // Offset sedikit agar animasi tidak terlalu cepat memicu
+    };
+
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Tambahkan class 'active' untuk memicu animasi CSS
+                entry.target.classList.add('active');
+                
+                // Opsional: Stop mengamati setelah animasi selesai (agar tidak berulang)
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
+
+    animatedElements.forEach(el => {
+        revealOnScroll.observe(el);
+    });
+
 // Script untuk mengubah Header saat Scroll
 window.addEventListener('scroll', function() {
     const header = document.querySelector('header');

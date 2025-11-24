@@ -4,13 +4,13 @@
     <div class="hero-overlay"></div>
     
     <div class="hero-content">
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">
+        <h1 class="reveal-zoom" style="font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">
             APOTEK ARSHAKA
         </h1>
-        <p style="font-size: 1.25rem; margin-bottom: 40px; font-weight: 300; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);">
+        <p class="reveal-up delay-200" style="font-size: 1.25rem; margin-bottom: 40px; font-weight: 300; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);">
             Solusi Kesehatan Keluarga Terpercaya di Tenggarong
         </p>
-        <a href="produk.php" class="btn" style="background: #ffc107; color: #1b3270; padding: 15px 50px; font-weight: 800; font-size: 1rem; text-transform: uppercase; border-radius: 5px; box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);">
+        <a href="produk.php" class="btn reveal-up delay-300" style="background: #ffc107; color: #1b3270; padding: 15px 50px; font-weight: 800; font-size: 1rem; text-transform: uppercase; border-radius: 5px; box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);">
             Belanja Sekarang
         </a>
     </div>
@@ -18,23 +18,23 @@
 
 <div class="section-wrapper" id="layanan" style="background-color: #f9fbfd;">
     <div class="container">
-        <h2 class="section-title">Layanan Kami</h2>
-        <p class="section-subtitle">Kami menyediakan solusi kesehatan lengkap untuk kebutuhan keluarga Anda.</p>
+        <h2 class="section-title reveal-up delay-100">Layanan Kami</h2>
+        <p class="section-subtitle reveal-up delay-200">Kami menyediakan solusi kesehatan lengkap untuk kebutuhan keluarga Anda.</p>
         
         <div class="grid-3">
-            <div class="service-card">
+            <div class="service-card reveal-up delay-100">
                 <img src="assets/images/obat.png" alt="Obat Lengkap" class="service-icon">
                 <h3>Obat Lengkap</h3>
                 <p>Menyediakan berbagai macam obat bebas, vitamin, suplemen, hingga alat kesehatan yang terjamin keasliannya.</p>
             </div>
 
-            <div class="service-card">
+            <div class="service-card reveal-up delay-200">
                 <img src="assets/images/resep_icon.png" alt="Upload Resep" class="service-icon"> 
                 <h3>Tebus Resep Kilat</h3>
                 <p>Layanan tebus resep dokter yang praktis dan cepat. Cukup unggah foto resep, kami siapkan obatnya untuk Anda.</p>
             </div>
 
-            <div class="service-card">
+            <div class="service-card reveal-up delay-300">
                 <img src="assets/images/consult_icon.png" alt="Konsultasi" class="service-icon"> 
                 <h3>Konsultasi Apoteker</h3>
                 <p>Dapatkan informasi yang tepat mengenai penggunaan obat, efek samping, dan dosis langsung dari Apoteker kami.</p>
@@ -46,7 +46,7 @@
 <div class="about-section-wrapper">
     <div class="container about-container">
         
-        <div class="about-text-content">
+        <div class="about-text-content reveal-left">
             <h2 class="about-title">Lebih dari Sekadar Apotek</h2>
             <span class="about-subtitle">A place to heal, to consult, and to trust.</span>
             
@@ -71,7 +71,7 @@
     <div class="consult-overlay"></div>
 
     <div class="container consult-grid">
-        <div class="consult-content">
+        <div class="consult-content reveal-left">
             <h2>Konsultasi Apoteker</h2>
             <span class="consult-subtitle">Jangan ragu untuk bertanya tentang kesehatanmu.</span>
             
@@ -86,7 +86,7 @@
             </ul>
         </div>
 
-        <div class="consult-card">
+        <div class="consult-card reveal-right">
             <form id="waForm" onsubmit="sendToWhatsapp(event)" class="consult-form">
                 <label>Nama Lengkap</label>
                 <input type="text" id="waName" class="consult-input" placeholder="Contoh: Budi Santoso" required>
@@ -111,10 +111,10 @@
 
 <div class="section-wrapper" id="contact">
     <div class="container">
-        <h2 class="section-title">Pusat Bantuan</h2>
-        <p class="section-subtitle">Punya pertanyaan? Temukan jawabannya di sini atau hubungi kami langsung.</p>
+        <h2 class="section-title reveal-up delay-100">Pusat Bantuan</h2>
+        <p class="section-subtitle reveal-up delay-100">Punya pertanyaan? Temukan jawabannya di sini atau hubungi kami langsung.</p>
 
-        <div class="contact-grid">
+        <div class="contact-grid reveal-left delay-200">
             <div>
                 <h3 style="margin-bottom: 20px; color: #1b3270; font-weight: 700;">Pertanyaan Umum (FAQ)</h3>
                 
@@ -134,7 +134,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="reveal-right delay-200">
                 <h3 style="margin-bottom: 20px; color: #1b3270; font-weight: 700;">Kunjungi Kami</h3>
                 <div style="background: #f8f9fa; padding: 30px; border: 1px solid #eee;">
                     <p style="margin-bottom: 15px;"><strong>Alamat:</strong><br>
