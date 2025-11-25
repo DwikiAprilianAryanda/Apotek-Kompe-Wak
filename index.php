@@ -10,8 +10,9 @@
         <p class="reveal-up delay-200" style="font-size: 1.25rem; margin-bottom: 40px; font-weight: 300; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);">
             Solusi Kesehatan Keluarga Terpercaya di Tenggarong
         </p>
-        <a href="produk.php" class="btn reveal-up delay-300" style="background: #ffc107; color: #1b3270; padding: 15px 50px; font-weight: 800; font-size: 1rem; text-transform: uppercase; border-radius: 5px; box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);">
-            Belanja Sekarang
+        <a href="produk.php" class="btn btn-hero-cta reveal-up delay-300">
+            <span>Belanja Sekarang</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </a>
     </div>
 </section>

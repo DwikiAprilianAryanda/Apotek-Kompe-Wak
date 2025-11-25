@@ -7,7 +7,7 @@
             <div class="reg-success-card">
                 
                 <div class="success-checkmark">
-                    <div class="check-icon">
+                    <div class="check-icon-animated">
                         <span class="icon-line line-tip"></span>
                         <span class="icon-line line-long"></span>
                         <div class="icon-circle"></div>

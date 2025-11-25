@@ -163,7 +163,7 @@ header.scrolled {
 .header-icons {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 0; /* Updated: Gap diatur manual via separator */
 }
 
 .icon-link {
@@ -171,6 +171,8 @@ header.scrolled {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
+    transition: transform 0.2s;
 }
 
 .icon-link svg {
@@ -180,8 +182,12 @@ header.scrolled {
     transition: transform 0.3s;
 }
 
-.icon-link:hover svg {
+.icon-link:hover {
     transform: scale(1.1);
+    color: var(--accent);
+}
+
+.icon-link:hover svg {
     fill: var(--accent);
 }
 
@@ -199,15 +205,6 @@ header.scrolled {
     justify-content: center;
     align-items: center;
     border-radius: 50% !important;
-}
-
-.header-icons .btn {
-    background-color: var(--accent);
-    color: var(--primary);
-    padding: 10px 25px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -293,7 +290,7 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   6. TENTANG KAMI (REVISI: Align Right, No Shadow Box)
+   6. TENTANG KAMI
    ========================================================================== */
 .about-section-wrapper {
     padding: 100px 0;
@@ -335,58 +332,34 @@ header.scrolled {
     text-align: justify;
 }
 
-/* WRAPPER GAMBAR */
 .about-image-wrapper {
     flex: 1;
     position: relative;
     display: flex;
-    /* UBAH: Dorong konten ke kanan */
     justify-content: flex-end; 
-    /* PENTING: Tarik area ini keluar container agar sejajar tepi layar/ikon keranjang */
     margin-right: -20px; 
 }
 
-/* (.about-image-bg TELAH DIHAPUS) */
-
-/* GAMBAR UTAMA */
 .about-img-main {
     position: relative;
-    /* UBAH: Lebar penuh agar mengisi ruang yang sudah ditarik ke kanan */
     width: 100%; 
     height: auto;
     object-fit: cover;
-    /* HAPUS z-index dan box-shadow */
     transition: transform 0.5s ease;
-    border-radius: 0; /* Pastikan sudut tajam */
+    border-radius: 0; 
 }
 
 .about-img-main:hover {
     transform: scale(1.02);
 }
 
-/* Responsif Mobile */
-@media (max-width: 992px) {
-    .about-container { 
-        flex-direction: column; 
-        gap: 50px; 
-    }
-    /* Reset posisi di mobile agar rapi di tengah */
-    .about-image-wrapper { 
-        margin-right: 0; 
-        justify-content: center;
-    } 
-    .about-img-main {
-        width: 100%; /* Gambar penuh di mobile */
-    }
-}
-
 /* ==========================================================================
-   7. KONSULTASI
+   7. KONSULTASI (INDEX.PHP) - IKON KECIL
    ========================================================================== */
 .consultation-section {
     position: relative;
     padding: 120px 0;
-    background: url('../images/bg_hero_apotek.webp') no-repeat center center; 
+    background: url('../images/bg-konsul.jpg') no-repeat center center; 
     background-size: cover;
     background-attachment: fixed;
     color: var(--white);
@@ -440,6 +413,8 @@ header.scrolled {
     font-weight: 500;
 }
 
+/* --- IKON CENTANG KECIL DI HOMEPAGE --- */
+/* Class ini JANGAN diubah karena dipakai di index.php */
 .check-icon {
     display: inline-flex;
     align-items: center;
@@ -869,7 +844,7 @@ a.cat-item {
    ========================================================================== */
 @media (max-width: 992px) {
     .about-container { flex-direction: column; gap: 50px; }
-    .about-image-wrapper { margin-right: 0; } /* Hilangkan margin negatif di mobile */
+    .about-image-wrapper { margin-right: 0; }
     .about-image-bg { width: 90%; right: 5%; bottom: -10px; }
     .consult-grid, .footer-grid { grid-template-columns: 1fr; gap: 50px; }
     .hero-content h1 { font-size: 2.5rem; }
@@ -881,7 +856,7 @@ a.cat-item {
 }
 
 /* =============================
-   QUANTITY CONTROLS (PRODUK BARU)
+   QUANTITY CONTROLS
    ============================= */
 .quantity-controls {
     display: flex;
@@ -916,11 +891,9 @@ a.cat-item {
     padding: 8px 0;
     font-size: 1rem;
     color: var(--text-dark);
-    /* Hilangkan panah default di browser */
     -moz-appearance: textfield;
 }
 
-/* Menyembunyikan panah di Chrome/Safari/Edge */
 .qty-input::-webkit-outer-spin-button,
 .qty-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -928,39 +901,31 @@ a.cat-item {
 }
 
 /* =========================================
-   MODERN CART STYLES (FLAT, WIDE & PRECISE)
+   MODERN CART STYLES
    ========================================= */
 
 .cart-wrapper {
-    /* Lebar disamakan dengan header container (1280px) */
     max-width: 1280px; 
     width: 100%;
-    /* Margin atas bawah 40px, Kiri Kanan Auto (Tengah) */
     margin: 40px auto;
-    
     background: var(--white);
-    
-    /* HILANGKAN ROUNDED & SHADOW AGAR TEGAS */
     border-radius: 0; 
     box-shadow: none; 
-    border: 1px solid #e5e7eb; /* Garis tepi halus */
-    
+    border: 1px solid #e5e7eb; 
     overflow: hidden;
 }
 
-/* JUDUL HALAMAN & FILTER */
 .cart-page-title {
     padding: 25px 20px;
     border-bottom: 1px solid #e5e7eb;
     display: flex;
-    justify-content: space-between; /* Kiri Kanan Mentok */
+    justify-content: space-between;
     align-items: center;
     background: #fff;
-    flex-wrap: wrap; /* Agar aman di mobile */
+    flex-wrap: wrap; 
     gap: 15px;
 }
 
-/* Bagian Kiri (Judul & Badge) */
 .title-left {
     display: flex;
     align-items: center;
@@ -980,13 +945,12 @@ a.cat-item {
     background: #eff6ff;
     color: var(--primary);
     padding: 4px 10px;
-    border-radius: 0; /* Kotak */
+    border-radius: 0;
     font-size: 0.85rem;
     font-weight: 700;
     border: 1px solid #dbeafe;
 }
 
-/* Bagian Kanan (Filter Form Modern) */
 .title-right {
     display: flex;
     align-items: center;
@@ -1007,47 +971,37 @@ a.cat-item {
     letter-spacing: 0.5px;
 }
 
-/* Custom Select Modern */
 .sort-select {
-    /* Hilangkan tampilan default browser yang jelek */
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    
     background-color: #fff;
     border: 1px solid #e5e7eb;
-    border-radius: 0; /* Tetap kotak (Precise) */
-    
-    padding: 10px 40px 10px 15px; /* Kanan dilebarkan untuk ikon panah */
+    border-radius: 0; 
+    padding: 10px 40px 10px 15px;
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--primary);
     cursor: pointer;
     outline: none;
     min-width: 180px;
-    
-    /* Tambahkan Ikon Panah Kustom (SVG Chevron Down) */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231b3270' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 15px center;
     background-size: 16px;
-    
     transition: all 0.3s ease;
 }
 
-/* Efek Hover */
 .sort-select:hover {
-    border-color: var(--primary); /* Border jadi biru saat di-hover */
+    border-color: var(--primary);
     background-color: #f8faff;
 }
 
-/* Efek Focus (Saat diklik) */
 .sort-select:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(27, 50, 112, 0.1); /* Glow biru halus */
+    box-shadow: 0 0 0 3px rgba(27, 50, 112, 0.1);
 }
 
-/* Responsive di HP */
 @media (max-width: 576px) {
     .sort-form {
         width: 100%;
@@ -1059,12 +1013,9 @@ a.cat-item {
     }
 }
 
-/* LABEL KOLOM */
 .cart-labels {
     display: grid;
-    /* Grid proporsional */
     grid-template-columns: 3fr 1.5fr 1fr 0.5fr;
-    /* Padding samping 20px */
     padding: 20px 20px 10px; 
     color: var(--text-light);
     font-size: 0.85rem;
@@ -1073,9 +1024,8 @@ a.cat-item {
     letter-spacing: 1px;
 }
 
-/* CONTAINER ITEM */
 .cart-items-container {
-    padding: 0 20px 20px; /* Padding samping 20px */
+    padding: 0 20px 20px;
 }
 
 .cart-row {
@@ -1090,7 +1040,6 @@ a.cat-item {
     border-bottom: none;
 }
 
-/* INFO PRODUK */
 .product-info {
     display: flex;
     align-items: center;
@@ -1102,7 +1051,6 @@ a.cat-item {
     height: 80px;
     background: #fff;
     border: 1px solid #eee;
-    /* Hapus border-radius */
     border-radius: 0; 
     display: flex;
     align-items: center;
@@ -1131,13 +1079,12 @@ a.cat-item {
     font-size: 0.9rem;
 }
 
-/* QUANTITY CONTROL (+ -) */
 .qty-control {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0; /* Rapatkan tombol */
-    border: 1px solid #ddd; /* Kotak pembungkus qty */
+    gap: 0;
+    border: 1px solid #ddd;
     width: fit-content;
     margin: 0 auto;
 }
@@ -1175,14 +1122,12 @@ a.cat-item {
     background: #fff;
 }
 
-/* HARGA */
 .price-col {
     font-weight: 700;
     color: var(--text-dark);
     font-size: 1rem;
 }
 
-/* TOMBOL SAMPAH */
 .delete-col {
     text-align: right;
 }
@@ -1197,14 +1142,12 @@ a.cat-item {
 }
 
 .btn-trash:hover {
-    color: #dc3545; /* Merah */
+    color: #dc3545;
 }
 
-/* FOOTER KERANJANG */
 .cart-footer {
     background: #fcfcfc;
     border-top: 1px solid #e5e7eb;
-    /* Padding samping 20px */
     padding: 30px 20px; 
     display: flex;
     justify-content: space-between;
@@ -1243,11 +1186,10 @@ a.cat-item {
 }
 
 .btn-checkout {
-    background: var(--accent); /* Kuning */
+    background: var(--accent);
     color: var(--primary);
     padding: 15px 40px;
     border: none;
-    /* Border radius 0 (Kotak) */
     border-radius: 0; 
     font-weight: 800;
     font-size: 1rem;
@@ -1263,16 +1205,13 @@ a.cat-item {
     background: #e0a800;
 }
 
-/* EMPTY STATE */
 .empty-state {
     padding: 100px 20px;
     text-align: center;
 }
 .empty-state h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 10px; }
 
-/* RESPONSIF */
 @media (max-width: 1300px) {
-    /* Agar tidak menempel di pinggir layar pada layar kecil */
     .cart-wrapper { width: 95%; }
 }
 
@@ -1293,7 +1232,7 @@ a.cat-item {
 }
 
 /* =========================================
-   AUTH PAGES (LOGIN & REGISTER - Tokopedia Style)
+   AUTH PAGES
    ========================================= */
 
 .auth-body {
@@ -1303,33 +1242,27 @@ a.cat-item {
     flex-direction: column;
 }
 
-/* 1. SIMPLE HEADER (CENTERED TEXT ONLY) */
 .auth-header {
     padding: 25px 20px;
     width: 100%;
     background: #fff;
-    
-    /* Override global header style */
     position: relative !important;
     height: auto !important;
     border-bottom: 1px solid #f0f0f0;
     box-shadow: none !important;
-    
-    /* Posisi Tengah */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Teks Logo Aesthetic */
 .auth-logo-text {
-    font-family: 'Georgia', 'Times New Roman', serif; /* Font Serif Aesthetic */
+    font-family: 'Georgia', 'Times New Roman', serif;
     font-size: 2rem;
     font-weight: 700;
-    color: var(--primary); /* Biru Utama */
+    color: var(--primary);
     text-decoration: none;
     letter-spacing: 1px;
-    text-transform: capitalize; /* Huruf besar di awal kata */
+    text-transform: capitalize;
     transition: opacity 0.3s;
 }
 
@@ -1338,7 +1271,6 @@ a.cat-item {
     color: var(--primary);
 }
 
-/* 2. SPLIT CONTENT */
 .auth-content {
     flex: 1;
     display: flex;
@@ -1350,7 +1282,6 @@ a.cat-item {
     padding: 20px;
 }
 
-/* Bagian Kiri (Gambar/Ilustrasi) */
 .auth-left {
     flex: 1.2;
     text-align: center;
@@ -1358,12 +1289,12 @@ a.cat-item {
 }
 
 .auth-left img {
-    max-width: 80%;       /* Membatasi lebar agar tidak terlalu penuh ke samping */
-    max-height: 350px;    /* Membatasi tinggi maksimal agar tidak terlalu besar */
-    width: auto;          /* Menjaga rasio aspek lebar */
-    height: auto;         /* Menjaga rasio aspek tinggi */
-    object-fit: contain;  /* Memastikan gambar utuh tidak terpotong */
-    margin-bottom: 30px;  /* Jarak ke teks di bawahnya */
+    max-width: 80%;
+    max-height: 350px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 30px;
     display: inline-block;
 }
 
@@ -1378,7 +1309,6 @@ a.cat-item {
     font-size: 1rem;
 }
 
-/* Bagian Kanan (Form Card) */
 .auth-right {
     flex: 0.8;
     max-width: 400px;
@@ -1389,7 +1319,7 @@ a.cat-item {
     background: #fff;
     padding: 30px;
     border: 1px solid #e0e0e0;
-    border-radius: 8px; /* Sedikit rounded seperti referensi */
+    border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     text-align: center;
 }
@@ -1408,7 +1338,7 @@ a.cat-item {
 }
 
 .auth-subtitle a {
-    color: var(--primary); /* Biru Arshaka */
+    color: var(--primary);
     font-weight: 600;
     text-decoration: none;
 }
@@ -1417,31 +1347,26 @@ a.cat-item {
    ENHANCED AUTH FORM STYLES
    ========================================= */
 
-/* PERBAIKAN ALIGNMENT FORM */
-
-/* 1. Pastikan pembungkus per-input rata kiri */
 .auth-form-group {
     margin-bottom: 20px;
-    text-align: left !important; /* KUNCI: Memaksa konten di dalamnya rata kiri */
+    text-align: left !important;
     width: 100%;
 }
 
-/* 2. Pastikan label mengisi lebar penuh dan rata kiri */
 .auth-label {
     font-size: 0.9rem;
     color: #374151;
     font-weight: 600;
     margin-bottom: 8px;
     display: block;
-    text-align: left; /* Penegas tambahan */
+    text-align: left;
 }
 
-/* Styling Input Dasar (Lebih Modern) */
 .auth-input {
     width: 100%;
     padding: 12px 15px;
-    background-color: #f9fafb; /* Abu sangat muda */
-    border: 1px solid #e5e7eb; /* Border halus */
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
     font-size: 0.95rem;
     color: #1f2937;
@@ -1451,15 +1376,14 @@ a.cat-item {
 .auth-input:focus {
     outline: none;
     background-color: #ffffff;
-    border-color: var(--primary); /* Biru Arshaka */
-    box-shadow: 0 0 0 4px rgba(27, 50, 112, 0.1); /* Efek glow halus */
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(27, 50, 112, 0.1);
 }
 
 .auth-input::placeholder {
     color: #9ca3af;
 }
 
-/* --- WRAPPER UNTUK INPUT DENGAN ICON --- */
 .input-icon-wrapper {
     position: relative;
     width: 100%;
@@ -1470,22 +1394,19 @@ a.cat-item {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #9ca3af; /* Warna icon abu */
-    pointer-events: none; /* Agar klik tembus ke input */
+    color: #9ca3af;
+    pointer-events: none;
     transition: color 0.3s;
 }
 
-/* Jika input sedang fokus, warna icon ikut biru */
 .input-icon-wrapper:focus-within .input-icon {
     color: var(--primary);
 }
 
-/* Input yang punya icon, padding kirinya diperbesar */
 .auth-input.has-icon {
     padding-left: 45px;
 }
 
-/* --- WRAPPER UNTUK INPUT DENGAN SUFFIX (CM/KG) --- */
 .input-suffix-wrapper {
     position: relative;
     display: flex;
@@ -1499,22 +1420,20 @@ a.cat-item {
     font-size: 0.85rem;
     font-weight: 600;
     pointer-events: none;
-    background: #f9fafb; /* Samakan dengan bg input */
+    background: #f9fafb;
     padding-left: 5px;
 }
 
 .input-suffix-wrapper:focus-within .input-suffix {
-    background: #fff; /* Ubah bg saat fokus */
+    background: #fff;
     color: var(--primary);
 }
 
-/* Khusus Textarea */
 textarea.auth-input {
     resize: vertical;
     min-height: 80px;
 }
 
-/* Tombol Auth yang lebih menonjol */
 .btn-auth {
     margin-top: 25px;
     padding: 14px;
@@ -1554,7 +1473,6 @@ textarea.auth-input {
     z-index: 0;
 }
 
-/* 3. SIMPLE FOOTER */
 .auth-footer {
     text-align: center;
     padding: 20px;
@@ -1563,7 +1481,6 @@ textarea.auth-input {
     background: #fff;
 }
 
-/* RESPONSIVE: Di HP gambar kiri hilang */
 @media (max-width: 768px) {
     .auth-left { display: none; }
     .auth-content { padding: 20px 15px; }
@@ -1571,45 +1488,33 @@ textarea.auth-input {
 }
 
 /* =========================================
-   HEADER BUTTONS & SEPARATOR (TOKOPEDIA STYLE)
+   HEADER BUTTONS & SEPARATOR
    ========================================= */
 
-/* Container Icons Header */
-.header-icons {
-    display: flex;
-    align-items: center;
-    /* Hapus gap lama agar kita bisa kontrol manual dengan margin separator */
-    gap: 0; 
-}
-
-/* 1. Pembatas Garis Vertikal */
 .h-separator {
     display: block;
     width: 1px;
     height: 24px;
-    background-color: rgba(255, 255, 255, 0.3); /* Putih transparan */
-    margin: 0 20px; /* Jarak kiri kanan */
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 0 20px;
 }
 
-/* 2. Container Tombol Auth */
 .auth-buttons {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-/* Style Dasar Tombol Header */
 .btn-header {
     padding: 8px 18px;
     font-size: 0.9rem;
     font-weight: 700;
-    border-radius: 8px; /* Sedikit rounded sesuai referensi gambar */
+    border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease;
     white-space: nowrap;
 }
 
-/* Tombol Masuk (Outline) */
 .btn-login {
     background-color: transparent;
     border: 1px solid #ffffff;
@@ -1621,35 +1526,19 @@ textarea.auth-input {
     border-color: #ffffff;
 }
 
-/* Tombol Daftar (Solid - Warna Aksen/Kuning) */
 .btn-register {
-    background-color: var(--accent); /* Kuning Emas */
+    background-color: var(--accent);
     border: 1px solid var(--accent);
-    color: var(--primary); /* Teks Biru */
+    color: var(--primary);
 }
 
 .btn-register:hover {
-    background-color: #e0a800; /* Kuning agak gelap */
+    background-color: #e0a800;
     border-color: #e0a800;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-/* Adjustment Icon Link agar sejajar */
-.icon-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    transition: transform 0.2s;
-}
-
-.icon-link:hover {
-    color: var(--accent);
-    transform: scale(1.1);
-}
-
-/* Responsive Mobile: Sembunyikan teks tombol jika layar kecil */
 @media (max-width: 768px) {
     .h-separator { margin: 0 10px; }
     .btn-header { padding: 6px 12px; font-size: 0.8rem; }
@@ -1659,35 +1548,31 @@ textarea.auth-input {
    FIX: LAYOUT USER LOGGED IN
    ========================================= */
 
-/* Wadah untuk ikon Akun & Logout */
 .user-actions {
-    display: flex;           /* Menjadikan elemen sejajar horizontal */
-    align-items: center;     /* Rata tengah secara vertikal */
-    gap: 20px;               /* Jarak antar ikon Akun dan Logout */
-    margin-left: 5px;        /* Jarak sedikit dari garis pembatas */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: 5px;
 }
 
-/* Penyesuaian Ikon User agar seragam */
 .user-actions .icon-link {
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.2s;
-    color: #fff;             /* Pastikan warna ikon putih (sesuai header biru) */
+    color: #fff;
 }
 
 .user-actions .icon-link:hover {
-    transform: scale(1.1);   /* Efek zoom sedikit saat di-hover */
-    color: var(--accent);    /* Berubah kuning saat di-hover */
+    transform: scale(1.1);
+    color: var(--accent);
 }
 
-/* Ukuran SVG khusus di area user actions */
 .user-actions .icon-link svg {
     width: 26px;
     height: 26px;
 }
 
-/* Responsif Mobile (Opsional: jika ingin ikon tetap rapi di layar kecil) */
 @media (max-width: 768px) {
     .user-actions {
         gap: 15px;
@@ -1699,7 +1584,7 @@ textarea.auth-input {
 }
 
 /* =========================================
-   PROFILE PAGE STYLES (Tokopedia Lookalike)
+   PROFILE PAGE STYLES
    ========================================= */
 
 .alert-profile-success {
@@ -1715,24 +1600,21 @@ textarea.auth-input {
     border: 1px solid #a7f3d0;
 }
 
-/* GRID LAYOUT UTAMA */
 .profile-grid {
     display: grid;
-    grid-template-columns: 300px 1fr; /* Sidebar 300px, Content sisa */
+    grid-template-columns: 300px 1fr;
     gap: 30px;
     align-items: start;
 }
 
-/* CARD UMUM */
 .profile-card {
     background: #fff;
     border: 1px solid #e0e0e0;
-    border-radius: 12px; /* Rounded modern */
+    border-radius: 12px;
     padding: 25px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
-/* --- SIDEBAR STYLE --- */
 .card-photo {
     text-align: center;
     margin-bottom: 20px;
@@ -1810,7 +1692,6 @@ textarea.auth-input {
     background: #fef2f2;
 }
 
-/* --- CONTENT FORM STYLE --- */
 .profile-section-header h3 {
     font-size: 1.1rem;
     font-weight: 700;
@@ -1820,23 +1701,23 @@ textarea.auth-input {
 
 .form-row {
     display: grid;
-    grid-template-columns: 180px 1fr; /* Label kiri, Input kanan */
+    grid-template-columns: 180px 1fr;
     gap: 20px;
     margin-bottom: 25px;
-    align-items: center; /* Vertikal tengah */
+    align-items: center;
 }
 
 .form-row label {
     font-size: 0.9rem;
-    color: #6b7280; /* Abu agak gelap */
+    color: #6b7280;
     font-weight: 500;
 }
 
 .profile-input {
     width: 100%;
     padding: 10px 12px;
-    border: none; /* Hilangkan border default */
-    border-bottom: 1px solid #e5e7eb; /* Hanya garis bawah */
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
     font-size: 1rem;
     color: var(--text-dark);
     background: transparent;
@@ -1863,7 +1744,6 @@ textarea.auth-input {
     margin-top: 5px;
 }
 
-/* Input Group untuk elemen tambahan */
 .input-group {
     display: flex;
     align-items: center;
@@ -1880,7 +1760,6 @@ textarea.auth-input {
     font-weight: 700;
 }
 
-/* Grid kecil untuk tinggi/berat */
 .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1894,7 +1773,7 @@ textarea.auth-input {
 }
 
 .input-with-unit .profile-input {
-    border-bottom: none; /* Reset border child */
+    border-bottom: none;
 }
 
 .unit {
@@ -1904,7 +1783,6 @@ textarea.auth-input {
     font-weight: 600;
 }
 
-/* Tombol Simpan */
 .form-actions {
     display: flex;
     justify-content: flex-end;
@@ -1930,35 +1808,30 @@ textarea.auth-input {
     box-shadow: 0 4px 12px rgba(27, 50, 112, 0.2);
 }
 
-/* RESPONSIVE MOBILE */
 @media (max-width: 992px) {
     .profile-grid {
-        grid-template-columns: 1fr; /* Stack vertikal */
+        grid-template-columns: 1fr;
     }
-    
     .profile-sidebar {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    
     .card-photo {
         width: 100%;
     }
-    
     .form-row {
-        grid-template-columns: 1fr; /* Label di atas input */
+        grid-template-columns: 1fr;
         gap: 10px;
         align-items: flex-start;
     }
-    
     .form-row label {
         font-size: 0.85rem;
     }
 }
 
 /* =========================================
-   CHECKOUT PAGE STYLES (CLEAN & MODERN)
+   CHECKOUT PAGE STYLES
    ========================================= */
 
 .checkout-wrapper {
@@ -1983,10 +1856,9 @@ textarea.auth-input {
     font-size: 1rem;
 }
 
-/* GRID LAYOUT */
 .checkout-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr; /* Kiri lebih lebar sedikit */
+    grid-template-columns: 1.5fr 1fr;
     gap: 40px;
     align-items: start;
 }
@@ -2000,7 +1872,6 @@ textarea.auth-input {
     border-bottom: 2px solid #f0f0f0;
 }
 
-/* PAYMENT OPTIONS CARD STYLE */
 .payment-options-list {
     display: flex;
     flex-direction: column;
@@ -2008,7 +1879,7 @@ textarea.auth-input {
 }
 
 .payment-option input[type="radio"] {
-    display: none; /* Sembunyikan radio button asli */
+    display: none;
 }
 
 .payment-card {
@@ -2017,7 +1888,7 @@ textarea.auth-input {
     padding: 20px;
     background: #fff;
     border: 1px solid #e5e7eb;
-    border-radius: 12px; /* Rounded modern */
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
@@ -2028,7 +1899,6 @@ textarea.auth-input {
     background: #f8faff;
 }
 
-/* Style saat dipilih (Checked) */
 .payment-option input[type="radio"]:checked + .payment-card {
     border-color: var(--primary);
     background: #f0f4ff;
@@ -2066,7 +1936,6 @@ textarea.auth-input {
     line-height: 1.4;
 }
 
-/* Icon Checkmark (Muncul saat dipilih) */
 .pay-check {
     width: 24px;
     height: 24px;
@@ -2085,7 +1954,6 @@ textarea.auth-input {
     color: #fff;
 }
 
-/* RINGKASAN PESANAN (KANAN) */
 .summary-card {
     background: #fff;
     padding: 30px;
@@ -2093,7 +1961,7 @@ textarea.auth-input {
     border: 1px solid #e5e7eb;
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     position: sticky;
-    top: 100px; /* Sticky saat scroll */
+    top: 100px;
 }
 
 .summary-title {
@@ -2129,8 +1997,8 @@ textarea.auth-input {
     width: 100%;
     margin-top: 25px;
     padding: 15px;
-    background: var(--accent); /* Kuning */
-    color: var(--primary);     /* Teks Biru */
+    background: var(--accent);
+    color: var(--primary);
     font-weight: 800;
     border: none;
     border-radius: 8px;
@@ -2146,33 +2014,29 @@ textarea.auth-input {
     transform: translateY(-2px);
 }
 
-/* RESPONSIVE MOBILE */
 @media (max-width: 768px) {
     .checkout-grid {
-        grid-template-columns: 1fr; /* Stack jadi satu kolom */
+        grid-template-columns: 1fr;
         gap: 30px;
     }
-    
     .checkout-right {
-        order: -1; /* Ringkasan pindah ke atas di mobile */
+        order: -1;
     }
-    
     .summary-card {
         position: static;
     }
 }
 
 /* =========================================
-   ORDER SUCCESS PAGE (PREMIUM LOOK)
+   ORDER SUCCESS PAGE
    ========================================= */
 
 .success-wrapper {
-    max-width: 550px; /* Lebar kartu ideal untuk struk */
+    max-width: 550px;
     margin: 30px auto;
     text-align: center;
 }
 
-/* HEADER */
 .success-header {
     margin-bottom: 30px;
 }
@@ -2180,14 +2044,14 @@ textarea.auth-input {
 .success-icon-circle {
     width: 70px;
     height: 70px;
-    background: #d1fae5; /* Hijau muda */
-    color: #059669; /* Hijau tua */
+    background: #d1fae5;
+    color: #059669;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
-    box-shadow: 0 0 0 8px #ecfdf5; /* Efek ring luar */
+    box-shadow: 0 0 0 8px #ecfdf5;
 }
 
 .success-header h2 {
@@ -2202,18 +2066,16 @@ textarea.auth-input {
     font-size: 1rem;
 }
 
-/* MAIN CARD */
 .payment-detail-card {
     background: #fff;
     border: 1px solid #e5e7eb;
-    border-radius: 16px; /* Rounded lebih besar agar modern */
+    border-radius: 16px;
     padding: 30px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     position: relative;
     overflow: hidden;
 }
 
-/* Hiasan Gerigi Struk (Opsional - Garis putus-putus di atas) */
 .payment-detail-card::before {
     content: "";
     position: absolute;
@@ -2254,7 +2116,6 @@ textarea.auth-input {
     margin: 0;
 }
 
-/* QRIS STYLES */
 .qris-container {
     background: #f8faff;
     padding: 20px;
@@ -2301,7 +2162,6 @@ textarea.auth-input {
     line-height: 1.5;
 }
 
-/* COD STYLES */
 .cod-container {
     text-align: center;
     margin-bottom: 30px;
@@ -2328,7 +2188,6 @@ textarea.auth-input {
     border: 1px solid #fcd34d;
 }
 
-/* BUTTONS */
 .action-buttons {
     display: flex;
     flex-direction: column;
@@ -2372,7 +2231,7 @@ textarea.auth-input {
 }
 
 /* =========================================
-   PROFILE MENU BUTTONS (ANIMATED)
+   PROFILE MENU BUTTONS
    ========================================= */
 
 .profile-menu-group {
@@ -2385,7 +2244,7 @@ textarea.auth-input {
 .btn-menu-item {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Icon kiri, Teks tengah, Panah kanan */
+    justify-content: space-between;
     width: 100%;
     padding: 15px 20px;
     background: #fff;
@@ -2394,12 +2253,11 @@ textarea.auth-input {
     color: var(--text-dark);
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Animasi smooth */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
 }
 
-/* Bagian Ikon Kiri */
 .menu-icon {
     color: #9ca3af;
     display: flex;
@@ -2407,14 +2265,12 @@ textarea.auth-input {
     transition: color 0.3s;
 }
 
-/* Bagian Teks */
 .btn-menu-item span {
     flex: 1;
     margin-left: 15px;
     font-size: 0.95rem;
 }
 
-/* Bagian Panah Kanan (Awalnya transparan/geser) */
 .menu-arrow {
     color: var(--primary);
     opacity: 0;
@@ -2422,25 +2278,23 @@ textarea.auth-input {
     transition: all 0.3s ease;
 }
 
-/* --- HOVER EFFECT --- */
 .btn-menu-item:hover {
-    background: #f0f7ff; /* Biru sangat muda */
+    background: #f0f7ff;
     border-color: var(--primary);
     color: var(--primary);
-    transform: translateX(5px); /* Tombol geser ke kanan */
+    transform: translateX(5px);
     box-shadow: 0 4px 12px rgba(27, 50, 112, 0.08);
 }
 
 .btn-menu-item:hover .menu-icon {
-    color: var(--primary); /* Ikon jadi biru */
+    color: var(--primary);
 }
 
 .btn-menu-item:hover .menu-arrow {
     opacity: 1;
-    transform: translateX(0); /* Panah muncul dari kiri */
+    transform: translateX(0);
 }
 
-/* Khusus Tombol Logout (Merah) */
 .btn-logout-item:hover {
     background: #fef2f2;
     border-color: #ef4444;
@@ -2455,9 +2309,8 @@ textarea.auth-input {
    ORDER HISTORY STYLES
    ========================================= */
 
-/* Active Menu State (Agar tombol sidebar biru saat aktif) */
 .btn-menu-item.active {
-    background: #eff6ff; /* Biru muda */
+    background: #eff6ff;
     border-color: var(--primary);
     color: var(--primary);
     box-shadow: 0 2px 4px rgba(27, 50, 112, 0.05);
@@ -2472,7 +2325,6 @@ textarea.auth-input {
     transform: translateX(0);
 }
 
-/* Header Konten Riwayat */
 .history-header {
     padding: 25px;
     border-bottom: 1px solid #f0f0f0;
@@ -2491,7 +2343,6 @@ textarea.auth-input {
     font-size: 0.9rem;
 }
 
-/* Table Styles */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
@@ -2500,7 +2351,7 @@ textarea.auth-input {
 .history-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px; /* Agar tidak gepeng di HP */
+    min-width: 600px;
 }
 
 .history-table th {
@@ -2531,12 +2382,10 @@ textarea.auth-input {
     background-color: #fbfcfe;
 }
 
-/* Typography Utils */
 .fw-bold { font-weight: 700; }
 .text-primary { color: var(--primary); }
 .text-muted { color: #9ca3af; font-size: 0.9rem; }
 
-/* Status Badges */
 .status-badge {
     display: inline-block;
     padding: 5px 12px;
@@ -2575,7 +2424,6 @@ textarea.auth-input {
     color: #4b5563;
 }
 
-/* Resi Code Style */
 .resi-code {
     font-family: monospace;
     background: #f3f4f6;
@@ -2584,7 +2432,6 @@ textarea.auth-input {
     letter-spacing: 1px;
 }
 
-/* Button Action */
 .btn-detail-outline {
     display: inline-flex;
     align-items: center;
@@ -2605,7 +2452,6 @@ textarea.auth-input {
     background: #fff;
 }
 
-/* Empty State */
 .empty-history {
     text-align: center;
     padding: 50px 20px !important;
@@ -2658,10 +2504,9 @@ textarea.auth-input {
     font-size: 0.95rem;
 }
 
-/* DROPZONE STYLING */
 .upload-zone {
     position: relative;
-    border: 2px dashed #cbd5e1; /* Garis putus-putus abu */
+    border: 2px dashed #cbd5e1;
     border-radius: 12px;
     padding: 40px 20px;
     text-align: center;
@@ -2675,7 +2520,6 @@ textarea.auth-input {
     background: #f8faff;
 }
 
-/* Sembunyikan input file asli tapi tetap fungsional */
 .file-input {
     position: absolute;
     top: 0;
@@ -2688,13 +2532,12 @@ textarea.auth-input {
 }
 
 .upload-content {
-    pointer-events: none; /* Agar klik tembus ke input file */
+    pointer-events: none;
 }
 
 .upload-icon {
     color: var(--primary);
     margin-bottom: 15px;
-    /* Efek membal */
     transition: transform 0.3s;
 }
 
@@ -2721,10 +2564,9 @@ textarea.auth-input {
     border-radius: 20px;
     display: inline-block;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    display: none; /* Default hidden */
+    display: none;
 }
 
-/* TEXTAREA STYLE */
 .upload-textarea {
     width: 100%;
     padding: 15px;
@@ -2742,7 +2584,6 @@ textarea.auth-input {
     box-shadow: 0 0 0 4px rgba(27, 50, 112, 0.1);
 }
 
-/* BUTTON SUBMIT */
 .btn-upload-submit {
     width: 100%;
     padding: 15px;
@@ -2764,7 +2605,6 @@ textarea.auth-input {
     box-shadow: 0 4px 15px rgba(27, 50, 112, 0.2);
 }
 
-/* ALERTS */
 .custom-alert {
     padding: 15px;
     border-radius: 8px;
@@ -2788,7 +2628,6 @@ textarea.auth-input {
     border: 1px solid #fca5a5;
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
     .upload-card {
         padding: 25px;
@@ -2797,10 +2636,6 @@ textarea.auth-input {
         font-size: 1.5rem;
     }
 }
-
-/* =========================================
-   UPLOAD PAGE (FULL & INFORMATIVE)
-   ========================================= */
 
 .upload-page-header {
     text-align: center;
@@ -2819,15 +2654,13 @@ textarea.auth-input {
     font-size: 1.1rem;
 }
 
-/* GRID LAYOUT (Form Kiri, Info Kanan) */
 .upload-grid-layout {
     display: grid;
-    grid-template-columns: 1.8fr 1fr; /* Kiri lebih lebar */
+    grid-template-columns: 1.8fr 1fr;
     gap: 40px;
     align-items: start;
 }
 
-/* --- BAGIAN KIRI (FORM) --- */
 .upload-card {
     background: #fff;
     border-radius: 16px;
@@ -2849,7 +2682,6 @@ textarea.auth-input {
     color: var(--text-dark);
 }
 
-/* DROPZONE */
 .upload-zone {
     position: relative;
     border: 2px dashed #cbd5e1;
@@ -2933,7 +2765,6 @@ textarea.auth-input {
     background: var(--primary-dark);
 }
 
-/* --- BAGIAN KANAN (SIDEBAR INFO) --- */
 .upload-sidebar-col {
     display: flex;
     flex-direction: column;
@@ -2954,7 +2785,6 @@ textarea.auth-input {
     font-weight: 800;
 }
 
-/* List Langkah */
 .steps-list {
     padding: 0;
     margin: 0;
@@ -3037,16 +2867,11 @@ textarea.auth-input {
     }
 }
 
-/* =========================================
-   DETAIL PESANAN STYLES (INVOICE LOOK)
-   ========================================= */
-
 .detail-wrapper {
     max-width: 1000px;
     margin: 0 auto;
 }
 
-/* HEADER */
 .detail-header {
     display: flex;
     justify-content: space-between;
@@ -3092,7 +2917,6 @@ textarea.auth-input {
     color: var(--primary);
 }
 
-/* GRID LAYOUT (Kiri Info, Kanan Barang) */
 .detail-content-grid {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -3100,7 +2924,6 @@ textarea.auth-input {
     align-items: start;
 }
 
-/* CARD UMUM */
 .detail-card {
     background: #fff;
     border: 1px solid #e5e7eb;
@@ -3121,7 +2944,6 @@ textarea.auth-input {
 
 .mb-20 { margin-bottom: 20px; }
 
-/* BOX STATUS (KIRI) */
 .status-box {
     display: flex;
     align-items: center;
@@ -3132,7 +2954,6 @@ textarea.auth-input {
     font-size: 1rem;
 }
 
-/* Warna Status (Reuse dari sebelumnya tapi lebih bold) */
 .status-box.status-pending { background: #fffbeb; color: #b45309; border: 1px solid #fcd34d; }
 .status-box.status-completed { background: #d1fae5; color: #047857; border: 1px solid #6ee7b7; }
 .status-box.status-cancelled { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; }
@@ -3146,7 +2967,6 @@ textarea.auth-input {
     color: var(--text-dark);
 }
 
-/* RINGKASAN BAYAR (KIRI) */
 .summary-row {
     display: flex;
     justify-content: space-between;
@@ -3177,7 +2997,6 @@ textarea.auth-input {
     color: var(--primary);
 }
 
-/* ITEM LIST (KANAN) */
 .order-item-row {
     display: flex;
     align-items: center;
@@ -3232,7 +3051,6 @@ textarea.auth-input {
     font-size: 1rem;
 }
 
-/* BANTUAN */
 .help-section {
     text-align: right;
     font-size: 0.9rem;
@@ -3253,13 +3071,12 @@ textarea.auth-input {
     text-decoration: underline;
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
     .detail-content-grid {
-        grid-template-columns: 1fr; /* Stack vertikal */
+        grid-template-columns: 1fr;
     }
     .detail-sidebar {
-        order: 2; /* Info status pindah ke bawah di HP */
+        order: 2;
     }
     .detail-main {
         order: 1;
@@ -3274,10 +3091,6 @@ textarea.auth-input {
         color: var(--primary);
     }
 }
-
-/* =========================================
-   REGISTER SUCCESS PAGE (ANIMATED)
-   ========================================= */
 
 .reg-success-wrapper {
     max-width: 500px;
@@ -3308,7 +3121,6 @@ textarea.auth-input {
     margin-bottom: 30px;
 }
 
-/* BUTTONS */
 .btn-login-now {
     display: flex;
     align-items: center;
@@ -3351,7 +3163,8 @@ textarea.auth-input {
     margin: 0 auto;
 }
 
-.check-icon {
+/* PERBAIKAN: GANTI NAMA CLASS MENJADI .check-icon-animated */
+.check-icon-animated {
     width: 80px;
     height: 80px;
     position: relative;
@@ -3360,7 +3173,7 @@ textarea.auth-input {
     border: 4px solid #4CAF50;
 }
 
-.check-icon::before {
+.check-icon-animated::before {
     top: 3px;
     left: -2px;
     width: 30px;
@@ -3368,7 +3181,7 @@ textarea.auth-input {
     border-radius: 100px 0 0 100px;
 }
 
-.check-icon::after {
+.check-icon-animated::after {
     top: 0;
     left: 30px;
     width: 60px;
@@ -3377,7 +3190,7 @@ textarea.auth-input {
     animation: rotate-circle 4.25s ease-in;
 }
 
-.check-icon::before, .check-icon::after {
+.check-icon-animated::before, .check-icon-animated::after {
     content: '';
     height: 100px;
     position: absolute;
@@ -3453,4 +3266,79 @@ textarea.auth-input {
     65% { width: 0; right: 46px; top: 54px; }
     84% { width: 55px; right: 0px; top: 35px; }
     100% { width: 47px; right: 8px; top: 38px; }
+}
+
+/* =========================================
+   HERO CTA BUTTON (INTERAKTIF)
+   ========================================= */
+
+.btn-hero-cta {
+    background-color: var(--accent); /* Kuning #ffc107 */
+    color: var(--primary);           /* Biru #1b3270 */
+    padding: 16px 40px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 50px; /* Membuat tombol lonjong (pill shape) lebih modern */
+    border: none;
+    
+    /* Flexbox untuk meratakan teks dan ikon */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    
+    /* Transisi Halus */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* Bayangan Awal */
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+    
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Efek Saat Mouse Diarahkan (Hover) */
+.btn-hero-cta:hover {
+    background-color: #ffca2c; /* Kuning sedikit lebih terang */
+    transform: translateY(-5px) scale(1.02); /* Naik ke atas dan membesar sedikit */
+    box-shadow: 0 15px 30px rgba(255, 193, 7, 0.5); /* Bayangan lebih besar dan lembut */
+}
+
+/* Animasi Ikon Panah */
+.btn-hero-cta svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-hero-cta:hover svg {
+    transform: translateX(5px); /* Geser ikon ke kanan saat hover */
+}
+
+/* Efek Kilatan Cahaya (Shine Effect) */
+.btn-hero-cta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.btn-hero-cta:hover::after {
+    left: 100%; /* Kilatan bergerak dari kiri ke kanan */
+}
+
+/* Animasi Denyut (Pulse) agar tombol terlihat 'memanggil' */
+@keyframes pulse-yellow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 193, 7, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
+}
+
+.btn-hero-cta {
+    animation: pulse-yellow 2s infinite;
 }
