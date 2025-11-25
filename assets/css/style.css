@@ -1292,3 +1292,280 @@ a.cat-item {
     .delete-col { grid-area: del; text-align: center; }
 }
 
+/* =========================================
+   AUTH PAGES (LOGIN & REGISTER - Tokopedia Style)
+   ========================================= */
+
+.auth-body {
+    background-color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 1. SIMPLE HEADER (CENTERED TEXT ONLY) */
+.auth-header {
+    padding: 25px 20px;
+    width: 100%;
+    background: #fff;
+    
+    /* Override global header style */
+    position: relative !important;
+    height: auto !important;
+    border-bottom: 1px solid #f0f0f0;
+    box-shadow: none !important;
+    
+    /* Posisi Tengah */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Teks Logo Aesthetic */
+.auth-logo-text {
+    font-family: 'Georgia', 'Times New Roman', serif; /* Font Serif Aesthetic */
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary); /* Biru Utama */
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: capitalize; /* Huruf besar di awal kata */
+    transition: opacity 0.3s;
+}
+
+.auth-logo-text:hover {
+    opacity: 0.8;
+    color: var(--primary);
+}
+
+/* 2. SPLIT CONTENT */
+.auth-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Bagian Kiri (Gambar/Ilustrasi) */
+.auth-left {
+    flex: 1.2;
+    text-align: center;
+    padding-right: 50px;
+}
+
+.auth-left img {
+    max-width: 80%;       /* Membatasi lebar agar tidak terlalu penuh ke samping */
+    max-height: 350px;    /* Membatasi tinggi maksimal agar tidak terlalu besar */
+    width: auto;          /* Menjaga rasio aspek lebar */
+    height: auto;         /* Menjaga rasio aspek tinggi */
+    object-fit: contain;  /* Memastikan gambar utuh tidak terpotong */
+    margin-bottom: 30px;  /* Jarak ke teks di bawahnya */
+    display: inline-block;
+}
+
+.auth-left h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.auth-left p {
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+/* Bagian Kanan (Form Card) */
+.auth-right {
+    flex: 0.8;
+    max-width: 400px;
+    width: 100%;
+}
+
+.auth-card {
+    background: #fff;
+    padding: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px; /* Sedikit rounded seperti referensi */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.auth-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.auth-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 25px;
+}
+
+.auth-subtitle a {
+    color: var(--primary); /* Biru Arshaka */
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* =========================================
+   ENHANCED AUTH FORM STYLES
+   ========================================= */
+
+/* PERBAIKAN ALIGNMENT FORM */
+
+/* 1. Pastikan pembungkus per-input rata kiri */
+.auth-form-group {
+    margin-bottom: 20px;
+    text-align: left !important; /* KUNCI: Memaksa konten di dalamnya rata kiri */
+    width: 100%;
+}
+
+/* 2. Pastikan label mengisi lebar penuh dan rata kiri */
+.auth-label {
+    font-size: 0.9rem;
+    color: #374151;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    text-align: left; /* Penegas tambahan */
+}
+
+/* Styling Input Dasar (Lebih Modern) */
+.auth-input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #f9fafb; /* Abu sangat muda */
+    border: 1px solid #e5e7eb; /* Border halus */
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #1f2937;
+    transition: all 0.3s ease;
+}
+
+.auth-input:focus {
+    outline: none;
+    background-color: #ffffff;
+    border-color: var(--primary); /* Biru Arshaka */
+    box-shadow: 0 0 0 4px rgba(27, 50, 112, 0.1); /* Efek glow halus */
+}
+
+.auth-input::placeholder {
+    color: #9ca3af;
+}
+
+/* --- WRAPPER UNTUK INPUT DENGAN ICON --- */
+.input-icon-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af; /* Warna icon abu */
+    pointer-events: none; /* Agar klik tembus ke input */
+    transition: color 0.3s;
+}
+
+/* Jika input sedang fokus, warna icon ikut biru */
+.input-icon-wrapper:focus-within .input-icon {
+    color: var(--primary);
+}
+
+/* Input yang punya icon, padding kirinya diperbesar */
+.auth-input.has-icon {
+    padding-left: 45px;
+}
+
+/* --- WRAPPER UNTUK INPUT DENGAN SUFFIX (CM/KG) --- */
+.input-suffix-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-suffix {
+    position: absolute;
+    right: 15px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    font-weight: 600;
+    pointer-events: none;
+    background: #f9fafb; /* Samakan dengan bg input */
+    padding-left: 5px;
+}
+
+.input-suffix-wrapper:focus-within .input-suffix {
+    background: #fff; /* Ubah bg saat fokus */
+    color: var(--primary);
+}
+
+/* Khusus Textarea */
+textarea.auth-input {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Tombol Auth yang lebih menonjol */
+.btn-auth {
+    margin-top: 25px;
+    padding: 14px;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px -1px rgba(27, 50, 112, 0.1), 0 2px 4px -1px rgba(27, 50, 112, 0.06);
+}
+
+.btn-auth:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(27, 50, 112, 0.15), 0 4px 6px -2px rgba(27, 50, 112, 0.1);
+}
+
+.divider {
+    margin: 20px 0;
+    position: relative;
+    text-align: center;
+}
+
+.divider span {
+    background: #fff;
+    padding: 0 10px;
+    color: #999;
+    font-size: 0.85rem;
+    position: relative;
+    z-index: 1;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #e0e0e0;
+    z-index: 0;
+}
+
+/* 3. SIMPLE FOOTER */
+.auth-footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.85rem;
+    color: #999;
+    background: #fff;
+}
+
+/* RESPONSIVE: Di HP gambar kiri hilang */
+@media (max-width: 768px) {
+    .auth-left { display: none; }
+    .auth-content { padding: 20px 15px; }
+    .auth-header { padding: 15px 20px; text-align: center; }
+}
