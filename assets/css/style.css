@@ -926,3 +926,287 @@ a.cat-item {
     -webkit-appearance: none;
     margin: 0;
 }
+
+/* =========================================
+   MODERN CART STYLES (FLAT, WIDE & PRECISE)
+   ========================================= */
+
+.cart-wrapper {
+    /* Lebar disamakan dengan header container (1280px) */
+    max-width: 1280px; 
+    width: 100%;
+    /* Margin atas bawah 40px, Kiri Kanan Auto (Tengah) */
+    margin: 40px auto;
+    
+    background: var(--white);
+    
+    /* HILANGKAN ROUNDED & SHADOW AGAR TEGAS */
+    border-radius: 0; 
+    box-shadow: none; 
+    border: 1px solid #e5e7eb; /* Garis tepi halus */
+    
+    overflow: hidden;
+}
+
+/* JUDUL HALAMAN */
+.cart-page-title {
+    /* Padding 20px agar TEKS sejajar dengan LOGO di header */
+    padding: 25px 20px; 
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #fff;
+}
+
+.cart-page-title h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--primary); /* Biru Utama */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.item-count-badge {
+    background: #eff6ff; /* Biru sangat muda */
+    color: var(--primary);
+    padding: 4px 10px;
+    border-radius: 0; /* Kotak */
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid #dbeafe;
+}
+
+/* LABEL KOLOM */
+.cart-labels {
+    display: grid;
+    /* Grid proporsional */
+    grid-template-columns: 3fr 1.5fr 1fr 0.5fr;
+    /* Padding samping 20px */
+    padding: 20px 20px 10px; 
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* CONTAINER ITEM */
+.cart-items-container {
+    padding: 0 20px 20px; /* Padding samping 20px */
+}
+
+.cart-row {
+    display: grid;
+    grid-template-columns: 3fr 1.5fr 1fr 0.5fr;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-row:last-child {
+    border-bottom: none;
+}
+
+/* INFO PRODUK */
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.p-img-box {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border: 1px solid #eee;
+    /* Hapus border-radius */
+    border-radius: 0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    flex-shrink: 0;
+}
+
+.p-img-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.p-details h4 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.p-details p {
+    margin: 5px 0 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* QUANTITY CONTROL (+ -) */
+.qty-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0; /* Rapatkan tombol */
+    border: 1px solid #ddd; /* Kotak pembungkus qty */
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.qty-btn {
+    background: #f9f9f9;
+    border: none;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.qty-btn:hover {
+    background: #eee;
+}
+
+.qty-val {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1rem;
+    width: 40px;
+    text-align: center;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+/* HARGA */
+.price-col {
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+
+/* TOMBOL SAMPAH */
+.delete-col {
+    text-align: right;
+}
+
+.btn-trash {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    transition: all 0.2s;
+    padding: 8px;
+}
+
+.btn-trash:hover {
+    color: #dc3545; /* Merah */
+}
+
+/* FOOTER KERANJANG */
+.cart-footer {
+    background: #fcfcfc;
+    border-top: 1px solid #e5e7eb;
+    /* Padding samping 20px */
+    padding: 30px 20px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-link {
+    color: var(--primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.checkout-area {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.total-label {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+}
+
+.total-amount {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.btn-checkout {
+    background: var(--accent); /* Kuning */
+    color: var(--primary);
+    padding: 15px 40px;
+    border: none;
+    /* Border radius 0 (Kotak) */
+    border-radius: 0; 
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-checkout:hover {
+    background: #e0a800;
+}
+
+/* EMPTY STATE */
+.empty-state {
+    padding: 100px 20px;
+    text-align: center;
+}
+.empty-state h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 10px; }
+
+/* RESPONSIF */
+@media (max-width: 1300px) {
+    /* Agar tidak menempel di pinggir layar pada layar kecil */
+    .cart-wrapper { width: 95%; }
+}
+
+@media (max-width: 768px) {
+    .cart-labels { display: none; } 
+    .cart-footer { flex-direction: column; gap: 20px; text-align: center; }
+    
+    .cart-row {
+        grid-template-columns: 1fr;
+        grid-template-areas: "info" "qty" "price" "del";
+        gap: 15px;
+        text-align: center;
+    }
+    .product-info { grid-area: info; flex-direction: column; }
+    .qty-control { grid-area: qty; }
+    .price-col { grid-area: price; }
+    .delete-col { grid-area: del; text-align: center; }
+}

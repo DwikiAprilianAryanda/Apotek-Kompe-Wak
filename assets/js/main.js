@@ -112,3 +112,32 @@ function sendToWhatsapp(e) {
                
     window.open("https://wa.me/" + adminPhone + "?text=" + text, '_blank');
 }
+
+/* =========================================
+   CART FUNCTION: UPDATE QUANTITY
+   ========================================= */
+function updateQty(productId, currentQty, change, maxStock = 999) {
+    let newQty = currentQty + change;
+    
+    // Validasi Minimal 1
+    if (newQty < 1) return;
+    
+    // Validasi Maksimal Stok (Jika parameter maxStock dikirim)
+    if (newQty > maxStock) {
+        alert("Maaf, stok hanya tersedia " + maxStock + " item.");
+        return;
+    }
+
+    // Isi Form Hidden yang ada di keranjang.php
+    var inputId = document.getElementById('hidden_product_id');
+    var inputQty = document.getElementById('hidden_quantity');
+    var form = document.getElementById('updateQtyForm');
+
+    if (inputId && inputQty && form) {
+        inputId.value = productId;
+        inputQty.value = newQty;
+        form.submit();
+    } else {
+        console.error("Form update quantity tidak ditemukan di halaman.");
+    }
+}
