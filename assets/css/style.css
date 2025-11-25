@@ -3036,3 +3036,241 @@ textarea.auth-input {
         min-width: 280px;
     }
 }
+
+/* =========================================
+   DETAIL PESANAN STYLES (INVOICE LOOK)
+   ========================================= */
+
+.detail-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* HEADER */
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.detail-title {
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    font-weight: 800;
+    margin: 0 0 5px 0;
+}
+
+.highlight-id {
+    color: var(--primary);
+}
+
+.detail-date {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.btn-back-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    color: var(--text-dark);
+    font-weight: 600;
+    text-decoration: none;
+    background: #fff;
+    transition: all 0.2s;
+}
+
+.btn-back-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* GRID LAYOUT (Kiri Info, Kanan Barang) */
+.detail-content-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* CARD UMUM */
+.detail-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.card-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 15px 0;
+}
+
+.mb-20 { margin-bottom: 20px; }
+
+/* BOX STATUS (KIRI) */
+.status-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Warna Status (Reuse dari sebelumnya tapi lebih bold) */
+.status-box.status-pending { background: #fffbeb; color: #b45309; border: 1px solid #fcd34d; }
+.status-box.status-completed { background: #d1fae5; color: #047857; border: 1px solid #6ee7b7; }
+.status-box.status-cancelled { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; }
+.status-box.status-shipped { background: #eff6ff; color: #1d4ed8; border: 1px solid #93c5fd; }
+
+.resi-box {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #e5e7eb;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+/* RINGKASAN BAYAR (KIRI) */
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.badge-payment {
+    background: #f3f4f6;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.divider-dashed {
+    border-bottom: 1px dashed #e5e7eb;
+    margin: 15px 0;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+/* ITEM LIST (KANAN) */
+.order-item-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.order-item-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.item-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    padding: 5px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-name {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.item-price-single {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.item-total-price {
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+
+/* BANTUAN */
+.help-section {
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.link-help {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.link-help:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .detail-content-grid {
+        grid-template-columns: 1fr; /* Stack vertikal */
+    }
+    .detail-sidebar {
+        order: 2; /* Info status pindah ke bawah di HP */
+    }
+    .detail-main {
+        order: 1;
+    }
+    .order-item-row {
+        flex-wrap: wrap;
+    }
+    .item-total-price {
+        width: 100%;
+        text-align: left;
+        margin-top: 5px;
+        color: var(--primary);
+    }
+}
