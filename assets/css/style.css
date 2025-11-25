@@ -948,34 +948,115 @@ a.cat-item {
     overflow: hidden;
 }
 
-/* JUDUL HALAMAN */
+/* JUDUL HALAMAN & FILTER */
 .cart-page-title {
-    /* Padding 20px agar TEKS sejajar dengan LOGO di header */
-    padding: 25px 20px; 
+    padding: 25px 20px;
     border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between; /* Kiri Kanan Mentok */
+    align-items: center;
+    background: #fff;
+    flex-wrap: wrap; /* Agar aman di mobile */
+    gap: 15px;
+}
+
+/* Bagian Kiri (Judul & Badge) */
+.title-left {
     display: flex;
     align-items: center;
     gap: 15px;
-    background: #fff;
 }
 
-.cart-page-title h2 {
+.title-left h2 {
     margin: 0;
     font-size: 1.5rem;
-    color: var(--primary); /* Biru Utama */
+    color: var(--primary);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .item-count-badge {
-    background: #eff6ff; /* Biru sangat muda */
+    background: #eff6ff;
     color: var(--primary);
     padding: 4px 10px;
     border-radius: 0; /* Kotak */
     font-size: 0.85rem;
     font-weight: 700;
     border: 1px solid #dbeafe;
+}
+
+/* Bagian Kanan (Filter Form Modern) */
+.title-right {
+    display: flex;
+    align-items: center;
+}
+
+.sort-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.sort-label {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Custom Select Modern */
+.sort-select {
+    /* Hilangkan tampilan default browser yang jelek */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0; /* Tetap kotak (Precise) */
+    
+    padding: 10px 40px 10px 15px; /* Kanan dilebarkan untuk ikon panah */
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+    outline: none;
+    min-width: 180px;
+    
+    /* Tambahkan Ikon Panah Kustom (SVG Chevron Down) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231b3270' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    
+    transition: all 0.3s ease;
+}
+
+/* Efek Hover */
+.sort-select:hover {
+    border-color: var(--primary); /* Border jadi biru saat di-hover */
+    background-color: #f8faff;
+}
+
+/* Efek Focus (Saat diklik) */
+.sort-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(27, 50, 112, 0.1); /* Glow biru halus */
+}
+
+/* Responsive di HP */
+@media (max-width: 576px) {
+    .sort-form {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .sort-select {
+        flex-grow: 1;
+        width: 100%;
+    }
 }
 
 /* LABEL KOLOM */
@@ -1210,3 +1291,4 @@ a.cat-item {
     .price-col { grid-area: price; }
     .delete-col { grid-area: del; text-align: center; }
 }
+

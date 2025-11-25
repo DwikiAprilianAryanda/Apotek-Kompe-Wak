@@ -3,8 +3,28 @@ session_start();
 include 'includes/header.php';
 include 'includes/db_connect.php';
 
-// Hitung total item unik di session cart
+// Hitung total item unik
 $total_items = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+
+// --- LOGIKA SORTIR / FILTER ---
+$sort_option = isset($_GET['sort']) ? $_GET['sort'] : '';
+$order_clause = "";
+
+// Default: Sesuai urutan ID database (atau bisa diubah)
+switch ($sort_option) {
+    case 'price_asc':
+        $order_clause = " ORDER BY price ASC"; // Harga Terendah
+        break;
+    case 'price_desc':
+        $order_clause = " ORDER BY price DESC"; // Harga Tertinggi
+        break;
+    case 'latest':
+        $order_clause = " ORDER BY id DESC"; // Waktu (Produk Terbaru)
+        break;
+    default:
+        $order_clause = ""; // Default
+        break;
+}
 ?>
 
 <form id="updateQtyForm" action="actions/update_quantity.php" method="POST" style="display:none;">
@@ -15,8 +35,22 @@ $total_items = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 <div class="cart-wrapper">
     
     <div class="cart-page-title">
-        <h2>Keranjang Belanja</h2>
-        <span class="item-count-badge"><?php echo $total_items; ?> Item</span>
+        <div class="title-left">
+            <h2>Keranjang Belanja</h2>
+            <span class="item-count-badge"><?php echo $total_items; ?> Item</span>
+        </div>
+
+        <div class="title-right">
+            <form action="" method="GET" class="sort-form">
+                <span class="sort-label">Urutkan:</span>
+                <select name="sort" onchange="this.form.submit()" class="sort-select">
+                    <option value="" <?php if($sort_option == '') echo 'selected'; ?>>Default</option>
+                    <option value="latest" <?php if($sort_option == 'latest') echo 'selected'; ?>>Waktu (Terbaru)</option>
+                    <option value="price_asc" <?php if($sort_option == 'price_asc') echo 'selected'; ?>>Harga Terendah</option>
+                    <option value="price_desc" <?php if($sort_option == 'price_desc') echo 'selected'; ?>>Harga Tertinggi</option>
+                </select>
+            </form>
+        </div>
     </div>
 
     <?php
@@ -24,11 +58,12 @@ $total_items = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
         $product_ids = array_keys($_SESSION['cart']);
         $ids_string = implode(',', array_map('intval', $product_ids));
         
-        $sql = "SELECT id, name, price, image_url, stock_quantity FROM products WHERE id IN ($ids_string)";
+        // Update Query dengan ORDER BY
+        $sql = "SELECT id, name, price, image_url, stock_quantity FROM products WHERE id IN ($ids_string)" . $order_clause;
         $result = $conn->query($sql);
         $total_belanja = 0;
 
-        if ($result->num_rows > 0) {
+        if ($result && $result->num_rows > 0) {
             ?>
             <div class="cart-labels">
                 <div>Produk</div>
