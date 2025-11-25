@@ -34,7 +34,7 @@ $header_class = $is_home ? '' : 'header-solid';
             <a href="index.php">Beranda</a>
             <a href="produk.php">Produk</a>
             <a href="unggah_resep.php">Unggah Resep</a>
-            <a href="index.php#contact">Kontak</a>
+            <a href="/index.php#konsultasi">Kontak</a>
         </nav>
 
         <div class="header-icons">

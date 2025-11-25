@@ -66,7 +66,7 @@
     </div>
 </div>
 
-<div class="consultation-section">
+<div class="consultation-section" id="konsultasi">
     <div class="consult-overlay"></div>
 
     <div class="container consult-grid">
