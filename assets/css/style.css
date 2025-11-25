@@ -1569,3 +1569,131 @@ textarea.auth-input {
     .auth-content { padding: 20px 15px; }
     .auth-header { padding: 15px 20px; text-align: center; }
 }
+
+/* =========================================
+   HEADER BUTTONS & SEPARATOR (TOKOPEDIA STYLE)
+   ========================================= */
+
+/* Container Icons Header */
+.header-icons {
+    display: flex;
+    align-items: center;
+    /* Hapus gap lama agar kita bisa kontrol manual dengan margin separator */
+    gap: 0; 
+}
+
+/* 1. Pembatas Garis Vertikal */
+.h-separator {
+    display: block;
+    width: 1px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.3); /* Putih transparan */
+    margin: 0 20px; /* Jarak kiri kanan */
+}
+
+/* 2. Container Tombol Auth */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Style Dasar Tombol Header */
+.btn-header {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 8px; /* Sedikit rounded sesuai referensi gambar */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Tombol Masuk (Outline) */
+.btn-login {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+}
+
+.btn-login:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+}
+
+/* Tombol Daftar (Solid - Warna Aksen/Kuning) */
+.btn-register {
+    background-color: var(--accent); /* Kuning Emas */
+    border: 1px solid var(--accent);
+    color: var(--primary); /* Teks Biru */
+}
+
+.btn-register:hover {
+    background-color: #e0a800; /* Kuning agak gelap */
+    border-color: #e0a800;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Adjustment Icon Link agar sejajar */
+.icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: transform 0.2s;
+}
+
+.icon-link:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+/* Responsive Mobile: Sembunyikan teks tombol jika layar kecil */
+@media (max-width: 768px) {
+    .h-separator { margin: 0 10px; }
+    .btn-header { padding: 6px 12px; font-size: 0.8rem; }
+}
+
+/* =========================================
+   FIX: LAYOUT USER LOGGED IN
+   ========================================= */
+
+/* Wadah untuk ikon Akun & Logout */
+.user-actions {
+    display: flex;           /* Menjadikan elemen sejajar horizontal */
+    align-items: center;     /* Rata tengah secara vertikal */
+    gap: 20px;               /* Jarak antar ikon Akun dan Logout */
+    margin-left: 5px;        /* Jarak sedikit dari garis pembatas */
+}
+
+/* Penyesuaian Ikon User agar seragam */
+.user-actions .icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    color: #fff;             /* Pastikan warna ikon putih (sesuai header biru) */
+}
+
+.user-actions .icon-link:hover {
+    transform: scale(1.1);   /* Efek zoom sedikit saat di-hover */
+    color: var(--accent);    /* Berubah kuning saat di-hover */
+}
+
+/* Ukuran SVG khusus di area user actions */
+.user-actions .icon-link svg {
+    width: 26px;
+    height: 26px;
+}
+
+/* Responsif Mobile (Opsional: jika ingin ikon tetap rapi di layar kecil) */
+@media (max-width: 768px) {
+    .user-actions {
+        gap: 15px;
+    }
+    .user-actions .icon-link svg {
+        width: 22px;
+        height: 22px;
+    }
+}
