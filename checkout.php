@@ -3,133 +3,115 @@ session_start();
 include 'includes/header.php';
 include 'includes/db_connect.php';
 
-// Keamanan: Pastikan user login dan keranjang tidak kosong
+// Keamanan: Cek login dan keranjang
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /login.php?error=loginrequired");
+    header("Location: login.php?error=loginrequired");
     exit;
 }
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    header("Location: /produk.php?error=emptycart");
+    header("Location: produk.php?error=emptycart");
     exit;
 }
 
-// Ambil data keranjang untuk ditampilkan
-$total_belanja_keseluruhan = 0;
-if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+// Hitung Total Belanja
+$total_belanja = 0;
+$total_items = 0;
+if (isset($_SESSION['cart'])) {
     $product_ids = array_keys($_SESSION['cart']);
     $ids_string = implode(',', array_map('intval', $product_ids));
     
-    $sql = "SELECT id, name, price FROM products WHERE id IN ($ids_string)";
+    $sql = "SELECT id, price FROM products WHERE id IN ($ids_string)";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $quantity = $_SESSION['cart'][$row['id']];
-            $total_belanja_keseluruhan += $row['price'] * $quantity;
-        }
+    while ($row = $result->fetch_assoc()) {
+        $qty = $_SESSION['cart'][$row['id']];
+        $total_belanja += $row['price'] * $qty;
+        $total_items += $qty;
     }
 }
-$conn->close();
 ?>
 
-<link rel="stylesheet" href="assets/css/style.css">
-
-<div class="section">
-    <h2>Checkout Pembayaran</h2>
-    <p style="text-align: center; margin-bottom: 30px;">Tinjau pesanan Anda dan pilih metode pembayaran.</p>
-
-    <div class="checkout-container">
+<div class="section-wrapper bg-light">
+    <div class="container">
         
-        <div class="order-summary card">
-            <h3 style="color: #1e40af; margin-bottom: 20px;">Ringkasan Pesanan</h3>
-            <p>Total Belanja Anda:</p>
-            <h2 class="total-price">Rp <?php echo number_format($total_belanja_keseluruhan); ?></h2>
-            <p style="font-size: 0.9em; color: #666; margin-top: 15px;">Anda akan menyelesaikan pesanan dengan total ini.</p>
-        </div>
+        <div class="checkout-wrapper">
+            <div class="checkout-header">
+                <h2>Checkout Pembayaran</h2>
+                <p>Selesaikan pesanan Anda dengan memilih metode pembayaran di bawah ini.</p>
+            </div>
 
-        <div class="payment-options card">
-            <h3 style="color: #1e40af; margin-bottom: 20px;">Pilih Metode Pembayaran</h3>
-            
-            <form action="actions/place_order.php" method="POST">
+            <div class="checkout-grid">
                 
-                <div class="payment-choice">
-                    <input type="radio" id="payment_cod" name="payment_method" value="COD" required>
-                    <label for="payment_cod">
-                        <strong>Bayar di Tempat (COD)</strong>
-                        <span>Siapkan uang tunai saat kurir tiba.</span>
-                    </label>
-                </div>
-                
-                <div class="payment-choice">
-                    <input type="radio" id="payment_qris" name="payment_method" value="QRIS" required>
-                    <label for="payment_qris">
-                        <strong>QRIS</strong>
-                        <span>Scan kode QR untuk pembayaran (GoPay, OVO, Dana, etc).</span>
-                    </label>
+                <div class="checkout-left">
+                    <h3 class="checkout-subtitle">Pilih Metode Pembayaran</h3>
+                    
+                    <form action="actions/place_order.php" method="POST" id="checkoutForm">
+                        
+                        <div class="payment-options-list">
+                            
+                            <div class="payment-option">
+                                <input type="radio" name="payment_method" id="pay_cod" value="COD" checked>
+                                <label for="pay_cod" class="payment-card">
+                                    <div class="pay-icon">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18v-8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8z"></path><path d="M3 10 12 3l9 7"></path><path d="M9 21V9"></path><path d="M15 21V9"></path></svg>
+                                    </div>
+                                    <div class="pay-info">
+                                        <h4>Ambil & Bayar di Apotek (COD)</h4>
+                                        <p>Siapkan uang tunai saat Anda tiba di apotek kami.</p>
+                                    </div>
+                                    <div class="pay-check">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="payment-option">
+                                <input type="radio" name="payment_method" id="pay_qris" value="QRIS">
+                                <label for="pay_qris" class="payment-card">
+                                    <div class="pay-icon">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                                    </div>
+                                    <div class="pay-info">
+                                        <h4>QRIS (Scan Code)</h4>
+                                        <p>Bayar instan via GoPay, OVO, Dana, ShopeePay, dll.</p>
+                                    </div>
+                                    <div class="pay-check">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                </label>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; font-size: 1.1rem; padding: 15px;">
-                    Selesaikan Pesanan
-                </button>
-            </form>
+                <div class="checkout-right">
+                    <div class="summary-card">
+                        <h3 class="summary-title">Ringkasan Pesanan</h3>
+                        
+                        <div class="summary-row">
+                            <span>Total Item</span>
+                            <span><?php echo $total_items; ?> Barang</span>
+                        </div>
+                        
+                        <div class="summary-row total-row">
+                            <span>Total Tagihan</span>
+                            <span class="total-price">Rp <?php echo number_format($total_belanja); ?></span>
+                        </div>
+
+                        <button type="submit" form="checkoutForm" class="btn-finish-checkout">
+                            Selesaikan Pesanan
+                        </button>
+                        
+                        <p style="text-align:center; font-size:0.8rem; color:#999; margin-top:15px;">
+                            Pastikan pesanan Anda sudah benar sebelum melanjutkan.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
-
-<style>
-.checkout-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-.card { /* Menggunakan style .card yang sudah ada */
-    padding: 30px;
-}
-.order-summary .total-price {
-    font-size: 2.5rem;
-    color: #1D3557;
-    margin: 10px 0;
-}
-.payment-choice {
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-.payment-choice:hover,
-.payment-choice input:checked + label {
-    border-color: #1D3557;
-    background-color: #f0f9ff;
-}
-.payment-choice input[type="radio"] {
-    margin-right: 15px;
-    transform: scale(1.5);
-}
-.payment-choice label {
-    cursor: pointer;
-    width: 100%;
-}
-.payment-choice label strong {
-    font-size: 1.1rem;
-    color: #333;
-}
-.payment-choice label span {
-    display: block;
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 5px;
-}
-@media (max-width: 768px) {
-    .checkout-container {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
 
 <?php include 'includes/footer.php'; ?>

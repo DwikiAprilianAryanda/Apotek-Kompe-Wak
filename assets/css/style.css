@@ -1956,3 +1956,497 @@ textarea.auth-input {
         font-size: 0.85rem;
     }
 }
+
+/* =========================================
+   CHECKOUT PAGE STYLES (CLEAN & MODERN)
+   ========================================= */
+
+.checkout-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.checkout-header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.checkout-header h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.checkout-header p {
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+/* GRID LAYOUT */
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Kiri lebih lebar sedikit */
+    gap: 40px;
+    align-items: start;
+}
+
+.checkout-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* PAYMENT OPTIONS CARD STYLE */
+.payment-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.payment-option input[type="radio"] {
+    display: none; /* Sembunyikan radio button asli */
+}
+
+.payment-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px; /* Rounded modern */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.payment-card:hover {
+    border-color: var(--secondary);
+    background: #f8faff;
+}
+
+/* Style saat dipilih (Checked) */
+.payment-option input[type="radio"]:checked + .payment-card {
+    border-color: var(--primary);
+    background: #f0f4ff;
+    box-shadow: 0 4px 12px rgba(27, 50, 112, 0.1);
+}
+
+.pay-icon {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    margin-right: 20px;
+    border: 1px solid #f0f0f0;
+}
+
+.pay-info {
+    flex: 1;
+}
+
+.pay-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.pay-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+/* Icon Checkmark (Muncul saat dipilih) */
+.pay-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: all 0.2s;
+}
+
+.payment-option input[type="radio"]:checked + .payment-card .pay-check {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+/* RINGKASAN PESANAN (KANAN) */
+.summary-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    position: sticky;
+    top: 100px; /* Sticky saat scroll */
+}
+
+.summary-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.summary-row.total-row {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed #ddd;
+    color: var(--text-dark);
+    font-weight: 700;
+    align-items: center;
+}
+
+.total-price {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.btn-finish-checkout {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    background: var(--accent); /* Kuning */
+    color: var(--primary);     /* Teks Biru */
+    font-weight: 800;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+}
+
+.btn-finish-checkout:hover {
+    background: #e0a800;
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 768px) {
+    .checkout-grid {
+        grid-template-columns: 1fr; /* Stack jadi satu kolom */
+        gap: 30px;
+    }
+    
+    .checkout-right {
+        order: -1; /* Ringkasan pindah ke atas di mobile */
+    }
+    
+    .summary-card {
+        position: static;
+    }
+}
+
+/* =========================================
+   ORDER SUCCESS PAGE (PREMIUM LOOK)
+   ========================================= */
+
+.success-wrapper {
+    max-width: 550px; /* Lebar kartu ideal untuk struk */
+    margin: 30px auto;
+    text-align: center;
+}
+
+/* HEADER */
+.success-header {
+    margin-bottom: 30px;
+}
+
+.success-icon-circle {
+    width: 70px;
+    height: 70px;
+    background: #d1fae5; /* Hijau muda */
+    color: #059669; /* Hijau tua */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 0 8px #ecfdf5; /* Efek ring luar */
+}
+
+.success-header h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.success-header p {
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+/* MAIN CARD */
+.payment-detail-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px; /* Rounded lebih besar agar modern */
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hiasan Gerigi Struk (Opsional - Garis putus-putus di atas) */
+.payment-detail-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary) 50%, transparent 50%);
+    background-size: 20px 4px;
+}
+
+.order-info-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    border-bottom: 1px dashed #e5e7eb;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.payment-amount-box {
+    margin-bottom: 25px;
+}
+
+.payment-amount-box p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.payment-amount-box .amount {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 0;
+}
+
+/* QRIS STYLES */
+.qris-container {
+    background: #f8faff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e0e7ff;
+    margin-bottom: 25px;
+}
+
+.qris-label p {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.qr-frame {
+    background: #fff;
+    padding: 15px;
+    display: inline-block;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin: 15px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.qr-image {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    display: block;
+}
+
+.qris-instructions {
+    text-align: left;
+    font-size: 0.85rem;
+    color: #555;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+}
+
+.qris-instructions p {
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+/* COD STYLES */
+.cod-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cod-icon {
+    background: #f0f4ff;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.alert-info-cod {
+    background: #fffbeb;
+    color: #92400e;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    border: 1px solid #fcd34d;
+}
+
+/* BUTTONS */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-check-order {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn-check-order:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(27, 50, 112, 0.2);
+}
+
+.btn-back-home {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #fff;
+    color: var(--text-light);
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-back-home:hover {
+    border-color: var(--text-dark);
+    color: var(--text-dark);
+}
+
+/* =========================================
+   PROFILE MENU BUTTONS (ANIMATED)
+   ========================================= */
+
+.profile-menu-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Icon kiri, Teks tengah, Panah kanan */
+    width: 100%;
+    padding: 15px 20px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    color: var(--text-dark);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Animasi smooth */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bagian Ikon Kiri */
+.menu-icon {
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s;
+}
+
+/* Bagian Teks */
+.btn-menu-item span {
+    flex: 1;
+    margin-left: 15px;
+    font-size: 0.95rem;
+}
+
+/* Bagian Panah Kanan (Awalnya transparan/geser) */
+.menu-arrow {
+    color: var(--primary);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+/* --- HOVER EFFECT --- */
+.btn-menu-item:hover {
+    background: #f0f7ff; /* Biru sangat muda */
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateX(5px); /* Tombol geser ke kanan */
+    box-shadow: 0 4px 12px rgba(27, 50, 112, 0.08);
+}
+
+.btn-menu-item:hover .menu-icon {
+    color: var(--primary); /* Ikon jadi biru */
+}
+
+.btn-menu-item:hover .menu-arrow {
+    opacity: 1;
+    transform: translateX(0); /* Panah muncul dari kiri */
+}
+
+/* Khusus Tombol Logout (Merah) */
+.btn-logout-item:hover {
+    background: #fef2f2;
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.btn-logout-item:hover .menu-icon {
+    color: #ef4444;
+}

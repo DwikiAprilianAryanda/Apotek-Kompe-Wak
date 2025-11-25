@@ -10,18 +10,18 @@ $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
+$stmt->close();
+
 // LOGIKA FOTO PROFIL
-$foto_profil_default = 'assets/images/logo_apotek.jpg'; // Gambar bawaan
+$foto_profil_default = 'assets/images/logo_apotek.jpg';
 $foto_profil_user = $foto_profil_default;
 
 if (!empty($user['profile_pic'])) {
     $path_cek = 'uploads/profiles/' . $user['profile_pic'];
-    // Cek apakah file fisik benar-benar ada di server
     if (file_exists($path_cek)) {
         $foto_profil_user = $path_cek;
     }
 }
-$stmt->close();
 ?>
 
 <div class="section-wrapper bg-light">
@@ -49,14 +49,30 @@ $stmt->close();
                     </label>
                     
                     <p class="photo-helper">
-                        Besar file: maksimum 10MB. Ekstensi: .JPG .JPEG .PNG
+                        Besar file: maks 10MB. Ekstensi: .JPG .JPEG .PNG
                     </p>
                 </div>
 
-                <a href="actions/logout.php" class="btn-security btn-logout-profile">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                    Keluar
-                </a>
+                <div class="profile-menu-group">
+                    
+                    <a href="riwayat_pesanan.php" class="btn-menu-item">
+                        <div class="menu-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        </div>
+                        <span>Riwayat Pesanan</span>
+                        <div class="menu-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+                    </a>
+
+                    <a href="actions/logout.php" class="btn-menu-item btn-logout-item">
+                        <div class="menu-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        </div>
+                        <span>Keluar</span>
+                    </a>
+
+                </div>
 
             </aside>
 
@@ -71,7 +87,6 @@ $stmt->close();
                         <label>Nama Lengkap</label>
                         <div class="input-group">
                             <input type="text" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" class="profile-input" required>
-                            <span class="input-hint">Nama lengkap sesuai KTP agar memudahkan verifikasi.</span>
                         </div>
                     </div>
 
@@ -139,7 +154,6 @@ $stmt->close();
 </div>
 
 <script>
-// Script Preview Image Sederhana
 function previewImage(event) {
     var reader = new FileReader();
     reader.onload = function(){
