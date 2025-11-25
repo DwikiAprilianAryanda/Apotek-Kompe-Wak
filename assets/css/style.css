@@ -1697,3 +1697,262 @@ textarea.auth-input {
         height: 22px;
     }
 }
+
+/* =========================================
+   PROFILE PAGE STYLES (Tokopedia Lookalike)
+   ========================================= */
+
+.alert-profile-success {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    border: 1px solid #a7f3d0;
+}
+
+/* GRID LAYOUT UTAMA */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Sidebar 300px, Content sisa */
+    gap: 30px;
+    align-items: start;
+}
+
+/* CARD UMUM */
+.profile-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px; /* Rounded modern */
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+/* --- SIDEBAR STYLE --- */
+.card-photo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-img-wrapper {
+    width: 100%;
+    max-width: 180px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+    background: #f8f8f8;
+}
+
+.profile-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-upload-photo {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    background: #fff;
+    color: var(--text-dark);
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+
+.btn-upload-photo:hover {
+    background: #f9fafb;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.photo-helper {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.btn-security {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    color: var(--text-dark);
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: all 0.2s;
+}
+
+.btn-security:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: #f4f8ff;
+}
+
+.btn-logout-profile:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+    background: #fef2f2;
+}
+
+/* --- CONTENT FORM STYLE --- */
+.profile-section-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 180px 1fr; /* Label kiri, Input kanan */
+    gap: 20px;
+    margin-bottom: 25px;
+    align-items: center; /* Vertikal tengah */
+}
+
+.form-row label {
+    font-size: 0.9rem;
+    color: #6b7280; /* Abu agak gelap */
+    font-weight: 500;
+}
+
+.profile-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: none; /* Hilangkan border default */
+    border-bottom: 1px solid #e5e7eb; /* Hanya garis bawah */
+    font-size: 1rem;
+    color: var(--text-dark);
+    background: transparent;
+    transition: border 0.3s;
+    font-family: inherit;
+}
+
+.profile-input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--primary);
+}
+
+.profile-input.disabled {
+    background: #f9fafb;
+    color: #6b7280;
+    border-bottom: none;
+    border-radius: 6px;
+}
+
+.input-hint {
+    display: block;
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
+/* Input Group untuk elemen tambahan */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.verified-badge {
+    background: #d1fae5;
+    color: #065f46;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+/* Grid kecil untuk tinggi/berat */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-with-unit {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.input-with-unit .profile-input {
+    border-bottom: none; /* Reset border child */
+}
+
+.unit {
+    color: #6b7280;
+    font-size: 0.9rem;
+    padding-right: 10px;
+    font-weight: 600;
+}
+
+/* Tombol Simpan */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.btn-save-profile {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.btn-save-profile:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 4px 12px rgba(27, 50, 112, 0.2);
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 992px) {
+    .profile-grid {
+        grid-template-columns: 1fr; /* Stack vertikal */
+    }
+    
+    .profile-sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .card-photo {
+        width: 100%;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr; /* Label di atas input */
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .form-row label {
+        font-size: 0.85rem;
+    }
+}
