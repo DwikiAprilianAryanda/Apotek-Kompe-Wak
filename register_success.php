@@ -1,16 +1,37 @@
 <?php include 'includes/header.php'; ?>
 
-<link rel="stylesheet" href="assets/css/style.css">
-
-<div class="section">
-    <div class="success-card card" style="text-align: center; max-width: 500px; margin: 20px auto; padding: 30px;">
-        <div class="success-icon" style="font-size: 2.5rem; color: #10b981; margin: 0;">✓</div>
-        <h2 class="success-title" style="color: #1e40af; margin: 10px 0; font-size: 1.5rem;">Registrasi Berhasil!</h2>
-        <p class="success-message" style="margin: 0; font-size: 1rem;">Akun Anda telah berhasil dibuat.</p>
+<div class="section-wrapper bg-light">
+    <div class="container">
         
-        <p class="success-note" style="margin: 15px 0; color: #666;">Silakan login untuk melanjutkan.</p>
+        <div class="reg-success-wrapper">
+            <div class="reg-success-card">
+                
+                <div class="success-checkmark">
+                    <div class="check-icon">
+                        <span class="icon-line line-tip"></span>
+                        <span class="icon-line line-long"></span>
+                        <div class="icon-circle"></div>
+                        <div class="icon-fix"></div>
+                    </div>
+                </div>
 
-        <a href="login.php" class="btn btn-primary" style="margin-top: 10px; text-decoration: none;">Login Sekarang</a>
+                <h2 class="reg-title">Selamat Datang di Keluarga Arshaka!</h2>
+                <p class="reg-desc">
+                    Akun Anda telah berhasil dibuat. Kini Anda dapat menebus resep dokter dan membeli kebutuhan kesehatan dengan lebih mudah.
+                </p>
+
+                <div class="reg-actions">
+                    <a href="login.php" class="btn-login-now">
+                        Masuk ke Akun Saya
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:8px;"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                    </a>
+                    
+                    <a href="index.php" class="btn-back-home-simple">Kembali ke Beranda</a>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </div>
 
