@@ -3351,3 +3351,154 @@ textarea.auth-input {
 .btn-hero-cta {
     animation: pulse-yellow 2s infinite;
 }
+
+/* ==========================================================================
+   PERBAIKAN TAMPILAN (REVISI)
+   ========================================================================== */
+
+/* --- 1. MEMPERBESAR TEXT HERO (BANNER UTAMA) --- */
+.hero-content h1 {
+    font-size: 4.5rem !important; /* Diperbesar tapi proporsional */
+    line-height: 1.1;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 3px 3px 15px rgba(0,0,0,0.6) !important;
+}
+
+.hero-content p {
+    font-size: 1.4rem !important;
+    font-weight: 400 !important;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px !important;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5) !important;
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.8rem !important; }
+    .hero-content p { font-size: 1.1rem !important; padding: 0 20px; }
+}
+
+
+/* --- 2. KEMBALIKAN GAYA KONSULTASI (TETAP BIRU) --- */
+
+/* Latar belakang biru solid/gradasi untuk section konsultasi */
+.consult-overlay {
+    background: rgba(27, 50, 112, 0.65);
+}
+
+/* Memastikan layout Grid tetap 2 kolom (Teks Kiri, Form Kanan) */
+.consult-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Kiri & Kanan seimbang */
+    gap: 60px;
+    align-items: center;
+}
+
+/* Judul Konsultasi */
+.consult-content h2 {
+    font-size: 3rem !important;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: 'Georgia', serif;
+}
+
+/* Gaya Ikon Ceklis Fitur */
+.check-icon {
+    background-color: var(--accent) !important; /* Kuning emas */
+    color: var(--primary) !important; /* Biru tua */
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+/* KARTU FORMULIR (DI KANAN) */
+.consult-card {
+    background-color: #fffcf8 !important; /* Putih Gading */
+    padding: 40px !important;
+    border-radius: 0 !important; /* Kotak tajam */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3) !important;
+    text-align: left;
+}
+
+/* Perbaikan Tampilan Input Form */
+.consult-form label {
+    color: #333 !important;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.consult-input {
+    background: #ffffff !important;
+    border: 1px solid #ddd !important;
+    color: #333 !important;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+/* Tombol Kirim WA (STYLE HIJAU WHATSAPP) */
+.btn-wa-consult {
+    background-color: #25D366 !important; /* Warna Hijau Khas WhatsApp */
+    border: none !important;
+    color: #ffffff !important; /* Teks Putih agar kontras */
+    width: 100%;
+    padding: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); /* Bayangan hijau halus */
+}
+
+.btn-wa-consult:hover {
+    background-color: #128C7E !important; /* Hijau lebih gelap (Teal) saat mouse hover */
+    transform: translateY(-2px); /* Efek naik sedikit */
+    box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* Responsif untuk HP: Tumpuk ke bawah */
+@media (max-width: 900px) {
+    .consult-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px;
+    }
+}
+
+
+/* --- 3. PERBAIKAN IKON FOOTER (DIBESARKAN SEDIKIT) --- */
+
+.footer-socials .social-btn {
+    width: 45px !important; /* Ukuran sedang (sebelumnya 36px/50px) */
+    height: 45px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 50% !important; /* Lingkaran */
+    color: white !important;
+    transition: all 0.3s;
+}
+
+.footer-socials .social-btn svg {
+    width: 22px !important; /* Ikon di dalam diperbesar sedikit */
+    height: 22px !important;
+}
+
+.footer-socials .social-btn:hover {
+    background-color: var(--white) !important;
+    color: var(--primary) !important; /* Ikon jadi biru saat hover */
+    transform: translateY(-3px);
+}
