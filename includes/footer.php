@@ -1,3 +1,11 @@
+<?php
+// Pastikan file settings sudah diload.
+// Jika file ini dipanggil langsung (jarang terjadi), load db dan settings
+if (!isset($site_settings)) {
+    include_once 'db_connect.php';
+    include_once 'settings.php';
+}
+?>
 </main>
 
 <footer class="modern-footer">
@@ -7,9 +15,9 @@
         <div class="footer-grid">
             
             <div class="footer-col brand-col">
-                <h2 class="footer-brand">Apotek Arshaka</h2>
+                <h2 class="footer-brand"><?php echo htmlspecialchars(get_setting('footer_brand')); ?></h2>
                 <p class="footer-desc">
-                    Tempat di mana kesehatan keluarga Anda menjadi prioritas utama kami. Mari mampir dan konsultasikan kebutuhan obat Anda bersama apoteker profesional kami.
+                    <?php echo htmlspecialchars(get_setting('footer_desc')); ?>
                 </p>
             </div>
 
@@ -19,7 +27,7 @@
                 <div class="contact-row">
                     <div class="icon-box"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
                     <div>
-                        <p>Jl. Loa Ipuh, Tenggarong<br>Kutai Kartanegara, Kaltim 75513</p>
+                        <p><?php echo get_setting('footer_address'); ?></p>
                     </div>
                 </div>
 
@@ -36,12 +44,12 @@
                 
                 <div class="contact-row">
                     <div class="icon-box"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
-                    <p>+62 812 3456 7890</p>
+                    <p><?php echo htmlspecialchars(get_setting('footer_phone')); ?></p>
                 </div>
 
                 <div class="contact-row">
                     <div class="icon-box"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-                    <p>cs@arshaka.com</p>
+                    <p><?php echo htmlspecialchars(get_setting('footer_email')); ?></p>
                 </div>
 
                 <div class="footer-socials">
@@ -53,7 +61,7 @@
     </div>
 
     <div class="footer-copyright">
-        <p>© 2025 Apotek Arshaka. Dibuat dengan ❤ untuk kesehatan Anda.</p>
+        <p><?php echo htmlspecialchars(get_setting('footer_copyright')); ?></p>
     </div>
 </footer>
 

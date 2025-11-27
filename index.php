@@ -1,14 +1,18 @@
-<?php include 'includes/header.php'; ?>
+<?php 
+include 'includes/header.php'; 
+include 'includes/db_connect.php'; // Koneksi DB
+include 'includes/settings.php';   // Load Helper Settings
+?>
 
-<section class="hero-full-screen">
+<section class="hero-full-screen" style="background: url('<?php echo get_setting('home_bg_image'); ?>') no-repeat center center; background-size: cover; background-attachment: fixed;">
     <div class="hero-overlay"></div>
     
     <div class="hero-content">
         <h1 class="reveal-zoom" style="font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">
-            APOTEK ARSHAKA
+            <?php echo htmlspecialchars(get_setting('home_hero_title')); ?>
         </h1>
         <p class="reveal-up delay-200" style="font-size: 1.25rem; margin-bottom: 40px; font-weight: 300; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);">
-            Solusi Kesehatan Keluarga Terpercaya di Tenggarong
+            <?php echo htmlspecialchars(get_setting('home_hero_subtitle')); ?>
         </p>
         <a href="produk.php" class="btn btn-hero-cta reveal-up delay-300">
             <span>Belanja Sekarang</span>
@@ -24,21 +28,21 @@
         
         <div class="grid-3">
             <div class="service-card reveal-up delay-100">
-                <img src="assets/images/obat.png" alt="Obat Lengkap" class="service-icon">
-                <h3>Obat Lengkap</h3>
-                <p>Menyediakan berbagai macam obat bebas, vitamin, suplemen, hingga alat kesehatan yang terjamin keasliannya.</p>
+                <img src="<?php echo get_setting('service_icon_1'); ?>" alt="Service 1" class="service-icon">
+                <h3><?php echo htmlspecialchars(get_setting('service_title_1')); ?></h3>
+                <p><?php echo htmlspecialchars(get_setting('service_desc_1')); ?></p>
             </div>
 
             <div class="service-card reveal-up delay-200">
-                <img src="assets/images/resep_icon.png" alt="Upload Resep" class="service-icon"> 
-                <h3>Tebus Resep Kilat</h3>
-                <p>Layanan tebus resep dokter yang praktis dan cepat. Cukup unggah foto resep, kami siapkan obatnya untuk Anda.</p>
+                <img src="<?php echo get_setting('service_icon_2'); ?>" alt="Service 2" class="service-icon"> 
+                <h3><?php echo htmlspecialchars(get_setting('service_title_2')); ?></h3>
+                <p><?php echo htmlspecialchars(get_setting('service_desc_2')); ?></p>
             </div>
 
             <div class="service-card reveal-up delay-300">
-                <img src="assets/images/consult_icon.png" alt="Konsultasi" class="service-icon"> 
-                <h3>Konsultasi Apoteker</h3>
-                <p>Dapatkan informasi yang tepat mengenai penggunaan obat, efek samping, dan dosis langsung dari Apoteker kami.</p>
+                <img src="<?php echo get_setting('service_icon_3'); ?>" alt="Service 3" class="service-icon"> 
+                <h3><?php echo htmlspecialchars(get_setting('service_title_3')); ?></h3>
+                <p><?php echo htmlspecialchars(get_setting('service_desc_3')); ?></p>
             </div>
         </div>
     </div>
@@ -48,20 +52,16 @@
     <div class="container about-container">
         
         <div class="about-text-content reveal-left">
-            <h2 class="about-title">Lebih dari Sekadar Apotek</h2>
-            <span class="about-subtitle">A place to heal, to consult, and to trust.</span>
+            <h2 class="about-title"><?php echo htmlspecialchars(get_setting('home_about_title')); ?></h2>
+            <span class="about-subtitle"><?php echo htmlspecialchars(get_setting('home_about_subtitle')); ?></span>
             
             <p class="about-desc">
-                Didirikan dengan komitmen tinggi, Apotek Arshaka lahir dari keinginan sederhana: menciptakan akses kesehatan yang terpercaya bagi siapa saja di Tenggarong. Kami memadukan ketersediaan obat yang lengkap dengan pelayanan kefarmasian yang hangat dan profesional.
-            </p>
-            
-            <p class="about-desc">
-                Setiap sudut pelayanan kami didesain untuk kenyamanan Anda. Mulai dari konsultasi obat yang ramah hingga proses penebusan resep yang cepat, kami hadir untuk memastikan kesehatan Anda dan keluarga selalu terjaga.
+                <?php echo nl2br(htmlspecialchars(get_setting('home_about_desc'))); ?>
             </p>
         </div>
 
         <div class="about-image-wrapper">
-            <img src="assets/images/logo_apotek.jpg" alt="Suasana Apotek Arshaka" class="about-img-main reveal-special-img">
+            <img src="<?php echo get_setting('home_about_image'); ?>" alt="Tentang Kami" class="about-img-main reveal-special-img">
         </div>
 
     </div>
