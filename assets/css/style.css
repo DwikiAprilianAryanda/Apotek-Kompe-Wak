@@ -3502,3 +3502,27 @@ textarea.auth-input {
     color: var(--primary) !important; /* Ikon jadi biru saat hover */
     transform: translateY(-3px);
 }
+
+/* ==========================================================================
+   PERBAIKAN LAYOUT UNGGAH RESEP (AGAR SEJAJAR)
+   ========================================================================== */
+
+/* 1. Pastikan Grid meregangkan (stretch) kolom anak-anaknya */
+.upload-grid-layout {
+    align-items: stretch !important; 
+}
+
+/* 2. Pastikan Sidebar mengisi tinggi penuh */
+.upload-sidebar-col {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 3. Kartu terakhir (Kenapa di Arshaka) dipaksa memanjang */
+.info-card.highlight-card {
+    flex: 1; /* Mengisi sisa ruang kosong agar sejajar dengan border kiri */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Konten ditaruh di tengah vertikal */
+}

@@ -125,8 +125,13 @@ if (isset($_GET['status'])) {
                         <span>Apoteker Berlisensi</span>
                     </div>
                     <div class="feature-item">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-                        <span>Pengiriman Cepat</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18v-8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8z"></path>
+                            <path d="M3 10 12 3l9 7"></path>
+                            <path d="M9 21V9"></path>
+                            <path d="M15 21V9"></path>
+                        </svg>
+                        <span>Ambil di Apotek (Tanpa Antre)</span>
                     </div>
                 </div>
 
