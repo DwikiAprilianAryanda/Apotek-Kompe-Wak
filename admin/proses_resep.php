@@ -10,7 +10,7 @@ if (!isset($_GET['id'])) {
 $prescription_id = $_GET['id'];
 
 // 2. Ambil Data Resep & Pelanggan
-$sql = "SELECT p.*, u.name AS customer_name, u.email 
+$sql = "SELECT p.*, u.name AS customer_name, u.email, u.id as user_id 
         FROM prescriptions p
         JOIN users u ON p.user_id = u.id
         WHERE p.id = ?";
@@ -23,8 +23,8 @@ if (!$prescription) {
     die("<div class='alert-box error'>Resep tidak ditemukan.</div>");
 }
 
-// 3. Ambil Daftar Produk untuk Dropdown
-$sql_products = "SELECT id, name, price FROM products ORDER BY name ASC";
+// 3. Ambil Daftar Produk
+$sql_products = "SELECT id, name, price, stock_quantity FROM products ORDER BY name ASC";
 $result_products = $conn->query($sql_products);
 ?>
 
@@ -46,16 +46,12 @@ $result_products = $conn->query($sql_products);
     </div>
 </div>
 
-
 <div class="process-grid">
     
     <div class="col-details">
         <div class="content-card h-full">
             <div class="card-header border-bottom">
-                <h3>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    Informasi Resep
-                </h3>
+                <h3>Informasi Resep</h3>
             </div>
             <div class="card-body p-20">
                 <ul class="info-list compact-list">
@@ -96,10 +92,16 @@ $result_products = $conn->query($sql_products);
                         <span class="file-label">Lampiran Foto</span>
                         <span class="file-name"><?php echo htmlspecialchars($prescription['original_name']); ?></span>
                     </div>
-                    <a href="../uploads/resep/<?php echo htmlspecialchars($prescription['file_name']); ?>" target="_blank" class="btn-download" title="Lihat">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    </a>
+                    <a href="../uploads/resep/<?php echo htmlspecialchars($prescription['file_name']); ?>" target="_blank" class="btn-download">Lihat</a>
                 </div>
+                
+                <form action="../actions/proses_resep_action.php" method="POST" class="mt-20">
+                    <input type="hidden" name="prescription_id" value="<?php echo $prescription['id']; ?>">
+                    <input type="hidden" name="action" value="reject">
+                    <button type="submit" class="btn-reject-block" onclick="return confirm('Yakin ingin menolak resep ini?')">
+                        Tolak Resep Ini
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -107,13 +109,9 @@ $result_products = $conn->query($sql_products);
     <div class="col-form">
         <div class="content-card h-full highlight-card">
             <div class="card-header border-blue">
-                <h3 class="text-blue">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                    Input Obat
-                </h3>
+                <h3 class="text-blue">Input Obat</h3>
             </div>
             <div class="card-body p-25">
-                
                 <div class="form-group mb-20">
                     <label class="form-label">Pilih Obat / Produk</label>
                     <div class="select-wrapper">
@@ -121,7 +119,7 @@ $result_products = $conn->query($sql_products);
                             <option value="">-- Cari Nama Obat --</option>
                             <?php while($prod = $result_products->fetch_assoc()): ?>
                                 <option value="<?php echo $prod['id']; ?>" data-name="<?php echo htmlspecialchars($prod['name']); ?>" data-price="<?php echo $prod['price']; ?>">
-                                    <?php echo htmlspecialchars($prod['name']); ?>
+                                    <?php echo htmlspecialchars($prod['name']); ?> (Stok: <?php echo $prod['stock_quantity']; ?>)
                                 </option>
                             <?php endwhile; ?>
                         </select>
@@ -132,7 +130,7 @@ $result_products = $conn->query($sql_products);
                     <div class="form-group">
                         <label class="form-label">Jumlah</label>
                         <div class="input-group-modern">
-                             <span class="input-prefix">Qty</span>
+                             <span class="input-prefix">Qt</span>
                             <input type="number" id="medicine_quantity" class="form-input with-prefix" min="1" value="1">
                         </div>
                     </div>
@@ -145,54 +143,34 @@ $result_products = $conn->query($sql_products);
                     </div>
                 </div>
 
-                <button type="button" class="btn-add-action" onclick="addMedicine()">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-                    Tambahkan ke Daftar
-                </button>
+                <button type="button" class="btn-add-action" onclick="addMedicine()">Tambahkan ke Daftar</button>
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="content-card mt-30">
     <div class="card-header">
-        <h3>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-            Rincian Obat
-        </h3>
+        <h3>Rincian Obat</h3>
     </div>
     <div class="table-responsive">
-        <form action="proses_resep_handler.php" method="POST" id="prescriptionForm">
+        <form action="../actions/proses_resep_action.php" method="POST" id="prescriptionForm">
             <input type="hidden" name="prescription_id" value="<?php echo $prescription_id; ?>">
+            <input type="hidden" name="user_id" value="<?php echo $prescription['user_id']; ?>">
             
             <table class="modern-table spacious-table" id="medicineTable">
                 <thead>
                     <tr>
-                        <th width="40%">
-                            <div class="th-flex">NAMA OBAT</div>
-                        </th>
-                        <th width="15%">
-                            <div class="th-flex justify-center">JUMLAH</div>
-                        </th>
-                        <th width="20%">
-                            <div class="th-flex justify-end">HARGA SATUAN</div>
-                        </th>
-                        <th width="20%">
-                            <div class="th-flex justify-end">SUBTOTAL</div>
-                        </th>
-                        <th width="5%">
-                            <div class="th-flex justify-center">AKSI</div>
-                        </th>
+                        <th width="40%"><div class="th-flex">NAMA OBAT</div></th>
+                        <th width="15%"><div class="th-flex justify-center">JUMLAH</div></th>
+                        <th width="20%"><div class="th-flex justify-end">HARGA SATUAN</div></th>
+                        <th width="20%"><div class="th-flex justify-end">SUBTOTAL</div></th>
+                        <th width="5%"><div class="th-flex justify-center">AKSI</div></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr id="emptyRow">
-                        <td colspan="5" class="empty-state py-5">
-                            <div class="empty-content">
-                                <p>Belum ada obat yang ditambahkan.</p>
-                            </div>
-                        </td>
+                        <td colspan="5" class="empty-state py-5"><div class="empty-content"><p>Belum ada obat yang ditambahkan.</p></div></td>
                     </tr>
                 </tbody>
                 <tfoot id="tableFooter" style="display: none;">
@@ -204,156 +182,50 @@ $result_products = $conn->query($sql_products);
             </table>
 
             <div class="action-footer">
-                 <button type="submit" class="btn-save-final">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-                    Simpan & Proses Resep
-                </button>
+                 <button type="submit" class="btn-save-final">Simpan & Proses Resep</button>
             </div>
         </form>
     </div>
 </div>
 
-
 <style>
-    /* DEFINISI WARNA UTAMA */
-    :root {
-        --blue-primary: #2563eb;
-        --blue-hover: #1d4ed8;
-        --blue-light: #eff6ff;
-        --text-dark: #0f172a;
-        --text-gray: #64748b;
-        --border-color: #e2e8f0;
-        --red-danger: #ef4444;
-        --red-bg: #fef2f2;
-    }
-
-    /* Spacing */
-    .mt-3 { margin-top: 10px; } .mt-20 { margin-top: 20px; } .mt-30 { margin-top: 30px; }
-    .mb-20 { margin-bottom: 20px; } .mb-25 { margin-bottom: 25px; } .mb-30 { margin-bottom: 30px; }
-    .p-20 { padding: 20px; } .p-25 { padding: 25px; }
-    
-    /* Layout Grid */
-    .process-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; }
-    @media (max-width: 900px) { .process-grid { grid-template-columns: 1fr; } }
-    .h-full { height: 100%; }
-
-    /* HEADER */
-    .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; }
-    .header-left { display: flex; flex-direction: column; gap: 5px; }
-    .page-title { font-size: 1.75rem; font-weight: 800; color: var(--text-dark); margin: 0; }
-    .page-subtitle { color: var(--text-gray); }
-    .btn-back { display: inline-flex; align-items: center; gap: 8px; color: var(--text-gray); font-weight: 600; text-decoration: none; font-size: 0.9rem; }
-    .btn-back:hover { color: var(--blue-primary); }
-    
-    /* STATUS BADGE */
-    .status-badge-lg {
-        display: inline-flex; align-items: center; gap: 8px;
-        padding: 8px 16px; border-radius: 50px;
-        font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    .status-pending { background: #fffbeb; color: #b45309; border: 1px solid #fcd34d; }
-
-    /* CARDS */
-    .content-card { background: white; border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .card-header { padding: 15px 20px; border-bottom: 1px solid var(--border-color); background: #fff; }
-    .card-header h3 { margin: 0; font-size: 1.1rem; color: var(--text-dark); display: flex; align-items: center; gap: 10px; }
-
-    /* INFO LIST */
-    .info-list { list-style: none; padding: 0; margin: 0; }
-    .info-item { display: flex; align-items: flex-start; gap: 15px; padding: 12px 0; border-bottom: 1px dashed #e2e8f0; }
-    .info-item:last-child { border-bottom: none; }
-    
-    .icon-wrapper { width: 36px; height: 36px; background: #eff6ff; color: var(--blue-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .info-content { display: flex; flex-direction: column; }
-    .info-content .label { font-size: 0.75rem; color: var(--text-gray); text-transform: uppercase; margin-bottom: 2px; }
-    .info-content .value { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); }
-    .fst-italic { font-style: italic; }
-
-    /* FORM INPUT */
-    .highlight-card { background: #fbfdff; border-color: #dbeafe; }
-    .text-blue { color: var(--blue-primary); } .border-blue { border-bottom-color: #e0f2fe; }
-    
-    .form-label { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; display: block; }
-    .form-input {
-        width: 100%; padding: 12px 15px; border: 2px solid #e2e8f0; border-radius: 8px;
-        font-size: 0.95rem; font-weight: 500; color: var(--text-dark); background: #fff;
-        transition: border-color 0.2s;
-    }
-    .form-input:focus { border-color: var(--blue-primary); outline: none; }
-    
-    .input-group-modern { position: relative; display: flex; align-items: center; }
-    .input-prefix {
-        position: absolute; left: 0; top: 0; bottom: 0; width: 45px;
-        display: flex; align-items: center; justify-content: center;
-        background: #f1f5f9; border-right: 2px solid #e2e8f0; border-radius: 8px 0 0 8px;
-        font-weight: 600; color: var(--text-gray); font-size: 0.85rem; z-index: 2;
-    }
-    .with-prefix { padding-left: 60px; } 
-    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-
-    /* BUTTONS */
-    .btn-add-action {
-        width: 100%; padding: 14px; font-size: 1rem; font-weight: 700;
-        background-color: #2563eb; /* Fallback */
-        background-color: var(--blue-primary); 
-        color: #ffffff; 
-        border: none; border-radius: 8px;
-        cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px;
-    }
-    .btn-add-action:hover { background-color: #1d4ed8; }
-
-    .btn-save-final {
-        display: inline-flex; align-items: center; gap: 10px;
-        padding: 14px 30px; font-size: 1rem; font-weight: 700;
-        background: #10b981; color: white; border: none; border-radius: 8px;
-        cursor: pointer; transition: background 0.2s; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
-    }
-    .btn-save-final:hover { background: #059669; transform: translateY(-2px); }
-
-    /* TABLE */
-    .modern-table { width: 100%; border-collapse: collapse; }
-    .spacious-table th { padding: 15px 25px; font-size: 0.8rem; letter-spacing: 0.05em; background: #f8fafc; border-bottom: 1px solid #e2e8f0; text-align: left; }
-    .spacious-table td { padding: 18px 25px; font-size: 0.95rem; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
-    
-    /* FLEX HELPER FOR TH */
-    .th-flex { display: flex; align-items: center; width: 100%; height: 100%; }
-    .justify-center { justify-content: center; }
-    .justify-end { justify-content: flex-end; }
-    .text-right { text-align: right; }
-    .text-center { text-align: center; }
-    
-    .label-total { font-weight: 800; font-size: 1rem; color: var(--text-dark); }
-    .total-amount-lg { font-size: 1.2rem; font-weight: 800; color: var(--blue-primary); }
-    .action-footer { padding: 20px 25px; border-top: 1px solid #e2e8f0; text-align: right; background: #fff; }
-    
-    .btn-delete-row { background: #fef2f2; color: #ef4444; width: 32px; height: 32px; border-radius: 6px; border: 1px solid #fee2e2; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-    .btn-delete-row:hover { background: #ef4444; color: white; border-color: #ef4444; }
-    .empty-state { text-align: center; color: var(--text-gray); font-style: italic; padding: 30px; }
-    
-    /* FILE CARD */
-    .file-download-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 15px; display: flex; align-items: center; gap: 12px; }
-    .file-name { display: block; font-weight: 600; color: var(--blue-primary); }
+    /* CSS SAMA SEPERTI SEBELUMNYA + FIXED WARNA TOMBOL */
+    :root { --blue-primary: #2563eb; --blue-hover: #1d4ed8; --blue-light: #eff6ff; --text-dark: #0f172a; --text-gray: #64748b; --border-color: #e2e8f0; --red-danger: #ef4444; --red-bg: #fef2f2; }
+    .mt-3 { margin-top: 10px; } .mt-20 { margin-top: 20px; } .mt-30 { margin-top: 30px; } .mb-20 { margin-bottom: 20px; } .mb-25 { margin-bottom: 25px; } .mb-30 { margin-bottom: 30px; } .p-20 { padding: 20px; } .p-25 { padding: 25px; }
+    .process-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; } @media (max-width: 900px) { .process-grid { grid-template-columns: 1fr; } }
+    .h-full { height: 100%; } .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; } .header-left { display: flex; flex-direction: column; gap: 5px; } .page-title { font-size: 1.75rem; font-weight: 800; color: var(--text-dark); margin: 0; } .page-subtitle { color: var(--text-gray); } .btn-back { display: inline-flex; align-items: center; gap: 8px; color: var(--text-gray); font-weight: 600; text-decoration: none; font-size: 0.9rem; } .btn-back:hover { color: var(--blue-primary); }
+    .status-badge-lg { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; } .status-pending { background: #fffbeb; color: #b45309; border: 1px solid #fcd34d; }
+    .content-card { background: white; border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); } .card-header { padding: 15px 20px; border-bottom: 1px solid var(--border-color); background: #fff; } .card-header h3 { margin: 0; font-size: 1.1rem; color: var(--text-dark); display: flex; align-items: center; gap: 10px; }
+    .info-list { list-style: none; padding: 0; margin: 0; } .info-item { display: flex; align-items: flex-start; gap: 15px; padding: 12px 0; border-bottom: 1px dashed #e2e8f0; } .info-item:last-child { border-bottom: none; }
+    .icon-wrapper { width: 36px; height: 36px; background: #eff6ff; color: var(--blue-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; } .info-content { display: flex; flex-direction: column; } .info-content .label { font-size: 0.75rem; color: var(--text-gray); text-transform: uppercase; margin-bottom: 2px; } .info-content .value { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); } .fst-italic { font-style: italic; }
+    .file-download-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 15px; display: flex; align-items: center; gap: 12px; } .file-name { display: block; font-weight: 600; color: var(--blue-primary); }
+    .highlight-card { background: #fbfdff; border-color: #dbeafe; } .text-blue { color: var(--blue-primary); } .border-blue { border-bottom-color: #e0f2fe; }
+    .form-label { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; display: block; } .form-input { width: 100%; padding: 12px 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 0.95rem; font-weight: 500; color: var(--text-dark); background: #fff; transition: border-color 0.2s; } .form-input:focus { border-color: var(--blue-primary); outline: none; }
+    .input-group-modern { position: relative; display: flex; align-items: center; } .input-prefix { position: absolute; left: 0; top: 0; bottom: 0; width: 45px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; border-right: 2px solid #e2e8f0; border-radius: 8px 0 0 8px; font-weight: 600; color: var(--text-gray); font-size: 0.85rem; z-index: 2; } .with-prefix { padding-left: 60px; } .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    /* FIXED BUTTONS */
+    .btn-add-action { width: 100%; padding: 14px; font-size: 1rem; font-weight: 700; background-color: #2563eb !important; color: #ffffff; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; } .btn-add-action:hover { background-color: #1d4ed8 !important; }
+    .btn-save-final { display: inline-flex; align-items: center; gap: 10px; padding: 14px 30px; font-size: 1rem; font-weight: 700; background-color: #10b981 !important; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2); } .btn-save-final:hover { background-color: #059669 !important; transform: translateY(-2px); }
+    .btn-reject-block { display: block; width: 100%; padding: 10px; background: #fef2f2; color: #ef4444; border: 1px solid #fee2e2; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-top: 15px; } .btn-reject-block:hover { background: #fee2e2; border-color: #ef4444; }
+    .modern-table { width: 100%; border-collapse: collapse; } .spacious-table th { padding: 15px 25px; font-size: 0.8rem; letter-spacing: 0.05em; background: #f8fafc; border-bottom: 1px solid #e2e8f0; text-align: left; } .spacious-table td { padding: 18px 25px; font-size: 0.95rem; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+    .th-flex { display: flex; align-items: center; width: 100%; height: 100%; } .justify-center { justify-content: center; } .justify-end { justify-content: flex-end; } .text-right { text-align: right; } .text-center { text-align: center; }
+    .label-total { font-weight: 800; font-size: 1rem; color: var(--text-dark); } .total-amount-lg { font-size: 1.2rem; font-weight: 800; color: var(--blue-primary); } .action-footer { padding: 20px 25px; border-top: 1px solid #e2e8f0; text-align: right; background: #fff; }
+    .btn-delete-row { background: #fef2f2; color: #ef4444; width: 32px; height: 32px; border-radius: 6px; border: 1px solid #fee2e2; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; } .btn-delete-row:hover { background: #ef4444; color: white; border-color: #ef4444; } .empty-state { text-align: center; color: var(--text-gray); font-style: italic; padding: 30px; }
+    .btn-download { display: inline-flex; padding: 5px 12px; background: #eff6ff; color: var(--blue-primary); border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; } .btn-download:hover { background: #dbeafe; }
 </style>
 
 <script>
     let medicineCount = 0;
-
-    // Auto-fill harga saat obat dipilih
     document.getElementById('medicine_select').addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
         const price = selectedOption.getAttribute('data-price');
-        if (price) {
-            document.getElementById('medicine_price').value = price;
-        } else {
-            document.getElementById('medicine_price').value = '';
-        }
+        if (price) { document.getElementById('medicine_price').value = price; } 
+        else { document.getElementById('medicine_price').value = ''; }
     });
 
     function addMedicine() {
         const medicineSelect = document.getElementById('medicine_select');
         const medicineId = medicineSelect.value;
         const medicineName = medicineSelect.options[medicineSelect.selectedIndex].getAttribute('data-name');
-        
         const quantity = parseInt(document.getElementById('medicine_quantity').value);
         const price = parseFloat(document.getElementById('medicine_price').value);
 
@@ -390,13 +262,12 @@ $result_products = $conn->query($sql_products);
                 </td>
                 <td class="text-center">
                     <button type="button" class="btn-delete-row mx-auto" onclick="removeMedicine(${medicineCount})">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     </button>
                 </td>
             </tr>
         `;
         tableBody.insertAdjacentHTML('beforeend', newRow);
-
         updateGrandTotal();
         resetForm();
     }
@@ -404,13 +275,9 @@ $result_products = $conn->query($sql_products);
     function removeMedicine(rowId) {
         document.getElementById(`row_${rowId}`).remove();
         const tableBody = document.querySelector('#medicineTable tbody');
-        
         let hasData = false;
         const rows = tableBody.querySelectorAll('tr');
-        rows.forEach(row => {
-            if (row.id !== 'emptyRow') hasData = true;
-        });
-
+        rows.forEach(row => { if (row.id !== 'emptyRow') hasData = true; });
         if (!hasData) {
             document.getElementById('emptyRow').style.display = 'table-row';
             document.getElementById('tableFooter').style.display = 'none';
@@ -420,9 +287,7 @@ $result_products = $conn->query($sql_products);
 
     function updateGrandTotal() {
         let total = 0;
-        document.querySelectorAll('.subtotal-input').forEach(input => {
-            total += parseFloat(input.value);
-        });
+        document.querySelectorAll('.subtotal-input').forEach(input => { total += parseFloat(input.value); });
         document.getElementById('grandTotal').textContent = 'Rp ' + total.toLocaleString('id-ID');
     }
 
