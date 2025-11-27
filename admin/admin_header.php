@@ -14,6 +14,12 @@ if (!isset($_SESSION['user_id'])) {
 $admin_name = htmlspecialchars($_SESSION['user_name'] ?? 'Pengguna');
 $user_role = $_SESSION['user_role'] ?? 'customer';
 
+// 1. TENTUKAN HALAMAN AKTIF
+$current_page = basename($_SERVER['PHP_SELF']);
+function is_active($page, $current_page) {
+    return ($page == $current_page) ? 'active' : '';
+}
+
 // Jika BUKAN admin atau receptionist, tendang ke halaman customer
 if ($user_role != 'admin' && $user_role != 'receptionist') {
     header("Location: ../index.php");
@@ -27,8 +33,8 @@ if ($user_role != 'admin' && $user_role != 'receptionist') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dasbor Admin - Apotek</title>
     
-<   <link rel="stylesheet" href="/assets/css/style.css?v=1.2">
-    <link rel="stylesheet" href="/assets/css/admin_style.css?v=1.2">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin_style.css">
 </head>
 <body>
 
@@ -42,17 +48,19 @@ if ($user_role != 'admin' && $user_role != 'receptionist') {
         
         <nav class="admin-nav">
             
-            <a href="index.php">Manajemen Pesanan</a>
+            <a href="index.php" class="<?php echo is_active('index.php', $current_page); ?>">Dasbor Admin</a>
+            
+            <a href="manajemen_pesanan.php" class="<?php echo is_active('manajemen_pesanan.php', $current_page); ?>">Manajemen Pesanan</a>
             
             <?php if ($user_role == 'admin' || $user_role == 'receptionist'): ?>
-            <a href="verifikasi_resep.php" style="background: #ffc107; color: #333; font-weight: bold;">Verifikasi Resep</a>
+            <a href="verifikasi_resep.php" class="<?php echo is_active('verifikasi_resep.php', $current_page); ?>">Verifikasi Resep</a>
             <?php endif; ?>
 
             <hr style="border-top: 1px solid #3c5061; margin: 15px 0;">
             
             <?php if ($user_role == 'admin'): ?>
-            <a href="produk.php">Manajemen Produk</a>
-            <a href="laporan_penjualan.php">Laporan Penjualan</a>
+            <a href="produk.php" class="<?php echo is_active('produk.php', $current_page); ?>">Manajemen Produk</a>
+            <a href="laporan_penjualan.php" class="<?php echo is_active('laporan_penjualan.php', $current_page); ?>">Laporan Penjualan</a>
             <?php endif; ?>
             
             <hr style="border-top: 1px solid #3c5061; margin: 15px 0;">
