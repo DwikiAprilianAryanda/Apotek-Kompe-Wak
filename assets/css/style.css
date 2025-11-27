@@ -1209,6 +1209,15 @@ a.cat-item {
     padding: 100px 20px;
     text-align: center;
 }
+/* Tambahkan ini di assets/css/style.css */
+
+.empty-icon {
+    width: 100px;         /* Mengatur lebar ikon agar proporsional */
+    height: 100px;        /* Mengatur tinggi ikon */
+    color: #cbd5e1;       /* Mengubah warna hitam pekat menjadi abu-abu lembut */
+    margin-bottom: 20px;  /* Memberi jarak antara ikon dan teks */
+    display: inline-block;
+}
 .empty-state h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 10px; }
 
 @media (max-width: 1300px) {
