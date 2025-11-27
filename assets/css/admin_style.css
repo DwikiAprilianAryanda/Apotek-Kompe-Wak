@@ -1,397 +1,201 @@
-/* ===== FILE: assets/css/admin_style.css (VERSI DISESUAIKAN) ===== */
-
+/* ===== RESET & BASIC ===== */
 body {
-    background-color: #f4f4f4; /* BG: Disesuaikan dengan style.css */
+    background-color: #f1f5f9; /* Abu-abu sangat muda yang modern */
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* FONT: Disesuaikan dengan style.css */
-    color: #333; /* TEXT: Disesuaikan dengan style.css */
+    font-family: 'Inter', sans-serif;
+    color: #334155;
 }
 
 .admin-wrapper {
     display: flex;
-}
-
-.admin-sidebar {
-    width: 250px;
-    background-color: #2c3e50; /* Sidebar tetap gelap untuk kontras admin */
-    color: white;
     min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
 }
 
-.admin-sidebar h2 {
-    color: white;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 30px;
-}
-
-.admin-sidebar .admin-welcome {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 0.9em;
-    line-height: 1.4;
-}
-
-.admin-nav a {
-    display: block;
-    color: #ecf0f1;
-    padding: 15px 20px;
-    text-decoration: none;
-    border-radius: 8px; /* RADIUS: Disesuaikan */
-    margin-bottom: 10px;
-    transition: background-color 0.3s;
-}
-
-/* Tautan yang sedang diakses akan berwarna Kuning/Accent */
-.admin-nav a.active {
-    background-color: #ffc107; /* Kuning (Accent) */
-    color: #333; /* Warna teks gelap */
-    font-weight: bold;
-}
-
-/* Hover untuk tautan yang TIDAK aktif akan tetap Biru/Secondary */
-.admin-nav a:hover:not(.active) {
-    background-color: #457B9D;
-}
-
-.admin-nav a.logout {
-    background-color: #e74c3c;
-    margin-top: 30px;
-}
-.admin-nav a.logout:hover {
-    background-color: #c0392b;
-}
-
-.admin-content {
-    flex-grow: 1;
-    padding: 30px;
-    box-sizing: border-box;
-}
-
-.page-title {
-    margin-top: 0;
-    color: #1D3557; /* WARNA: Disesuaikan dengan style.css */
-}
-
-/* =============================
-    CONTAINER & TABEL ADMIN
-   ============================= */
-
-.admin-table-container {
-    background: white;
-    padding: 20px;
-    border-radius: 15px; /* RADIUS: Disesuaikan dengan .card */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* SHADOW: Disesuaikan dengan .card */
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-    vertical-align: middle;
-}
-
-th {
-    background-color: #f8f9fa; /* BG: Disesuaikan dengan .contact-form */
-    color: #333;
-    font-weight: 600;
-}
-
-tr:hover {
-    background-color: #f8f9fa;
-}
-
-.product-thumbnail {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px; /* RADIUS: Disesuaikan */
-    border: 1px solid #ddd;
-}
-
-/* =============================
-    TOMBOL-TOMBOL ADMIN (DISESUAIKAN)
-   ============================= */
-
-/* Tombol Aksi Utama (Tambah) - Menggunakan style .btn-primary Anda */
-.btn-primary {
-    display: inline-block;
-    padding: 12px 24px; /* Padding: Disesuaikan */
-    text-decoration: none;
-    border-radius: 8px; /* Radius: Disesuaikan */
-    font-weight: 600;
-    text-align: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-    font-size: 1rem;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #1D3557, #457B9D); /* WARNA: Disesuaikan */
-    color: white;
-}
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
-}
-
-/* Tombol Aksi di Tabel (Detail) - Menggunakan style .btn-secondary Anda */
-.btn-detail {
-    background: #6c757d; /* WARNA: Disesuaikan */
-    color: white;
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 8px; /* Radius: Disesuaikan */
-    font-size: 0.9em;
-    transition: all 0.3s ease;
-}
-.btn-detail:hover {
-    background: #5a6268;
-    transform: translateY(-2px);
-}
-
-/* Tombol Aksi di Tabel (Edit) */
-.btn-edit {
-    background-color: #ffc107; /* Kuning */
-    color: #212529;
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 8px; /* Radius: Disesuaikan */
-    font-size: 0.9em;
-    margin-right: 5px;
-    display: inline-block;
-    transition: all 0.3s ease;
-}
-.btn-edit:hover {
-    background-color: #e0a800;
-    transform: translateY(-2px);
-}
-
-/* Tombol Aksi di Tabel (Hapus) */
-.btn-delete {
-    background-color: #dc3545; /* Merah */
-    color: white;
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 8px; /* Radius: Disesuaikan */
-    font-size: 0.9em;
-    display: inline-block;
-    transition: all 0.3s ease;
-}
-.btn-delete:hover {
-    background-color: #c82333;
-    transform: translateY(-2px);
-}
-
-
-/* =============================
-    FORM ADMIN (BARU - Disesuaikan)
-   ============================= */
-   
-/* Ini untuk halaman tambah/edit produk nanti */
-.admin-form-container {
-    max-width: 800px;
-    background: white;
-    padding: 30px;
-    border-radius: 15px; /* Radius: Disesuaikan */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow: Disesuaikan */
-}
-
-.admin-form-container label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-    font-weight: 600; /* Style: Disesuaikan */
-}
-
-.admin-form-container input[type="text"],
-.admin-form-container input[type="number"],
-.admin-form-container textarea {
-    width: 100%;
-    padding: 12px; /* Padding: Disesuaikan */
-    margin-bottom: 20px;
-    border: 2px solid #ddd; /* Border: Disesuaikan */
-    border-radius: 8px; /* Radius: Disesuaikan */
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font: Disesuaikan */
-    box-sizing: border-box; /* Mencegah padding merusak layout */
-}
-
-.admin-form-container input:focus,
-.admin-form-container textarea:focus {
-    outline: none;
-    border-color: #1D3557; /* Focus: Disesuaikan */
-}
-
-.admin-form-container textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* ===== TAMBAHKAN DI BAWAH assets/css/admin_style.css ===== */
-
-/* Notifikasi Sukses (Disesuaikan dengan style.css pelanggan) */
-.alert-success {
-    background: linear-gradient(135deg, #10b981, #34d399);
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 20px 0; /* Memberi jarak */
-    font-weight: 600;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-}
-
-/* =============================
-   CUSTOM ADMIN MANAJEMEN PRODUK STYLES
-   ============================= */
-   
-.product-actions-header {
+/* ===== SIDEBAR MODERN ===== */
+.admin-sidebar {
+    width: 260px;
+    background-color: #1e293b; /* Biru Gelap (Slate 800) */
+    color: #e2e8f0;
     display: flex;
-    /* *** PERBAIKAN LEBAR: Menggunakan space-between untuk mendorong Search Form ke kiri penuh *** */
-    justify-content: space-between; 
+    flex-direction: column;
+    position: fixed; /* Sidebar tetap diam saat scroll */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+}
+
+/* Logo Area */
+.sidebar-header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    background-color: #0f172a; /* Slate 900 (Lebih gelap) */
+    border-bottom: 1px solid #334155;
+    gap: 12px;
+}
+
+.logo-icon {
+    color: #3b82f6; /* Biru Terang */
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+/* Profile Area */
+.admin-profile {
+    padding: 25px;
+    display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 20px;
-    width: 100%;
-    /* Mengaktifkan wrap agar layout tidak pecah di layar sangat kecil */
-    flex-wrap: wrap; 
+    border-bottom: 1px solid #334155;
+    margin-bottom: 10px;
 }
 
-.admin-search-form {
-    display: flex; 
-    gap: 0;
-    /* *** PERBAIKAN LEBAR: Memungkinkan Form mengambil semua sisa ruang *** */
-    flex-grow: 1; 
-    flex-shrink: 1;
-    /* Penting: Setel lebar minimum agar Search Bar tidak hilang saat menyusut */
-    min-width: 250px; 
-}
-
-/* Tombol Tambah Produk (A tag) */
-.product-actions-header .btn-primary {
-    display: inline-block; 
-    margin-bottom: 0;
-    align-self: center; 
-    flex-shrink: 0; /* Pastikan tombol tetap pada ukuran aslinya */
-}
-
-.admin-search-form input[type="text"] {
-    /* *** PERBAIKAN TINGGI (HEIGHT): Samakan dengan padding vertikal tombol (12px) *** */
-    padding: 13.5px 15px; 
-    
-    /* *** PERBAIKAN LEBAR: Biarkan input mengambil lebar form yang tersisa *** */
-    width: 100%; 
-    
-    border: 2px solid #ddd;
-    border-right: none;
-    font-size: 1rem;
-    border-radius: 8px 0 0 8px !important;
-    transition: border-color 0.3s;
-}
-
-.admin-search-form input[type="text"]:focus {
-    border-color: #1D3557;
-    outline: none;
-}
-
-.admin-search-form button {
-    background: linear-gradient(135deg, #1D3557, #457B9D); /* WARNA: Disesuaikan */
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 50%;
     color: white;
-    border: none;
-    /* *** PERBAIKAN TINGGI (HEIGHT): Samakan dengan padding vertikal input *** */
-    padding: 12px 15px; 
-    
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 0 8px 8px 0 !important;
-    transition: background-color 0.3s;
-    flex-shrink: 0; 
-}
-
-.admin-search-form button:hover {
-    background: #1D3557;
-}
-
-/* =============================
-   ADMIN PAGINATION & CONTROLS STYLES
-   ============================= */
-
-.table-controls-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.limit-selector {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #666;
-    font-size: 0.9em;
-}
-
-.limit-selector .show-form {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.limit-selector select {
-    padding: 8px 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 0.9em;
-    cursor: pointer;
-}
-
-.total-display {
-    color: #666;
-    font-size: 0.9em;
-}
-
-.pagination-footer {
-    padding: 20px 0 0 0;
-    text-align: center;
-}
-
-/* Menggunakan gaya pagination yang sudah ada di style.css */
-/* Memastikan gaya tombol pagination di admin sama dengan pelanggan */
-.pagination {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-}
-
-.page-link {
-    display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 35px;
-    height: 35px;
-    padding: 0 10px;
-    background-color: var(--white);
-    border: 1px solid #ddd;
-    color: #1D3557;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: 2px solid #1e293b;
+    box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info .name {
     font-weight: 600;
+    font-size: 0.95rem;
+    color: #fff;
+}
+
+.profile-info .role {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Navigation Links */
+.sidebar-nav {
+    flex: 1; /* Mengisi ruang kosong */
+    padding: 10px 15px;
+    overflow-y: auto;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    color: #cbd5e1; /* Text abu terang */
     text-decoration: none;
-    transition: all 0.3s;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: all 0.2s ease;
     font-size: 0.9rem;
+    font-weight: 500;
 }
 
-.page-link.active {
-    background-color: #1D3557;
-    color: var(--white);
-    border-color: #1D3557;
-    pointer-events: none;
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    transform: translateX(3px);
+}
+
+.nav-item.active {
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.nav-item .icon {
+    display: flex;
+    align-items: center;
+    width: 20px;
+}
+
+/* Separators */
+.nav-divider {
+    height: 1px;
+    background-color: #334155;
+    margin: 15px 10px;
+    opacity: 0.5;
+}
+
+.nav-group-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 700;
+    padding: 10px 15px 5px;
+    letter-spacing: 1px;
+}
+
+/* Footer & Logout */
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #334155;
+    background-color: #0f172a;
+}
+
+.nav-item.logout {
+    color: #ef4444; /* Merah */
+    background-color: rgba(239, 68, 68, 0.1);
+    justify-content: flex-start;
+}
+
+.nav-item.logout:hover {
+    background-color: #ef4444;
+    color: white;
+    transform: none;
+}
+
+/* Main Content Adjustments */
+.admin-content {
+    flex-grow: 1;
+    margin-left: 260px; /* Jarak untuk sidebar fixed */
+    padding: 30px 40px;
+    box-sizing: border-box;
+    width: calc(100% - 260px);
+}
+
+@media (max-width: 900px) {
+    .admin-sidebar {
+        width: 70px; /* Versi mini untuk tablet */
+    }
+    .admin-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+    .profile-info, .sidebar-header h2, .nav-item .label, .nav-group-title {
+        display: none;
+    }
+    .sidebar-header, .admin-profile, .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .nav-item {
+        margin-bottom: 10px;
+    }
 }
