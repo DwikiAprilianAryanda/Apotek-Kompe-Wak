@@ -125,7 +125,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'cart_added') {
                                         <button type="button" class="qty-btn plus-btn" data-id="<?php echo $row['id']; ?>">+</button>
                                     </div>
 
-                                <button type="submit" class="btn-cart-sm">+ Keranjang</button>
+                                <button type="submit" class="btn-cart-sm">Tambah Ke Keranjang</button>
                             </form>
                             </div>
                             <?php
