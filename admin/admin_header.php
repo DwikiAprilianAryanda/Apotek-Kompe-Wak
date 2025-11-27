@@ -1,29 +1,31 @@
 <?php
 session_start();
-
-// INI YANG PALING PENTING: MEMUAT KONEKSI DB
 include '../includes/db_connect.php'; 
 
-// KEAMANAN: Halaman ini hanya boleh diakses oleh Admin atau Resepsionis
+// --- PERUBAHAN DI SINI ---
+// Jika belum login, lempar ke login admin (BUKAN login.php user biasa)
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login.php");
+    header("Location: login.php"); 
     exit;
 }
 
-// Ambil nama dan peran pengguna
-$admin_name = htmlspecialchars($_SESSION['user_name'] ?? 'Pengguna');
 $user_role = $_SESSION['user_role'] ?? 'customer';
 
-// 1. TENTUKAN HALAMAN AKTIF
+// Keamanan ganda: Jika login tapi bukan admin, tendang ke login admin
+if ($user_role != 'admin' && $user_role != 'receptionist') {
+    // Hapus sesi user biasa agar tidak konflik
+    session_unset();
+    session_destroy();
+    header("Location: login.php?error=access");
+    exit;
+}
+// --- BATAS PERUBAHAN ---
+
+$admin_name = htmlspecialchars($_SESSION['user_name'] ?? 'Pengguna');
 $current_page = basename($_SERVER['PHP_SELF']);
+
 function is_active($page, $current_page) {
     return ($page == $current_page) ? 'active' : '';
-}
-
-// Jika BUKAN admin atau receptionist, tendang ke halaman customer
-if ($user_role != 'admin' && $user_role != 'receptionist') {
-    header("Location: ../index.php");
-    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -32,7 +34,6 @@ if ($user_role != 'admin' && $user_role != 'receptionist') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dasbor Admin - Apotek</title>
-    
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/admin_style.css">
 </head>
@@ -47,9 +48,7 @@ if ($user_role != 'admin' && $user_role != 'receptionist') {
         </div>
         
         <nav class="admin-nav">
-            
             <a href="index.php" class="<?php echo is_active('index.php', $current_page); ?>">Dasbor Admin</a>
-            
             <a href="manajemen_pesanan.php" class="<?php echo is_active('manajemen_pesanan.php', $current_page); ?>">Manajemen Pesanan</a>
             
             <?php if ($user_role == 'admin' || $user_role == 'receptionist'): ?>
@@ -66,7 +65,7 @@ if ($user_role != 'admin' && $user_role != 'receptionist') {
             <hr style="border-top: 1px solid #3c5061; margin: 15px 0;">
             
             <a href="../index.php" target="_blank">Lihat Toko</a>
-            <a href="../actions/logout.php" class="logout">Logout</a>
+            <a href="logout.php" class="logout">Logout</a>
         </nav>
     </div>
     
