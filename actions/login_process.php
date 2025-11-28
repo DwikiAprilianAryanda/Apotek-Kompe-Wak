@@ -22,18 +22,25 @@ if ($result->num_rows == 1) {
     
     // Verifikasi password
     if (password_verify($password_input, $user['password'])) {
+        
+        // --- 1. CEK ROLE (PEMISAHAN TEGAS) ---
+        // Jika yang login adalah Admin atau Resepsionis, TOLAK AKSES
+        if ($user['role'] == 'admin' || $user['role'] == 'receptionist') {
+            // Redirect ke halaman login khusus admin dengan pesan error
+            header("Location: ../admin/login.php?error=use_admin_login"); 
+            exit;
+        }
+
+        // --- 2. JIKA CUSTOMER, LANJUTKAN ---
         // Password cocok! Buat sesi login
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_name'] = $user['name'];
         $_SESSION['user_role'] = $user['role']; 
         
-        // --- LOGIKA REDIRECT YAKIN BENAR ---
-        if ($user['role'] == 'admin' || $user['role'] == 'receptionist') {
-            header("Location: ../admin/index.php"); // Resepsionis & Admin ke Dasbor
-        } else {
-            header("Location: ../index.php"); // Pelanggan ke Index
-        }
+        // Pelanggan ke Index
+        header("Location: ../index.php"); 
         exit;
+
     } else {
         // Password salah
         header("Location: ../login.php?error=wrongpass");

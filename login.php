@@ -1,6 +1,15 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) { session_start(); }
-if (isset($_SESSION['user_id'])) { header("Location: index.php"); exit(); }
+if (isset($_SESSION['user_id'])) { 
+    // Jika role admin, lempar ke dashboard admin
+    if ($_SESSION['user_role'] == 'admin' || $_SESSION['user_role'] == 'receptionist') {
+        header("Location: admin/index.php");
+    } else {
+        // Jika customer, lempar ke homepage
+        header("Location: index.php");
+    }
+    exit(); 
+}
 
 // Logika Pesan Error
 $error_msg = '';
@@ -71,6 +80,12 @@ $pesan_lupa = "Halo Admin Apotek Arshaka, saya lupa password akun saya. Mohon ba
 
                     <button type="submit" class="btn-auth">Masuk Sekarang</button>
                 </form>
+
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="admin/login.php" style="font-size: 0.85rem; color: #6b7280; text-decoration: underline;">
+                        Masuk sebagai Admin/Staf
+                    </a>
+                </div>
 
                 <div class="divider"><span>atau</span></div>
                 
