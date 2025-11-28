@@ -3526,3 +3526,63 @@ textarea.auth-input {
     flex-direction: column;
     justify-content: center; /* Konten ditaruh di tengah vertikal */
 }
+
+/* ==========================================================================
+   NAVBAR ACTIVE STATE
+   ========================================================================== */
+.nav-menu a.active {
+    color: var(--accent) !important; /* Warna Kuning Emas */
+    font-weight: 800; /* Sedikit lebih tebal */
+    position: relative;
+}
+
+/* Opsional: Garis bawah kecil untuk penanda lebih jelas */
+.nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    border-radius: 2px;
+}
+
+/* --- 4. MEMPERBESAR IKON HEADER (KERANJANG & AKUN) --- */
+
+/* Membesarkan ukuran ikon SVG */
+.header-icons .icon-link svg {
+    width: 24px !important; /* Diperbesar dari ukuran standar 24px */
+    height: 24px !important;
+    fill: #ffffff; /* Pastikan warna putih */
+    transition: all 0.3s ease; /* Transisi halus */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); /* Sedikit bayangan agar kontras */
+}
+
+/* Efek Hover: Zoom sedikit & Berubah Warna */
+.header-icons .icon-link:hover svg {
+    transform: scale(1.15); /* Zoom in 15% */
+    fill: var(--accent) !important; /* Berubah jadi kuning emas */
+    filter: drop-shadow(0 4px 8px rgba(255, 193, 7, 0.4)); /* Bayangan kuning (glow effect) */
+}
+
+/* Memastikan Badge Keranjang (Angka Merah) tetap pas posisinya */
+.cart-badge {
+    top: -5px !important;
+    right: -10px !important;
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.75rem !important;
+    border: 2px solid #fff !important; /* Border putih agar terpisah dari ikon */
+}
+
+/* ==========================================================================
+   ICON ACTIVE STATE (MENYALA)
+   ========================================================================== */
+
+/* Ketika class .active ada, ubah warna fill jadi Kuning Emas */
+.header-icons .icon-link.active svg {
+    fill: var(--accent) !important;
+    filter: drop-shadow(0 4px 8px rgba(255, 193, 7, 0.5)); /* Efek cahaya (glow) */
+    transform: scale(1.1); /* Sedikit lebih besar */
+}
