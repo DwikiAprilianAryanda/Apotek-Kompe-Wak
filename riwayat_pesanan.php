@@ -150,6 +150,5 @@ $stmt->close();
 </div>
 
 <?php 
-$conn->close();
 include 'includes/footer.php'; 
 ?>

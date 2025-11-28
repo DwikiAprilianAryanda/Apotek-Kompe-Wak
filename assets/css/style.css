@@ -3586,3 +3586,19 @@ textarea.auth-input {
     filter: drop-shadow(0 4px 8px rgba(255, 193, 7, 0.5)); /* Efek cahaya (glow) */
     transform: scale(1.1); /* Sedikit lebih besar */
 }
+
+/* ==========================================================================
+   PERBAIKAN JARAK KERANJANG KOSONG
+   ========================================================================== */
+
+.empty-state p {
+    margin-bottom: 35px !important; /* Memberi jarak yang cukup ke tombol */
+    color: #64748b; /* Memastikan warna teks abu-abu lembut */
+    font-size: 1rem;
+}
+
+/* Opsional: Mempercantik tombol saat kondisi kosong agar tidak terlalu lebar */
+.empty-state .btn-checkout {
+    padding: 12px 30px;
+    border-radius: 8px !important; /* Sedikit rounded agar lebih manis */
+}

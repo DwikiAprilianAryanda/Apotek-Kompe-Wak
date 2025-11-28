@@ -171,6 +171,5 @@ if (isset($_GET['status']) && $_GET['status'] == 'cart_added') {
 </div>
 
 <?php 
-$conn->close();
 include 'includes/footer.php'; 
 ?>

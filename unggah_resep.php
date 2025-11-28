@@ -159,6 +159,5 @@ if (isset($_GET['status'])) {
 </script>
 
 <?php 
-$conn->close();
 include 'includes/footer.php'; 
 ?>

@@ -156,6 +156,5 @@ switch ($sort_option) {
 </div>
 
 <?php 
-$conn->close();
 include 'includes/footer.php'; 
 ?>
